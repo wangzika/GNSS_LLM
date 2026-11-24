@@ -1,0 +1,6 @@
+model_name_or_path: Qwen/Qwen2.5-3B-Instruct
+adapter_name_or_path: outputs/industrial/qwen2.5-3b-industrial-v2-lora
+template: qwen
+finetuning_type: lora
+quantization_bit: 4
+quantization_method: bnb

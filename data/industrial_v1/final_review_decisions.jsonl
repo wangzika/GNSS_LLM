@@ -1,0 +1,35 @@
+{"event_id": "EVT-20261116-0001", "status": "reject", "issues": ["HDF转速比较的否定措辞含糊；保守剔除，不修改原文"], "response_sha256": "365ed16cef1a57cfdaae2218c0e45ae4e1ff2e15f931f2384ec207b1d845bc39"}
+{"event_id": "EVT-20261116-0002", "status": "accept", "issues": [], "response_sha256": "1238b456fbee2785e091169a3199a24dac88a5e90a47de3e8bd87a9b2d782d03"}
+{"event_id": "EVT-20261116-0003", "status": "accept", "issues": [], "response_sha256": "f254113ef371e152b78c9c74e9aedfc46354f82bd439cc89dfdff69da52a2133"}
+{"event_id": "EVT-20261116-0004", "status": "accept", "issues": [], "response_sha256": "6c2886aa56efe306fde74132224609c21ed2604141b6484113ff055422187ec7"}
+{"event_id": "EVT-20261116-0005", "status": "accept", "issues": [], "response_sha256": "d89b1355a41632c910ee530b737a0cde8acd24059302117c146cf5f0c925c9fb"}
+{"event_id": "EVT-20261116-0006", "status": "accept", "issues": [], "response_sha256": "ff2d5ab215b85cb8e6889ac917423a17a87aed4a19ccc0066838a7a8f8944efa"}
+{"event_id": "EVT-20261116-0007", "status": "accept", "issues": [], "response_sha256": "14ce06a04623c22a78c38bb3d3bffb62859555b8138b7aab2e94c2c9859458bb"}
+{"event_id": "EVT-20261116-0008", "status": "accept", "issues": [], "response_sha256": "0d389bcffd7bad5a5e053fbc090c2f578abd476b52ec3d37da2ae61bd92e241b"}
+{"event_id": "EVT-20261116-0009", "status": "reject", "issues": ["错误比较：1313 rpm 被写成大于 1380 rpm"], "response_sha256": "2fd1b87948f3712ca375bf109170f8f51562cc058bcc08fe9223ba82ec1fa5fe"}
+{"event_id": "EVT-20261116-0010", "status": "uncertain", "issues": ["磨损故障的真实发生含随机机制，不纳入确定标签训练"], "response_sha256": "115d362dfb0ac1181c706f42b5e51d5d30807a843a9f966e3f1b5feb2c20d9ca"}
+{"event_id": "EVT-20261116-0013", "status": "accept", "issues": [], "response_sha256": "3b27286909974c45def7311b1c073e130692cdb285a2fc3732970317e0850af0"}
+{"event_id": "EVT-20261116-0015", "status": "accept", "issues": [], "response_sha256": "caf0e5e9090dad2017951acf35cabc2512d1a9547dfbcf2991b0b62f041c0f37"}
+{"event_id": "EVT-20261116-0017", "status": "uncertain", "issues": ["磨损故障的真实发生含随机机制，不纳入确定标签训练"], "response_sha256": "caf1eb9428837fa55fdc921e1b38e4d25789fd8486af93740767ca1b6e291bc6"}
+{"event_id": "EVT-20261116-0019", "status": "accept", "issues": [], "response_sha256": "22e6a96a720ff4f0719446df7e02f50ddd86787c62964aab66f08bbb366ccab8"}
+{"event_id": "EVT-20261116-0021", "status": "accept", "issues": [], "response_sha256": "5d7d9d04a3f17aece78a2c28a826eff9bc95fb27eeb6dfddd29be0920344d015"}
+{"event_id": "EVT-20261116-0022", "status": "reject", "issues": ["没有随机故障证据不能据此排除 RNF"], "response_sha256": "5a83ea60a1e21aff1ee47eb4c63147078d9b83a01fd65bbb7367b8f8f9dd62ff"}
+{"event_id": "EVT-20261116-0023", "status": "reject", "issues": ["错误比较：1369 rpm 被写成未低于 1380 rpm"], "response_sha256": "a04bd91cb7506f96c212d2cc84c3082c8fbb6e7ce8cebcd037c01d9d464deaff"}
+{"event_id": "EVT-20261116-0024", "status": "reject", "issues": ["存在 OSF 证据不能排除独立随机故障"], "response_sha256": "a4faa7d35de5932a20b77f9d95439d5e9d4a967942a29ee47372ac01b148b3c9"}
+{"event_id": "EVT-20261116-0026", "status": "accept", "issues": [], "response_sha256": "671fb2bbc3de889ed3a35ad6fa00902a49ebb7bbbdc965606a8f1523ccc99e22"}
+{"event_id": "EVT-20261116-0027", "status": "reject", "issues": ["无法从测量值确定 RNF 不等于可以排除 RNF"], "response_sha256": "69b2bdd0a6e7f035c6f68f84d9ae6d4a3571ee47e41012c7379d9b2811f0364c"}
+{"event_id": "EVT-20261116-0028", "status": "reject", "issues": ["没有随机故障证据不能据此排除 RNF"], "response_sha256": "df16e2ef1af504cde0eebeda382564e6fd77992e3587ff67f7bed309a5660378"}
+{"event_id": "EVT-20261116-0029", "status": "uncertain", "issues": ["磨损故障的真实发生含随机机制，不纳入确定标签训练"], "response_sha256": "83ea6994d9566bf79dd259fe120225fa3383e737eeb0920765e912f9659bf352"}
+{"event_id": "EVT-20261116-0030", "status": "reject", "issues": ["无法从测量值确定 RNF 不等于可以排除 RNF"], "response_sha256": "f2d7ada3ab2267fdf649952eea3319434a5066c76b5b8651de6d19a5fe07bb49"}
+{"event_id": "EVT-20261116-0034", "status": "accept", "issues": [], "response_sha256": "5d08d84c4ac66b9c670fbbbb1bc3c501b984442a503d7adb19e867bb7cbe468b"}
+{"event_id": "EVT-20261116-0035", "status": "reject", "issues": ["无法从测量值确定 RNF 不等于可以排除 RNF"], "response_sha256": "ae1215fe1b64b143931512baafc448dc03d373fb28b9826ba55bf3496e17e872"}
+{"event_id": "EVT-20261116-0036", "status": "accept", "issues": [], "response_sha256": "88cb65ac682d102c43c29400dfc127f0ee2d51da68396c3e9cc3e75c03a7c72d"}
+{"event_id": "EVT-20261116-0037", "status": "reject", "issues": ["24 分钟不在 200 至 240 分钟的磨损风险窗口内"], "response_sha256": "bfdd884cabb613bd42eae51b74ab94bf5a8a7964a98a1aba447d1c65dccd1357"}
+{"event_id": "EVT-20261116-0038", "status": "uncertain", "issues": ["磨损故障的真实发生含随机机制，不纳入确定标签训练"], "response_sha256": "cc31193385d2de6c7c287c3866684c211368665378a5fb434ad2a4a7a09146d6"}
+{"event_id": "EVT-20261116-0039", "status": "uncertain", "issues": ["磨损故障的真实发生含随机机制，不纳入确定标签训练"], "response_sha256": "76cbff78185b806fd0224c107719002cf6555723434f9d637beb382e565ee127"}
+{"event_id": "EVT-20261116-0041", "status": "accept", "issues": [], "response_sha256": "709021f69ca8fdb65e61c2a86c95afc113fb863d979cd550aa10c70f2d4fb78b"}
+{"event_id": "EVT-20261116-0043", "status": "accept", "issues": [], "response_sha256": "fd9584e077a165968da67124219aca261e067ba343c6478f8db5939a0d7db16e"}
+{"event_id": "EVT-20261116-0045", "status": "accept", "issues": [], "response_sha256": "ebfcf8cd07757e9b7a51214df62819f29d1ac476631ef7279450c092e435ee85"}
+{"event_id": "EVT-20261116-0046", "status": "accept", "issues": [], "response_sha256": "3dd231a15a95098f24467f63f8d64f5e19cb0f7bf22de5b64b5787ea7c4ede4e"}
+{"event_id": "EVT-20261116-0048", "status": "accept", "issues": [], "response_sha256": "302cbe93a0833d58fbe1a4fd1f2586f87c10eba975af410fa0530ddd4a64647e"}
+{"event_id": "EVT-20261116-0050", "status": "accept", "issues": [], "response_sha256": "7a4ece14c0e55d9ec681f17c8c86a5444a013ed5704e740190fed24b5c874072"}

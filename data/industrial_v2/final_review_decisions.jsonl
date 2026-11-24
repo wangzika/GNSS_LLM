@@ -1,0 +1,214 @@
+{"event_id": "EVT-20261124-0001", "status": "accept", "issues": [], "response_sha256": "877da1902cc9508813cc9dfcc3fd55f0a2c13c8b885db15d913c4e49c0db9802"}
+{"event_id": "EVT-20261124-0002", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "5a06e3fc3e1569a17f7ba1b6a8e4fd3fccbd181d8a9912dee5bc4f46972fc10c"}
+{"event_id": "EVT-20261124-0003", "status": "accept", "issues": [], "response_sha256": "1b986f989cbdc14d682147f5076e43903509d6f2964b37d362779228a19016a6"}
+{"event_id": "EVT-20261124-0004", "status": "accept", "issues": [], "response_sha256": "8b64972b841f97e3cbb33ca9df840fab0721a789c32c8049f815099c431a6c44"}
+{"event_id": "EVT-20261124-0005", "status": "accept", "issues": [], "response_sha256": "af7319dfe108c53399cbc209cdd8502c9e215d99676acced70f94129db2f7338"}
+{"event_id": "EVT-20261124-0007", "status": "reject", "issues": ["不能从当前观测排除随机故障:偶发性随机系统故障 (Random Failure) 无法从测量值确定，但当前数据未触发其他确定性故障规则，因此可以排除"], "response_sha256": "83da11bf6376a129fdf01d2907839c72b43ca2d5cfbde6926f32c475baf5522d"}
+{"event_id": "EVT-20261124-0009", "status": "accept", "issues": [], "response_sha256": "92c44f551a9f72beba7a48937438d9193fec85ec187c26e9125302d9a2c88b00"}
+{"event_id": "EVT-20261124-0010", "status": "accept", "issues": [], "response_sha256": "0c68a996a46073efb73919f88e11c8aafb2c617e7050d1555a0cdaf376c0c8ab"}
+{"event_id": "EVT-20261124-0011", "status": "accept", "issues": [], "response_sha256": "3355116ba0602e6eff594f37f2e08914dc64594852670717f1f8ac6267197856"}
+{"event_id": "EVT-20261124-0012", "status": "accept", "issues": [], "response_sha256": "bf0dcf5cdc9b7f0fa42255c06928ca598e676ccf07eee31c62a52aefb195b058"}
+{"event_id": "EVT-20261124-0013", "status": "accept", "issues": [], "response_sha256": "1d60b6dc8403fd915b5b3a6c6c2b76fa4bb23a6abf3a0a7506fa432d1d47810e"}
+{"event_id": "EVT-20261124-0016", "status": "accept", "issues": [], "response_sha256": "02f4eaa8c2f0de305a882db99efd9c26ca84d92eb429479a415d92cbcd9a658f"}
+{"event_id": "EVT-20261124-0018", "status": "accept", "issues": [], "response_sha256": "0859c531578ef047bf15523e5835d1e929a3e778dde1318ec951714665adee8b"}
+{"event_id": "EVT-20261124-0021", "status": "accept", "issues": [], "response_sha256": "1d04108672dc9f9096e3f8d66b878270518d8cbac310c71e9843cc96ebc3b760"}
+{"event_id": "EVT-20261124-0022", "status": "accept", "issues": [], "response_sha256": "f625b011b549187265eb5be7919179567463f80335fa611e21809ea625fda806"}
+{"event_id": "EVT-20261124-0023", "status": "reject", "issues": ["事件 ID 缺失、重复或不匹配"], "response_sha256": "9a114e2026899fbb0f25b9db0807b0a6317d0b9a83fb50aca76542aee8aa295b"}
+{"event_id": "EVT-20261124-0025", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "e511192c1c14140036848f4cbf0ac33515df3164120b926a4e44f5ce21879d7b"}
+{"event_id": "EVT-20261124-0026", "status": "accept", "issues": [], "response_sha256": "2744abe97f4a5817213443b51e401b39381c6253ae03c8e3ce47ee367d036c25"}
+{"event_id": "EVT-20261124-0028", "status": "accept", "issues": [], "response_sha256": "a176fb4accfb21cdf58ba04e60f5ab3005b42277d30dbb6d5559d7c153331e3b"}
+{"event_id": "EVT-20261124-0029", "status": "accept", "issues": [], "response_sha256": "9c5d630422f4e134a0a99d25eb88fdd71eee4164bd42f42608645a000f9a9006"}
+{"event_id": "EVT-20261124-0030", "status": "reject", "issues": ["不能从当前观测排除随机故障:由于OSF已确定，排除了其他故障类型，如散热系统失效(HDF)、驱动电力异常(PWF)和偶发性随机系统故障(RNF)"], "response_sha256": "03ddbdf01055e1f2958dfaabeac8e5a97969a883ea0c1917f559698132847844"}
+{"event_id": "EVT-20261124-0031", "status": "accept", "issues": [], "response_sha256": "6e8fda987d93392364d14d818dd0b056e2fc72f14b22927eb78099304603dc28"}
+{"event_id": "EVT-20261124-0032", "status": "accept", "issues": [], "response_sha256": "fd74eb417a964815fc8ac2fa86bd66848ca860926f65489518fdc1d9538011dd"}
+{"event_id": "EVT-20261124-0033", "status": "accept", "issues": [], "response_sha256": "91f98b468e07bc06634eaa5fd041c1c83129f748d57c64943fe6d6f262a9fda7"}
+{"event_id": "EVT-20261124-0034", "status": "accept", "issues": [], "response_sha256": "1f142bbd6a552d3f8ae5200c7f3a41db43cb581154bd90b1d1d8e4f2fe9fb02e"}
+{"event_id": "EVT-20261124-0035", "status": "accept", "issues": [], "response_sha256": "87ce113039e891927a0d65bc28e18bce0114e320505df8b5cf3a106fd2853435"}
+{"event_id": "EVT-20261124-0036", "status": "accept", "issues": [], "response_sha256": "39622e2897687f12b53734962f933e3500e41d96e017bead825078a07b686b0f"}
+{"event_id": "EVT-20261124-0037", "status": "reject", "issues": ["不能从当前观测排除随机故障:排除其他故障类型，HDF和PWF的判定规则均未触发，而RNF与测量值无关，无法从当前数据确定"], "response_sha256": "8e3f3d19e40e1c0d334b88bcbcf59249fa695dd41cd3ab9b3fde88f20582428c"}
+{"event_id": "EVT-20261124-0039", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "结论与标注不一致或未写出完整结论"], "response_sha256": "66b85da0a9649c6d8322a9efa0e3cd36a42dd87423ae43e3299f2082fda27f40"}
+{"event_id": "EVT-20261124-0040", "status": "accept", "issues": [], "response_sha256": "3dab3d3dee0faf6ddd5fd1caf9bf457fb0a2ea9cab5d9923e804875bb4ddd260"}
+{"event_id": "EVT-20261124-0045", "status": "reject", "issues": ["缺少完整且有排除依据的 <think>"], "response_sha256": "ccb259fe40398da6cf374323420e1aee123450f50add4f3b0d7f83461e25f76b"}
+{"event_id": "EVT-20261124-0051", "status": "reject", "issues": ["不能从当前观测排除随机故障:排除偶发性随机系统故障(RNF)，因为没有相关证据支持"], "response_sha256": "725c2f814086227cc61cf8bad466c25e9f9ff9c0de1f47df98a3fe660c8a6db4"}
+{"event_id": "EVT-20261124-0052", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "596f5086494ecf16a2ec588a05382419883de17690b674cfb9e3b67d42307635"}
+{"event_id": "EVT-20261124-0053", "status": "accept", "issues": [], "response_sha256": "d407e000e7087f38b812d5c9cfc8f9cc0419ea3433163fcf568f8cb91b66ae22"}
+{"event_id": "EVT-20261124-0054", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "结论与标注不一致或未写出完整结论"], "response_sha256": "49026474df0d4a2ab36a13e109e36625e3a3205ae57959dc623ab944836a574c"}
+{"event_id": "EVT-20261124-0056", "status": "accept", "issues": [], "response_sha256": "3926c17dc83c62d3cf6b13a0ed38976b201501fcee05ff0699df8706ecdd8b62"}
+{"event_id": "EVT-20261124-0057", "status": "accept", "issues": [], "response_sha256": "0876f5e52076c7701053b8b876478f575dbfea212cd4ee786f26a2d7b0f03d8d"}
+{"event_id": "EVT-20261124-0058", "status": "reject", "issues": ["已阅读原文：1372 rpm 被写成接近但未低于 1380 rpm，比较不成立"], "response_sha256": "d3db57a392d40caa0dcdb024f6979e13c63fc89f87398acf2a0038d60a64eb00"}
+{"event_id": "EVT-20261124-0059", "status": "accept", "issues": [], "response_sha256": "fa3505be6366e5f631f9f07990a4a91be036aeab4ce508cc81e7d72513d7ad87"}
+{"event_id": "EVT-20261124-0060", "status": "accept", "issues": [], "response_sha256": "325a2775d6ada10c9c041245dcb5ce9e99d3c54e9df1a10ad4323f7df8bce890"}
+{"event_id": "EVT-20261124-0061", "status": "reject", "issues": ["不能从当前观测排除随机故障:此外，由于没有足够的证据支持，偶发性随机系统故障 (Random Failure) 也被排除"], "response_sha256": "5054ece5f7094f35e80c8202dfcc318b729c6dffacce3f678e42fc99d839f008"}
+{"event_id": "EVT-20261124-0063", "status": "accept", "issues": [], "response_sha256": "4a02519897b22c7e9a8c207e1003c1e60474ea4d652c55aa2c61d58937abf57e"}
+{"event_id": "EVT-20261124-0065", "status": "accept", "issues": [], "response_sha256": "0dc212bc06f170d4f220f8c04ab35d054d585e97c131b621579e7fabbcb0bb59"}
+{"event_id": "EVT-20261124-0068", "status": "reject", "issues": ["比较矛盾:转速 rotational_speed_rpm 为 1367 rpm，大于 1380 rpm"], "response_sha256": "3ff18b1904541cf83f3485aaf0893a6c9e5203cfdc061baf5879c35b499a14c8"}
+{"event_id": "EVT-20261124-0070", "status": "accept", "issues": [], "response_sha256": "d12ee8a53539986114473695b4a11411d8e21a016d878fb53770d47bbd229a6e"}
+{"event_id": "EVT-20261124-0071", "status": "accept", "issues": [], "response_sha256": "403b98d635655346ecae4e7acff7922db867901640b38e01f50da022096c3349"}
+{"event_id": "EVT-20261124-0072", "status": "accept", "issues": [], "response_sha256": "91d2f16a75b8bc58bafd99905206142d71711c87d94a925941c74c76e351b52e"}
+{"event_id": "EVT-20261124-0076", "status": "reject", "issues": ["不能从当前观测排除随机故障:而偶发性随机系统故障 (Random Failure) 无法从测量值确定，因此排除"], "response_sha256": "8ff15cfe18768cc1d78e5a5d03ec5aa8e5a336adca5d4b23d7db134aa76979ce"}
+{"event_id": "EVT-20261124-0078", "status": "accept", "issues": [], "response_sha256": "58abfb5add3e5ba8db2f28a06251b3ce4b441c04e54e3d708e17a4d931b39c11"}
+{"event_id": "EVT-20261124-0079", "status": "accept", "issues": [], "response_sha256": "6c1e79d6403c9ae27a867dfdcdabfd7790e1d42610e6960fc9f365c4f33bb77f"}
+{"event_id": "EVT-20261124-0080", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "结论与标注不一致或未写出完整结论"], "response_sha256": "bba94c23becedb33d025091a262017277f162edb27c5c29eec2be02a5ecaded8"}
+{"event_id": "EVT-20261124-0081", "status": "reject", "issues": ["原文称轴功率3301.8W小于3500W的条件未满足，并用功率去排除HDF，依据矛盾"], "response_sha256": "6b1a37d37d1c52c50bbd88738a2b5425a62190f7aeff707139e2112cb9d1feb0"}
+{"event_id": "EVT-20261124-0082", "status": "accept", "issues": [], "response_sha256": "85ae3c8b431b5455c1271da1eda489f7e1dca42bf1991272b5589fc9edb6cf29"}
+{"event_id": "EVT-20261124-0083", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "7f3671a90bb597e83f9ec4f5752f5eda549420711ec41b45c4bd574ac1e250e0"}
+{"event_id": "EVT-20261124-0085", "status": "reject", "issues": ["不能从当前观测排除随机故障:偶发性随机系统故障 (Random Failure) 无法从测量值确定，因此排除"], "response_sha256": "1fc5aeadc8347f1e150a93ce08e3d7570d8065f0b153f7ae27952c0bddea2e47"}
+{"event_id": "EVT-20261124-0086", "status": "reject", "issues": ["结论与标注不一致或未写出完整结论", "真实标签与可重算规则不一致:HDF_triggered"], "response_sha256": "6baf1370f29837483f63e40040c37bce90f062e64668ddd34b0b389b0c395be9"}
+{"event_id": "EVT-20261124-0087", "status": "reject", "issues": ["结论与标注不一致或未写出完整结论", "真实标签与可重算规则不一致:HDF_triggered"], "response_sha256": "addc5a245f38b1dce7cef3792647f33507880d8cc707537febd01ca2c897ee69"}
+{"event_id": "EVT-20261124-0088", "status": "accept", "issues": [], "response_sha256": "49f60200f926350f7f46c862d8d862c480f4d6b2d2bee6ca4668765014f1f011"}
+{"event_id": "EVT-20261124-0090", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "a721b98c65c4813d235c8d91f0b61dcd01ec0b37ce1b9c67969d05dbdd401ff0"}
+{"event_id": "EVT-20261124-0091", "status": "accept", "issues": [], "response_sha256": "e4b04e3e0be209b4c5363a3890d49973f0c514c930431e999d1a5b9b2dc3e8b6"}
+{"event_id": "EVT-20261124-0092", "status": "accept", "issues": [], "response_sha256": "b81a1208c302be97ae22431c8df3c522b6e61cc38667844437b2e87992363d1f"}
+{"event_id": "EVT-20261124-0093", "status": "reject", "issues": ["原文称磨损时间187分钟在200至240分钟风险窗口内，表述错误"], "response_sha256": "888584d55bf914ef6f9a2614c5fcb389616190fdae91e4cf8b5123ced5f49eb5"}
+{"event_id": "EVT-20261124-0095", "status": "reject", "issues": ["不能从当前观测排除随机故障:排除其他故障类型，HDF和PWF的判定规则未被触发，且没有足够的证据支持随机故障（RNF）的判定"], "response_sha256": "b6758e5f89117fea45e3d2746e0a472d799e65d2fc8838ba0776d12059215619"}
+{"event_id": "EVT-20261124-0096", "status": "accept", "issues": [], "response_sha256": "ecc8f4bdebf104d6e2641cec67cc5b1024c2f822463b283bb632d989e57026d4"}
+{"event_id": "EVT-20261124-0097", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "结论与标注不一致或未写出完整结论"], "response_sha256": "6c4f507fad948b5a6f70651f0bc495eec89e2ffc711bc5a4809af33204ef2881"}
+{"event_id": "EVT-20261124-0098", "status": "reject", "issues": ["事件 ID 缺失、重复或不匹配"], "response_sha256": "c22cfb5cae0274291e328151ceb8f7a16f6b086ad391df2f9d83792b6ad9b46a"}
+{"event_id": "EVT-20261124-0101", "status": "reject", "issues": ["不能从当前观测排除随机故障:由于没有足够的证据支持偶发性随机系统故障 (Random Failure)，因此排除该故障类型"], "response_sha256": "7a65aa09f7f9bb9216d6a5068dec05c651a3c2b43579ec71fe09aff2aba3e81f"}
+{"event_id": "EVT-20261124-0103", "status": "accept", "issues": [], "response_sha256": "25dcee1d695c2d8a0f50e0bb49386a4def3ff4cf8f7bb0783a64e35e5a4288b8"}
+{"event_id": "EVT-20261124-0105", "status": "reject", "issues": ["不能从当前观测排除随机故障:排除偶发性随机系统故障（RNF），因为该故障类型与测量值无关，不能从本输入确定"], "response_sha256": "06e63c1837d40c1fdda20f0d6a416e5a99b3a87a45921a72242cd1bbfe01fdb5"}
+{"event_id": "EVT-20261124-0106", "status": "reject", "issues": ["结论与标注不一致或未写出完整结论", "真实标签与可重算规则不一致:HDF_triggered"], "response_sha256": "043b0141c6e344490b93a9601710a5c95a63c576f35fc2c0182dbb848bfa288b"}
+{"event_id": "EVT-20261124-0107", "status": "reject", "issues": ["结论与标注不一致或未写出完整结论", "真实标签与可重算规则不一致:HDF_triggered"], "response_sha256": "a7441584ff7e217b5b40e604a5f083044f570eef126023532c115ce92310d021"}
+{"event_id": "EVT-20261124-0108", "status": "reject", "issues": ["结论与标注不一致或未写出完整结论", "真实标签与可重算规则不一致:HDF_triggered"], "response_sha256": "e56667ca297e02d9c0334c78a36fd6dc681ef609191013ce55f3271675ad4783"}
+{"event_id": "EVT-20261124-0109", "status": "accept", "issues": [], "response_sha256": "a6aeb30db790c152d4350afbbb2cfeaaf0787e57b2441a5f298c3488711003f0"}
+{"event_id": "EVT-20261124-0110", "status": "accept", "issues": [], "response_sha256": "41d4559b6404f315dc1fb7a68a918479244f90970854e362671f040bd5280315"}
+{"event_id": "EVT-20261124-0111", "status": "accept", "issues": [], "response_sha256": "7e630dac4be333b7bd2803ac9de7d4fc28a5387e9a4c45ab34497bffbec4f41d"}
+{"event_id": "EVT-20261124-0112", "status": "accept", "issues": [], "response_sha256": "ab72ef8605eec9caf020eb844f6d178fd54158a3035365120888c4a6d37c055d"}
+{"event_id": "EVT-20261124-0113", "status": "accept", "issues": [], "response_sha256": "37cb98c2c3eced70bcaf394e3126901701362e8147d0cd486e7019b416bef12f"}
+{"event_id": "EVT-20261124-0114", "status": "accept", "issues": [], "response_sha256": "e814487a06673803a9a291d53e23e694f2d3ebfde3f5ba0af8585514cf145188"}
+{"event_id": "EVT-20261124-0115", "status": "accept", "issues": [], "response_sha256": "5ef8da752dd80b52de610b75aecf96db98a483bb76195c787ac8baecb9a4fe74"}
+{"event_id": "EVT-20261124-0117", "status": "accept", "issues": [], "response_sha256": "36b1567f45577b51458d6773ab39930e39365ed77bdbc4389c53074a488f5e6b"}
+{"event_id": "EVT-20261124-0118", "status": "accept", "issues": [], "response_sha256": "0b6cc50e0da8722578122e3edd99708ed75bf65d98475531d0a4228bf063332d"}
+{"event_id": "EVT-20261124-0119", "status": "accept", "issues": [], "response_sha256": "389b1402242d14f699e4cfe24521f44175746585e3f0e64dfd8473c28cdd9461"}
+{"event_id": "EVT-20261124-0123", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "缺少完整且有排除依据的 <think>"], "response_sha256": "6af99cdf0344e511206d2212a36076dd171c2afaf0f2620ef3a53a3a11fd89eb"}
+{"event_id": "EVT-20261124-0124", "status": "reject", "issues": ["结论与标注不一致或未写出完整结论", "真实标签与可重算规则不一致:HDF_triggered"], "response_sha256": "ea8bb9366d72bf38f4dd6e600ac7b11dfba09d486685a8af75bb6a3cb5a00908"}
+{"event_id": "EVT-20261124-0126", "status": "accept", "issues": [], "response_sha256": "711187229a1c555fca962395125f61cef8caa2664dd067448159b9f125f6a07d"}
+{"event_id": "EVT-20261124-0128", "status": "accept", "issues": [], "response_sha256": "aa91ebf94ee2a1f9a668deacff98d60487d1c535d7f58cfb39af10e260e7bfb5"}
+{"event_id": "EVT-20261124-0129", "status": "accept", "issues": [], "response_sha256": "4bd30baf1ee41ac3b202b745a755da39115d8abbf492fb9015580a538cd80293"}
+{"event_id": "EVT-20261124-0130", "status": "accept", "issues": [], "response_sha256": "0274ebde1cf73b5fa6a1184a851c880f27271d0441f9c38e519ac0bc30c5baaa"}
+{"event_id": "EVT-20261124-0131", "status": "reject", "issues": ["不能从当前观测排除随机故障:偶发性随机系统故障（RNF）无法从测量值中确定，因此排除"], "response_sha256": "85ae154bb01f900f7d155a228f5b510c6b3c4643369d74f894baf7b0bfc744f3"}
+{"event_id": "EVT-20261124-0132", "status": "reject", "issues": ["不能从当前观测排除随机故障:偶发性随机系统故障 (Random Failure) 与测量值无关，无法从当前数据确定，因此排除"], "response_sha256": "554875498c2286a5e1872b67ff6cb51b363f44dad06b4fff766eeeecc65af666"}
+{"event_id": "EVT-20261124-0135", "status": "accept", "issues": [], "response_sha256": "bfdca865766defe31d06843a5ee898617c35e15a70f3898c41fe094c34314866"}
+{"event_id": "EVT-20261124-0136", "status": "accept", "issues": [], "response_sha256": "aa3cb42fb9692f9f74afd8ab091ee8ea9f1a721e9cfd5b76a8cb3d5ce7f0abab"}
+{"event_id": "EVT-20261124-0138", "status": "accept", "issues": [], "response_sha256": "997f6bc9dbb6066e123d580d21a36fb74415385446cb0bb04dd21888ce39b3e4"}
+{"event_id": "EVT-20261124-0140", "status": "reject", "issues": ["不能从当前观测排除随机故障:偶发性随机系统故障 (Random Failure) 与测量值无关，不能从本输入确定，因此排除"], "response_sha256": "3f5078a5a5df598158f3435d30095794a4141fe240c0cee4be8ced9a4ac2602d"}
+{"event_id": "EVT-20261124-0141", "status": "accept", "issues": [], "response_sha256": "d82151506b5b808ccb84045e83b9ac3420fa604f6d27da9708d8a133a5ff2d7a"}
+{"event_id": "EVT-20261124-0142", "status": "reject", "issues": ["事件 ID 缺失、重复或不匹配"], "response_sha256": "2aed9c566a44cce4b3cfc9f3357a95c18957f571fdc48509c78d21e517a1169e"}
+{"event_id": "EVT-20261124-0144", "status": "accept", "issues": [], "response_sha256": "1af2ead04949e712ccabb3b3570a246f798993d88f45607ae2870cb5c76517d2"}
+{"event_id": "EVT-20261124-0145", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "9a17b2f82f92dae7ccdbe2f506cd7b65bf15e5c9fe924af32468fdbcf1800052"}
+{"event_id": "EVT-20261124-0146", "status": "reject", "issues": ["不能从当前观测排除随机故障:空间上下文信息缺失，但物理证据足以确定故障类型，因此排除偶发性随机系统故障"], "response_sha256": "1c7c5b03172440fd6af09e1a2dea26fa065bd2e64526bff9e660126fb2191c7e"}
+{"event_id": "EVT-20261124-0147", "status": "accept", "issues": [], "response_sha256": "677133ee8fac27ed5870c041433db744f5a5b940472f4ddca7af682073068e89"}
+{"event_id": "EVT-20261124-0148", "status": "accept", "issues": [], "response_sha256": "cdd39253696ffacf8a95ed03b9fe08d900d4a0917011ae285d7d6cf882ae65bb"}
+{"event_id": "EVT-20261124-0153", "status": "accept", "issues": [], "response_sha256": "33314e53ffdeb7b68c30b2e055f08abaa1eea1cbda744396325c39baebd8b4ae"}
+{"event_id": "EVT-20261124-0154", "status": "accept", "issues": [], "response_sha256": "53c7c5bc2c101155f46a4772d93deb742a29bbe1eb7b9a480a515fc4a77785d3"}
+{"event_id": "EVT-20261124-0155", "status": "accept", "issues": [], "response_sha256": "f655dde5fd7764004ccd815b986172b0fb13378a183df1134df352d107dedca1"}
+{"event_id": "EVT-20261124-0156", "status": "accept", "issues": [], "response_sha256": "a236ebc879f7b87a77e1b90e47a1c49a6b12059409c1cf44d28dee8424814cc0"}
+{"event_id": "EVT-20261124-0158", "status": "accept", "issues": [], "response_sha256": "ba4b1323ab5d602e9ea151c457069e4ab1d84065b9fb6882cc0f67f23cfa5f81"}
+{"event_id": "EVT-20261124-0159", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "结论与标注不一致或未写出完整结论"], "response_sha256": "9ba80278b69529ee116e226decfb6152707ef18abef509b8439d5ca444543d52"}
+{"event_id": "EVT-20261124-0160", "status": "accept", "issues": [], "response_sha256": "f397982eb2b7a5c47e08103afdad79c2e81d6c139313c874e9b9c67984419b4d"}
+{"event_id": "EVT-20261124-0165", "status": "accept", "issues": [], "response_sha256": "8bcebc5d1a30f3a4bd3be986d9d4c9b46ca04721278dedae5a5691f178f35566"}
+{"event_id": "EVT-20261124-0166", "status": "accept", "issues": [], "response_sha256": "8a1a5ab3886743f6241d9923f75d3650fe31d3755c4c6dfed95b7f3eef952e53"}
+{"event_id": "EVT-20261124-0167", "status": "reject", "issues": ["不能从当前观测排除随机故障:偶发性随机系统故障（RNF）无法从测量值判断，但其他确定性规则已排除，因此不考虑", "磨损风险窗口表述与实际磨损时间不一致:工具磨损时间为168分钟，未处于200至240分钟的风险窗口内，排除了工具严重磨损故障（TWF）"], "response_sha256": "51fdff02551f4c55fc3756e6922f19b3eee1b9fe15cef984620247aa3ccd61d4"}
+{"event_id": "EVT-20261124-0168", "status": "accept", "issues": [], "response_sha256": "4f419e221436481c5e31d0dbcce2835eef5870fb2d649b82cdcb9da340385f41"}
+{"event_id": "EVT-20261124-0169", "status": "accept", "issues": [], "response_sha256": "5f7f2e1127255ec4231497575ff301a58c23cf0c3f61ef6d628dcb1c8fe9336b"}
+{"event_id": "EVT-20261124-0171", "status": "reject", "issues": ["不能从当前观测排除随机故障:偶发性随机系统故障无法从测量值确定，因此排除"], "response_sha256": "ed0c2180bad35d76a27d5dd1f81bafe159ab94f79a6f037cafa53c9e0989bb7d"}
+{"event_id": "EVT-20261124-0172", "status": "accept", "issues": [], "response_sha256": "f9ac60fb585e06b2c2f469a2f8d305f121f4ed903582d28aa69e22128ee7b3d4"}
+{"event_id": "EVT-20261124-0174", "status": "accept", "issues": [], "response_sha256": "5eb15df0dac1458a66668c7b51a304271f4e61dd91098a6805c9d3c35fe4199a"}
+{"event_id": "EVT-20261124-0175", "status": "accept", "issues": [], "response_sha256": "7194c37c2116b701c5558e7e50d28682b6696b5f25afac4f09b28c117e388fbc"}
+{"event_id": "EVT-20261124-0176", "status": "accept", "issues": [], "response_sha256": "071db116282992f53b5098f8eb857c925826ca3fd3406a724e943ca31633e5ce"}
+{"event_id": "EVT-20261124-0177", "status": "accept", "issues": [], "response_sha256": "1f4338c98a1aaa0739fb422a93459cb4cb6aea87ea84042b964b05a21343f0a7"}
+{"event_id": "EVT-20261124-0178", "status": "accept", "issues": [], "response_sha256": "f3d65f145f207de36f06472e5e5062a0a0fa427ef67aba47d03e96f46690613f"}
+{"event_id": "EVT-20261124-0179", "status": "accept", "issues": [], "response_sha256": "935444b4620d8d7bfd0608d516f533ee9aea166a33c797c9393b7994bbee15fb"}
+{"event_id": "EVT-20261124-0180", "status": "accept", "issues": [], "response_sha256": "5d19f119808cad148721d558ea61e0d26ed017f8a14ca41ec663cc615980586e"}
+{"event_id": "EVT-20261124-0181", "status": "accept", "issues": [], "response_sha256": "9aa6d93abfe7286189ba97120dc9f49d2c667988e8ae018688ab5871533f055c"}
+{"event_id": "EVT-20261124-0183", "status": "accept", "issues": [], "response_sha256": "62c5dc5b81b65fde2e7647dd8c59ccf4d4ebc2ec0c61f3f39c8e7eaf0ba80262"}
+{"event_id": "EVT-20261124-0184", "status": "reject", "issues": ["不能从当前观测排除随机故障:偶发性随机系统故障 (Random Failure) 无法从测量值确定，排除该故障"], "response_sha256": "5dbd04e3c54baa35168e016815124830c58267854d836fefa860f04cb4abea88"}
+{"event_id": "EVT-20261124-0186", "status": "accept", "issues": [], "response_sha256": "0a6a4268232f8914106ab521734a364c4809b4b41303bc4a3f34881418eb76e9"}
+{"event_id": "EVT-20261124-0187", "status": "accept", "issues": [], "response_sha256": "9e3571cff8573b7cd8f697acf2c3f7a531a84a68a221b34e875082fe26c3fa5b"}
+{"event_id": "EVT-20261124-0189", "status": "accept", "issues": [], "response_sha256": "c70d555f63e18932b34c40c5b0ea42c16eea810a39cc2431deea166d55dc2857"}
+{"event_id": "EVT-20261124-0191", "status": "accept", "issues": [], "response_sha256": "b62f498db34086872debfe737e86bd972f9837d63abc1c530ff7627db60ca9aa"}
+{"event_id": "EVT-20261124-0192", "status": "accept", "issues": [], "response_sha256": "a7e2d765630f9b6b37247f77f4d950e844ebb7b6cf79d248d50dd19572b5ad57"}
+{"event_id": "EVT-20261124-0193", "status": "accept", "issues": [], "response_sha256": "fa99e6850d5226e3946ed6a8786787b443342be7367532695a86523d6ab7a65d"}
+{"event_id": "EVT-20261124-0194", "status": "accept", "issues": [], "response_sha256": "d59be8e324686438dc061d2a131e155a3c3b0920727c512b2effa12e11e73f41"}
+{"event_id": "EVT-20261124-0196", "status": "accept", "issues": [], "response_sha256": "e9dcce40261a6b270c8ad8395def71d1b1484afe01749dc20cfa6ecb73e130f9"}
+{"event_id": "EVT-20261124-0197", "status": "accept", "issues": [], "response_sha256": "da7b74925bb2f9d9eb10bfa78bb0aaab6b04d568b6968e9f72810fa0fd0073af"}
+{"event_id": "EVT-20261124-0198", "status": "accept", "issues": [], "response_sha256": "c7faede9c48921121a8c953c2b668405098dc47ba162663a7c72d74975573974"}
+{"event_id": "EVT-20261124-0199", "status": "accept", "issues": [], "response_sha256": "9cd8a567ccb49079d098948d6b9d3241eeb27f61f25a4ff3b433e97ee475a916"}
+{"event_id": "EVT-20261124-0201", "status": "accept", "issues": [], "response_sha256": "529687e696ebd65441c8329b735b2486491fe3a2417262f8500946f94fc77c9f"}
+{"event_id": "EVT-20261124-0202", "status": "reject", "issues": ["结论与标注不一致或未写出完整结论", "真实标签与可重算规则不一致:HDF_triggered"], "response_sha256": "020723622f791a9aeadaed09db19368fa3b6b0bdb03fe12d750674e2ad7b7eab"}
+{"event_id": "EVT-20261124-0203", "status": "accept", "issues": [], "response_sha256": "e6f3044463b2f0874fa61869760489d00298b66bfd26bb8ea5dc54ac6bd29918"}
+{"event_id": "EVT-20261124-0204", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "结论与标注不一致或未写出完整结论"], "response_sha256": "f62a635eed597ba0fb737e21e37ad295d23df8f23466e6a82e4f81c1abba2657"}
+{"event_id": "EVT-20261124-0205", "status": "accept", "issues": [], "response_sha256": "b73635f286b7909ceb5a156162202a652a844f16854c0404d6b5afadb6b9200f"}
+{"event_id": "EVT-20261124-0206", "status": "reject", "issues": ["不能从当前观测排除随机故障:由于没有足够的物理证据来确定偶发性随机系统故障 (Random Failure)，因此排除该标签"], "response_sha256": "7eb591a7821a35ce84b568ecb47dd06955af67340032574a4c6f2a6841f95117"}
+{"event_id": "EVT-20261124-0208", "status": "accept", "issues": [], "response_sha256": "b622aaf8ba75c32be0c738360be3573c3f006d19a15a2b66e3d094750ff73648"}
+{"event_id": "EVT-20261124-0209", "status": "reject", "issues": ["不能从当前观测排除随机故障:此外，偶发性随机系统故障(RNF)无法从当前数据中确定，因此排除"], "response_sha256": "642bba52dbc172c11e6160c8a59095596bfd2d39ca1645335914112b7a74c344"}
+{"event_id": "EVT-20261124-0210", "status": "accept", "issues": [], "response_sha256": "956202ed4d9851680d6f543930947f0710055413802303a6f93e872edb291f23"}
+{"event_id": "EVT-20261124-0211", "status": "reject", "issues": ["比较矛盾:转速 1337 rpm 大于 1380 rpm 的条件未满足"], "response_sha256": "1c4d9fb30c408164f608bc97e074ecfd4587524c086a48ecc047eb973c04ce57"}
+{"event_id": "EVT-20261124-0212", "status": "accept", "issues": [], "response_sha256": "fdab5ce323c3d7fb74caca3d03ceee29d7b422fc0384d426a8451a8400642206"}
+{"event_id": "EVT-20261124-0213", "status": "accept", "issues": [], "response_sha256": "8ff679f8edb4e5b2881b5f89030a7ce57d73ecfbd98d585104b6bcdcba054bfc"}
+{"event_id": "EVT-20261124-0215", "status": "accept", "issues": [], "response_sha256": "dda430fe3d46504f0e73e5fea3c7a7844bff57b987dfcbf912ba0d3dfbd0cfe1"}
+{"event_id": "EVT-20261124-0216", "status": "accept", "issues": [], "response_sha256": "07978f494e1feeba122b31c079044c2ebbde634c7365b8546893e5acc39dcd38"}
+{"event_id": "EVT-20261124-0219", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "结论与标注不一致或未写出完整结论"], "response_sha256": "85029ae6b9b7faf70e14a294d85fa3118eb58de2f54bfde0d1a6ac03e438054e"}
+{"event_id": "EVT-20261124-0221", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "结论与标注不一致或未写出完整结论"], "response_sha256": "2646bbe3ae7baf6e5cc7db1aaf78d3e2562c1186c0fb3c9e95a71c45be32075b"}
+{"event_id": "EVT-20261124-0222", "status": "accept", "issues": [], "response_sha256": "276a9bcd15cd83b1db5ff74659226fe4644009dab3557b85652c0d4404e19ed4"}
+{"event_id": "EVT-20261124-0223", "status": "accept", "issues": [], "response_sha256": "5a3a1adfd09350d00be3a3ecf69e8f1f58aa2cfa3eed17e9ba44b0d658ef7ac2"}
+{"event_id": "EVT-20261124-0226", "status": "accept", "issues": [], "response_sha256": "0e5f06b770e8882b03e90a1e94db5d8c1aa0ddf22733a659e1c79a35ad31574b"}
+{"event_id": "EVT-20261124-0228", "status": "reject", "issues": ["比较矛盾:工具磨损时间为 127 分钟，不在 200 至 240 分钟的风险窗口内，排除工具严重磨损故障(TWF)。"], "response_sha256": "7a7b7d0ebbe0ee4417b43def7a67eac1cfbb1f014edbd38fe7253dbb6900969c"}
+{"event_id": "EVT-20261124-0229", "status": "accept", "issues": [], "response_sha256": "ec2fabe67fa3394f0a04e80efa3e687d3785580d6fe19017bd05852b35c8cb78"}
+{"event_id": "EVT-20261124-0230", "status": "accept", "issues": [], "response_sha256": "f1599730762b57eee01fe8bbf67865b05584dd4043551ab89b40bb3a62d38168"}
+{"event_id": "EVT-20261124-0232", "status": "reject", "issues": ["比较矛盾:转速 rotational_speed_rpm 为 1356，大于 1380"], "response_sha256": "ef2ff78cf1574b5de8d7299084d737f04cbe6312d5d19f6693aec1849d581d13"}
+{"event_id": "EVT-20261124-0233", "status": "accept", "issues": [], "response_sha256": "31e994b8f7da429af8c9529450acc375852fdca75fbe80203a05f5d793f85fb5"}
+{"event_id": "EVT-20261124-0234", "status": "accept", "issues": [], "response_sha256": "dd49deea462aefaa6be7116394868a88f2e6b53d91d879c0700f8b4364b141b8"}
+{"event_id": "EVT-20261124-0235", "status": "accept", "issues": [], "response_sha256": "d19a1e4276db437b13834434f6d69b607d26c6987502e594e4914445774b870d"}
+{"event_id": "EVT-20261124-0236", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "ffc2f1c4307606c7075a4f57439318ca17965ab112e3babde065984ecefc5b59"}
+{"event_id": "EVT-20261124-0239", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "8cdec2e49bfaa45006d50c0677ff3c6568a55a385c038c0614b7aeccfa4d5643"}
+{"event_id": "EVT-20261124-0243", "status": "accept", "issues": [], "response_sha256": "8d13da9d715458157c389df41640ba9bc07b604f77437bec0221c8c5e4b6d4a1"}
+{"event_id": "EVT-20261124-0244", "status": "reject", "issues": ["比较矛盾:转速为1368rpm，接近但高于1380rpm的阈值"], "response_sha256": "8997448ea88c398aecb164bee275ec59ef9e486eb5a08f65854374fc59f7618a"}
+{"event_id": "EVT-20261124-0245", "status": "accept", "issues": [], "response_sha256": "2e7a9e800d0a78c1eb42843403f8523e5fcec56fbefd3dd4b7f91083a651ecd9"}
+{"event_id": "EVT-20261124-0246", "status": "reject", "issues": ["不能从当前观测排除随机故障:排除偶发性随机系统故障 (RNF)，因为其与测量值无关，不能从本输入确定"], "response_sha256": "b3b6f07de50c1af340883be0947a56922145545b728c9db6dd9831c44d879f44"}
+{"event_id": "EVT-20261124-0247", "status": "reject", "issues": ["比较矛盾:rotational_speed_rpm为1336，大于1380的阈值。"], "response_sha256": "de2c3ba05a15db364d9f3342b7f717f735682469598c289c67f84da35a44ca9d"}
+{"event_id": "EVT-20261124-0248", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "8448325800db255eca9fcab01455411f5b3947abb0d776d1d8bb13d1cfe8b313"}
+{"event_id": "EVT-20261124-0249", "status": "accept", "issues": [], "response_sha256": "aaa77421abb69074e80de4683f51901aab19c678ae338c4e0e19cf919e787e9c"}
+{"event_id": "EVT-20261124-0250", "status": "accept", "issues": [], "response_sha256": "a4c13348e5e01d107dd9c9a68c064b1f01a320f38d40f5b90c406ba724aa563f"}
+{"event_id": "EVT-20261124-0253", "status": "accept", "issues": [], "response_sha256": "4c8389360a810d53f6bff04407a3a749ad145c3d06461c884f2ae340305321df"}
+{"event_id": "EVT-20261124-0254", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "90f4c8a88972d8d0d639f7834f01f9b224eb879ae1d9b40a8141bf56b6c99309"}
+{"event_id": "EVT-20261124-0255", "status": "accept", "issues": [], "response_sha256": "d46016d6801f7268bf291c64bc9001bdd2220d1f89995dc70ffd1a95cc44409a"}
+{"event_id": "EVT-20261124-0256", "status": "reject", "issues": ["磨损风险窗口表述与实际磨损时间不一致:工具磨损时间 tool_wear_min 为 62 分钟，未处于 200 至 240 分钟的风险窗口内，因此可以排除工具严重磨损故障"], "response_sha256": "791c9e00b2a15a1f909f04482fa6f80ddf6a9c833cb2085b3790c891cf497f37"}
+{"event_id": "EVT-20261124-0257", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "结论与标注不一致或未写出完整结论"], "response_sha256": "3df9253878bccbc39b20f9956499164272b83a8b6a85df70cde611fac07b9856"}
+{"event_id": "EVT-20261124-0259", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "结论与标注不一致或未写出完整结论"], "response_sha256": "751d74a66ab82b56ff750618e672b8db072aa07d445b9207b964807e1733a67e"}
+{"event_id": "EVT-20261124-0260", "status": "accept", "issues": [], "response_sha256": "a87fe858170c6b6729dfb6d0a818971ba9d0bba23cb655e143e1438de2df4528"}
+{"event_id": "EVT-20261124-0261", "status": "reject", "issues": ["不能从当前观测排除随机故障:偶发性随机系统故障(RNF)无法从测量值中确定，因此排除", "磨损风险窗口表述与实际磨损时间不一致:工具磨损时间tool_wear_min为136分钟，未处于200至240分钟的风险窗口内，排除工具严重磨损故障(TWF)"], "response_sha256": "d7498c8e27a691285cb6e7730ae0a77d436786dd298e651cd88d00308c91212f"}
+{"event_id": "EVT-20261124-0262", "status": "accept", "issues": [], "response_sha256": "14ea449f4102c8f738613b81f34c28893cece701c7e4f104dbd2bc4088a9cd3f"}
+{"event_id": "EVT-20261124-0263", "status": "accept", "issues": [], "response_sha256": "73327de5f63a14b161c93abf256ad001482977fce9c22d245ded73aec652f611"}
+{"event_id": "EVT-20261124-0264", "status": "reject", "issues": ["不能从当前观测排除随机故障:由于机械负载过载故障的规则被触发，排除了其他故障类型，如散热系统失效故障 (Heat Dissipation Failure)、驱动电力异常故障 (Power Failure) 和偶发性随机系统故障 (Random Failure)"], "response_sha256": "2faaf269329f0d1a7030125d61121669ada2dd52d755a3c07ca2c6320561c02a"}
+{"event_id": "EVT-20261124-0266", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "结论与标注不一致或未写出完整结论"], "response_sha256": "97f32cab43ecc82416e73dcec38d8e8a977a8dd4611260244aa260f10797a301"}
+{"event_id": "EVT-20261124-0267", "status": "reject", "issues": ["原文直接数值比较不成立:1368rpm，接近但未低于1380"], "response_sha256": "c3609597c8437038ac3a96d4e68a37b5811d0425d37bdf3810d678e7e7f19c51"}
+{"event_id": "EVT-20261124-0270", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "结论与标注不一致或未写出完整结论"], "response_sha256": "1d0c4525d5c257f21acf7fca43fe3ec704bc9bad72c216d49d1e8112ad1c9e1d"}
+{"event_id": "EVT-20261124-0271", "status": "accept", "issues": [], "response_sha256": "0069280fd70c236e34023c25a346b967bd19b693afcdd06236670a541c38e6fe"}
+{"event_id": "EVT-20261124-0272", "status": "reject", "issues": ["原文将 TWF_risk_window_only=false 解释为虽然在风险窗口内，自相矛盾"], "response_sha256": "741cd20ceb3c14c687225f6dcb4f286f61cdf163f4b418f095cac9f8e9b5af43"}
+{"event_id": "EVT-20261124-0273", "status": "accept", "issues": [], "response_sha256": "04b8ff5708eaa475e0d2cd615aa68fcb86e659cc152bd45e4935b7cd1cbb49f2"}
+{"event_id": "EVT-20261124-0274", "status": "accept", "issues": [], "response_sha256": "405617c36260bdfb4ecd90155aed8f88b9866ad95e664285556300fc6645be91"}
+{"event_id": "EVT-20261124-0275", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "11e3f5d3d87de5f66f00ec0fcb7946026eb0817c203014b78ec9fcf2012c59ae"}
+{"event_id": "EVT-20261124-0278", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "afdf0f5380d3d9fd9f9cedb83862d89ecfa1b1c2f7c206bccb69a2c8ab4b8b91"}
+{"event_id": "EVT-20261124-0279", "status": "reject", "issues": ["比较矛盾:rotational_speed_rpm 为 1303，大于 1380 的阈值。"], "response_sha256": "1246021d9fffbe488d524e0a2b1b5d603caf2c93ea9aff30a276d86fffd38259"}
+{"event_id": "EVT-20261124-0280", "status": "accept", "issues": [], "response_sha256": "d45965fa5843a149c7131f8e065655175fb43ade4548797b4927ade1f87ef47b"}
+{"event_id": "EVT-20261124-0281", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "e45d5e9bfeec49df93d9671667b5d8cd4b6b275fa78d306f3c73dcb195aa8559"}
+{"event_id": "EVT-20261124-0282", "status": "accept", "issues": [], "response_sha256": "87e47547e6f5faaf60e5daef65418ab53d56f25f6ce610c00921d90befd07cfe"}
+{"event_id": "EVT-20261124-0283", "status": "accept", "issues": [], "response_sha256": "1efe404bcdc19b370fc924d2f202aafa57eaf9f2351d25579a944d38d948fcdc"}
+{"event_id": "EVT-20261124-0284", "status": "reject", "issues": ["比较矛盾:转速 rotational_speed_rpm 为 1334 rpm，大于 1380 rpm"], "response_sha256": "64c9d74fddd9991d65fa92e8c133537bc0f744111e49686c94c460ab53d4557c"}
+{"event_id": "EVT-20261124-0286", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "5d967e828e280104b5fb13a7cee3fe75738928bda3e0541292ad6ba59f6bcf8d"}
+{"event_id": "EVT-20261124-0288", "status": "accept", "issues": [], "response_sha256": "4721360d32c84b4da3f4fde52298c4ec3b8b3a3f0a9ec065cb52807bb65ea884"}
+{"event_id": "EVT-20261124-0289", "status": "accept", "issues": [], "response_sha256": "7847a01bbe14f720524ecb43f8e129b609a6f637a14069c6ebb4904c70d67e2d"}
+{"event_id": "EVT-20261124-0290", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "9bfa4a4cedce6dcffc9a9ae184beca448fca63799fdc1dd9dd11bd0f2f7cf47e"}
+{"event_id": "EVT-20261124-0293", "status": "accept", "issues": [], "response_sha256": "ac2f8027c25e537832a40f14d00d413e2b9d63f6b9e47538c3c3d3e17b005b49"}
+{"event_id": "EVT-20261124-0294", "status": "accept", "issues": [], "response_sha256": "7e61005f4409960e91120cf006dd52d7239a0f89829426db980b93b082d419bd"}
+{"event_id": "EVT-20261124-0295", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "de9b9ca655f7f52b7da43cb35e8485b47e5eaf75551155f5aa7b19a1deccc04f"}
+{"event_id": "EVT-20261124-0296", "status": "reject", "issues": ["原文直接数值比较不成立:1377 rpm，接近但未低于 1380"], "response_sha256": "cef52f3027856f87ab8f483f64e6847d3c1bce049ebc60bb1ef3dc042752447f"}
+{"event_id": "EVT-20261124-0297", "status": "accept", "issues": [], "response_sha256": "834f1388f877933e9f7aa1e46e99156604164ff76f5c1e39feb00e6af04d0a0f"}
+{"event_id": "EVT-20261124-0298", "status": "accept", "issues": [], "response_sha256": "549be94cfa5c5fd72fdc0bee8aeb545df7a90df116f96038e2a7402dee4c2766"}
+{"event_id": "EVT-20261124-0300", "status": "accept", "issues": [], "response_sha256": "62900257df82f7e4e827447569424a5c16972a22159da3271ebe7122ad9d586b"}
+{"event_id": "EVT-20261124-0301", "status": "reject", "issues": ["处于风险窗口但证据不足以确认 TWF，不能据此断言排除 TWF"], "response_sha256": "a6eb49e04fb358e101e583b4db18c16e613f452c26791d5f82de6c7bfdda7a74"}
+{"event_id": "EVT-20261124-0302", "status": "accept", "issues": [], "response_sha256": "bec40ab5781320e9e017393913c1eca6a92d76fd71fe7f8696b2dc80fa246cbb"}
+{"event_id": "EVT-20261124-0303", "status": "uncertain", "issues": ["随机故障无法从当前观测确认，不纳入确定标签训练", "仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练"], "response_sha256": "5e54e1626a69832af813abd0c72ee7d6bafc5676958836b3709a9f64b3ea6347"}
+{"event_id": "EVT-20261124-0304", "status": "reject", "issues": ["不能从当前观测排除随机故障:偶发性随机系统故障 (Random Failure) 无法从当前数据中确定，因此排除该故障类型"], "response_sha256": "f0d351e3cca88b44c7cbfbde38d83f42b6221bbc793bcfafc306fd225f6e2e41"}
+{"event_id": "EVT-20261124-0306", "status": "accept", "issues": [], "response_sha256": "a4656aac3238b006db47e3d51198da9697e6f5012abc82ba021fd3e6138a5614"}

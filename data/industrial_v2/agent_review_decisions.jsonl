@@ -1,0 +1,5 @@
+{"event_id": "EVT-20261124-0058", "status": "reject", "issues": ["已阅读原文：1372 rpm 被写成接近但未低于 1380 rpm，比较不成立"], "reviewer": "Codex agent"}
+{"event_id": "EVT-20261124-0081", "status": "reject", "issues": ["原文称轴功率3301.8W小于3500W的条件未满足，并用功率去排除HDF，依据矛盾"], "reviewer": "Codex agent"}
+{"event_id": "EVT-20261124-0093", "status": "reject", "issues": ["原文称磨损时间187分钟在200至240分钟风险窗口内，表述错误"], "reviewer": "Codex agent"}
+{"event_id": "EVT-20261124-0272", "status": "reject", "issues": ["原文将 TWF_risk_window_only=false 解释为虽然在风险窗口内，自相矛盾"], "reviewer": "Codex agent"}
+{"event_id": "EVT-20261124-0301", "status": "reject", "issues": ["处于风险窗口但证据不足以确认 TWF，不能据此断言排除 TWF"], "reviewer": "Codex agent"}

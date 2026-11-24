@@ -1,0 +1,12 @@
+{
+  "tokenizer": "Qwen2.5-3B saved tokenizer",
+  "chat_template": "saved Qwen tokenizer chat template",
+  "samples": 134,
+  "max_tokens": 616,
+  "over1024": 0,
+  "p95_tokens": 599,
+  "actual_training_framework": "LLaMA-Factory",
+  "actual_training_template_max_tokens": 632,
+  "actual_training_processed_rows": 134,
+  "actual_training_truncated_samples": 0
+}

@@ -1,0 +1,61 @@
+{"event_id": "EVT-20261124-0014", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261124-0015", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261124-0017", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261124-0020", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261124-0024", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}
+{"event_id": "EVT-20261124-0038", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261124-0041", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}
+{"event_id": "EVT-20261124-0042", "ground_truth_intent": "工具严重磨损故障 (Tool Wear Failure)"}
+{"event_id": "EVT-20261124-0044", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261124-0047", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}
+{"event_id": "EVT-20261124-0048", "ground_truth_intent": "工具严重磨损故障 (Tool Wear Failure)"}
+{"event_id": "EVT-20261124-0049", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261124-0055", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261124-0062", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}
+{"event_id": "EVT-20261124-0066", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}
+{"event_id": "EVT-20261124-0067", "ground_truth_intent": "工具严重磨损故障 (Tool Wear Failure)"}
+{"event_id": "EVT-20261124-0069", "ground_truth_intent": "工具严重磨损故障 (Tool Wear Failure)"}
+{"event_id": "EVT-20261124-0073", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0074", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}
+{"event_id": "EVT-20261124-0075", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}
+{"event_id": "EVT-20261124-0084", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0089", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0094", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261124-0099", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261124-0102", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0116", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0122", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0125", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0127", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0133", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0137", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261124-0139", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0143", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0150", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0151", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0157", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0162", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0163", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0170", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0173", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0182", "ground_truth_intent": "工具严重磨损故障 (Tool Wear Failure)"}
+{"event_id": "EVT-20261124-0185", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0188", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0190", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261124-0218", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}
+{"event_id": "EVT-20261124-0220", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}
+{"event_id": "EVT-20261124-0224", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}
+{"event_id": "EVT-20261124-0225", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}
+{"event_id": "EVT-20261124-0227", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261124-0237", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261124-0238", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}
+{"event_id": "EVT-20261124-0241", "ground_truth_intent": "工具严重磨损故障 (Tool Wear Failure)"}
+{"event_id": "EVT-20261124-0242", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}
+{"event_id": "EVT-20261124-0252", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261124-0268", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}
+{"event_id": "EVT-20261124-0269", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261124-0285", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}
+{"event_id": "EVT-20261124-0287", "ground_truth_intent": "工具严重磨损故障 (Tool Wear Failure)"}
+{"event_id": "EVT-20261124-0291", "ground_truth_intent": "工具严重磨损故障 (Tool Wear Failure)"}
+{"event_id": "EVT-20261124-0292", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261124-0299", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}

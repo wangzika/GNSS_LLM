@@ -1,0 +1,10 @@
+{
+  "base_model": "/home/wzb/.cache/modelscope/hub/models/Qwen/Qwen2.5-3B-Instruct",
+  "adapter": "outputs/industrial/qwen2.5-3b-industrial-v2-lora",
+  "prompt_layout": "alpaca",
+  "split": "validation",
+  "max_new_tokens": 512,
+  "do_sample": false,
+  "uses_ground_truth": false,
+  "adds_rule_features": false
+}

@@ -1,0 +1,351 @@
+[
+  {
+    "input": {
+      "event_meta": {
+        "event_id": "JAM-SYN-20261117-0005",
+        "detection_timestamp": "2026-11-12T09:00:00Z"
+      },
+      "physical_features": {
+        "affected_systems": [
+          "BDS",
+          "GPS"
+        ],
+        "signals": [
+          {
+            "band": "L1",
+            "center_frequency_mhz": 1575.42,
+            "observed_bandwidth_mhz": 1.23,
+            "signal_classification": "chirp",
+            "received_power_dbm": -98.2,
+            "power_reference": "monitor_receiver_input"
+          },
+          {
+            "band": "B1I",
+            "center_frequency_mhz": 1561.098,
+            "observed_bandwidth_mhz": 1.33,
+            "signal_classification": "chirp",
+            "received_power_dbm": -85.7,
+            "power_reference": "monitor_receiver_input"
+          }
+        ],
+        "duration_seconds": 89,
+        "emission_pattern": "intermittent"
+      },
+      "spoofing_features": {
+        "detection_status": "not_detected",
+        "position_offset_meters": null,
+        "position_offset_pattern": null,
+        "clock_bias_seconds": null
+      },
+      "spatial_context": {
+        "coordinate_frame": "fictional_local_ENU_m",
+        "jammer_location": {
+          "east_m": -122,
+          "north_m": -308
+        },
+        "motion_state": "mobile",
+        "speed_kmh": 65.0,
+        "trajectory_trend": "along_road",
+        "gis_poi_match": [
+          "road_corridor"
+        ]
+      },
+      "temporal_context": {
+        "recurrence_pattern": "unknown"
+      },
+      "historical_reference": null
+    },
+    "annotation": {
+      "scenario_intent": "personal_privacy_evasion",
+      "intent_label": "个人隐私逃避与防追踪",
+      "case_type": "STANDARD",
+      "label_status": "synthetic_scenario_not_confirmed",
+      "source": "document_based_provisional_generator_v1",
+      "source_is_synthetic": true,
+      "expert_reviewed": false,
+      "acceptable_decision_policy": "Allow inconclusive and evidence-supported alternatives; do not force scenario_intent.",
+      "review_notes": [
+        "意图是生成剧本设定，未经调查确认；观测只支持候选解释。"
+      ]
+    }
+  },
+  {
+    "input": {
+      "event_meta": {
+        "event_id": "JAM-SYN-20261117-0007",
+        "detection_timestamp": "2026-11-11T08:00:00Z"
+      },
+      "physical_features": {
+        "affected_systems": [
+          "BDS",
+          "GPS"
+        ],
+        "signals": [
+          {
+            "band": "L1",
+            "center_frequency_mhz": 1575.42,
+            "observed_bandwidth_mhz": 1.36,
+            "signal_classification": "noise",
+            "received_power_dbm": -100.8,
+            "power_reference": "monitor_receiver_input"
+          },
+          {
+            "band": "B1I",
+            "center_frequency_mhz": 1561.098,
+            "observed_bandwidth_mhz": 1.4,
+            "signal_classification": "noise",
+            "received_power_dbm": -104.6,
+            "power_reference": "monitor_receiver_input"
+          }
+        ],
+        "duration_seconds": 1304,
+        "emission_pattern": "intermittent"
+      },
+      "spoofing_features": {
+        "detection_status": "not_detected",
+        "position_offset_meters": null,
+        "position_offset_pattern": null,
+        "clock_bias_seconds": null
+      },
+      "spatial_context": {
+        "coordinate_frame": "fictional_local_ENU_m",
+        "jammer_location": {
+          "east_m": -74,
+          "north_m": -399
+        },
+        "motion_state": "stationary",
+        "speed_kmh": 0.0,
+        "trajectory_trend": "fixed_position",
+        "gis_poi_match": [
+          "event_venue"
+        ]
+      },
+      "temporal_context": {
+        "recurrence_pattern": "unknown"
+      },
+      "historical_reference": null
+    },
+    "annotation": {
+      "scenario_intent": "counter_uas_defensive",
+      "intent_label": "重要目标防护与低空防御",
+      "case_type": "STANDARD",
+      "label_status": "synthetic_scenario_not_confirmed",
+      "source": "document_based_provisional_generator_v1",
+      "source_is_synthetic": true,
+      "expert_reviewed": false,
+      "acceptable_decision_policy": "Allow inconclusive and evidence-supported alternatives; do not force scenario_intent.",
+      "review_notes": [
+        "意图是生成剧本设定，未经调查确认；观测只支持候选解释。"
+      ]
+    }
+  },
+  {
+    "input": {
+      "event_meta": {
+        "event_id": "JAM-SYN-20261117-0002",
+        "detection_timestamp": "2026-11-14T13:00:00Z"
+      },
+      "physical_features": {
+        "affected_systems": [
+          "BDS",
+          "GPS"
+        ],
+        "signals": [
+          {
+            "band": "L1",
+            "center_frequency_mhz": 1575.42,
+            "observed_bandwidth_mhz": 0.85,
+            "signal_classification": "noise",
+            "received_power_dbm": -95.1,
+            "power_reference": "monitor_receiver_input"
+          },
+          {
+            "band": "B1I",
+            "center_frequency_mhz": 1561.098,
+            "observed_bandwidth_mhz": 0.95,
+            "signal_classification": "noise",
+            "received_power_dbm": -99.7,
+            "power_reference": "monitor_receiver_input"
+          },
+          {
+            "band": "L2",
+            "center_frequency_mhz": 1227.6,
+            "observed_bandwidth_mhz": 0.95,
+            "signal_classification": "noise",
+            "received_power_dbm": -99.8,
+            "power_reference": "monitor_receiver_input"
+          }
+        ],
+        "duration_seconds": 1291,
+        "emission_pattern": "intermittent"
+      },
+      "spoofing_features": {
+        "detection_status": "not_detected",
+        "position_offset_meters": null,
+        "position_offset_pattern": null,
+        "clock_bias_seconds": null
+      },
+      "spatial_context": {
+        "coordinate_frame": "fictional_local_ENU_m",
+        "jammer_location": {
+          "east_m": 45,
+          "north_m": -34
+        },
+        "motion_state": "stationary",
+        "speed_kmh": 0.0,
+        "trajectory_trend": "fixed_position",
+        "gis_poi_match": [
+          "open_area"
+        ]
+      },
+      "temporal_context": {
+        "recurrence_pattern": "unknown"
+      },
+      "historical_reference": null
+    },
+    "annotation": {
+      "scenario_intent": "tactical_denial",
+      "intent_label": "战术性区域拒止",
+      "case_type": "STANDARD",
+      "label_status": "synthetic_scenario_not_confirmed",
+      "source": "document_based_provisional_generator_v1",
+      "source_is_synthetic": true,
+      "expert_reviewed": false,
+      "acceptable_decision_policy": "Allow inconclusive and evidence-supported alternatives; do not force scenario_intent.",
+      "review_notes": [
+        "意图是生成剧本设定，未经调查确认；观测只支持候选解释。"
+      ]
+    }
+  },
+  {
+    "input": {
+      "event_meta": {
+        "event_id": "JAM-SYN-20261117-0001",
+        "detection_timestamp": "2026-11-01T08:00:00Z"
+      },
+      "physical_features": {
+        "affected_systems": [
+          "BDS",
+          "GPS"
+        ],
+        "signals": [
+          {
+            "band": "L1",
+            "center_frequency_mhz": 1575.42,
+            "observed_bandwidth_mhz": 1.61,
+            "signal_classification": "gnss_like",
+            "received_power_dbm": -87.7,
+            "power_reference": "monitor_receiver_input"
+          },
+          {
+            "band": "B1I",
+            "center_frequency_mhz": 1561.098,
+            "observed_bandwidth_mhz": 0.89,
+            "signal_classification": "gnss_like",
+            "received_power_dbm": -92.2,
+            "power_reference": "monitor_receiver_input"
+          }
+        ],
+        "duration_seconds": 1245,
+        "emission_pattern": "continuous"
+      },
+      "spoofing_features": {
+        "detection_status": "detected",
+        "position_offset_meters": 126.3,
+        "position_offset_pattern": "gradual_drift",
+        "clock_bias_seconds": null
+      },
+      "spatial_context": {
+        "coordinate_frame": "fictional_local_ENU_m",
+        "jammer_location": {
+          "east_m": -396,
+          "north_m": -34
+        },
+        "motion_state": "stationary",
+        "speed_kmh": 0.0,
+        "trajectory_trend": "fixed_position",
+        "gis_poi_match": [
+          "waterway"
+        ]
+      },
+      "temporal_context": {
+        "recurrence_pattern": "unknown"
+      },
+      "historical_reference": null
+    },
+    "annotation": {
+      "scenario_intent": "malicious_hijacking",
+      "intent_label": "恶意诱导与导航劫持",
+      "case_type": "STANDARD",
+      "label_status": "synthetic_scenario_not_confirmed",
+      "source": "document_based_provisional_generator_v1",
+      "source_is_synthetic": true,
+      "expert_reviewed": false,
+      "acceptable_decision_policy": "Allow inconclusive and evidence-supported alternatives; do not force scenario_intent.",
+      "review_notes": [
+        "意图是生成剧本设定，未经调查确认；观测只支持候选解释。"
+      ]
+    }
+  },
+  {
+    "input": {
+      "event_meta": {
+        "event_id": "JAM-SYN-20261117-0004",
+        "detection_timestamp": "2026-11-11T02:00:00Z"
+      },
+      "physical_features": {
+        "affected_systems": [
+          "GPS"
+        ],
+        "signals": [
+          {
+            "band": "L1",
+            "center_frequency_mhz": 1575.42,
+            "observed_bandwidth_mhz": 0.01,
+            "signal_classification": "tone",
+            "received_power_dbm": -88.6,
+            "power_reference": "monitor_receiver_input"
+          }
+        ],
+        "duration_seconds": 1717,
+        "emission_pattern": "intermittent"
+      },
+      "spoofing_features": {
+        "detection_status": "unknown",
+        "position_offset_meters": null,
+        "position_offset_pattern": null,
+        "clock_bias_seconds": null
+      },
+      "spatial_context": {
+        "coordinate_frame": "fictional_local_ENU_m",
+        "jammer_location": {
+          "east_m": -466,
+          "north_m": 259
+        },
+        "motion_state": "stationary",
+        "speed_kmh": 0.0,
+        "trajectory_trend": "fixed_position",
+        "gis_poi_match": [
+          "research_park"
+        ]
+      },
+      "temporal_context": {
+        "recurrence_pattern": "unknown"
+      },
+      "historical_reference": null
+    },
+    "annotation": {
+      "scenario_intent": "unintentional_testing",
+      "intent_label": "非恶意测试外泄或设备异常",
+      "case_type": "STANDARD",
+      "label_status": "synthetic_scenario_not_confirmed",
+      "source": "document_based_provisional_generator_v1",
+      "source_is_synthetic": true,
+      "expert_reviewed": false,
+      "acceptable_decision_policy": "Allow inconclusive and evidence-supported alternatives; do not force scenario_intent.",
+      "review_notes": [
+        "意图是生成剧本设定，未经调查确认；观测只支持候选解释。"
+      ]
+    }
+  }
+]

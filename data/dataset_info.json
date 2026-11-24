@@ -1,0 +1,26 @@
+{
+  "industrial_v1_sft": {
+    "file_name": "industrial_v1/train_sft_clean.jsonl",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "gnss_intent_sft": {
+    "file_name": "gnss/pilot_sft_clean.jsonl",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "industrial_v2_sft": {
+    "file_name": "industrial_v2/train_sft_clean.jsonl",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  }
+}

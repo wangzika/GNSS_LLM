@@ -1,0 +1,5 @@
+{"event_id": "EVT-20261116-0011", "ground_truth_intent": "驱动电力异常故障 (Power Failure)"}
+{"event_id": "EVT-20261116-0016", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261116-0032", "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)"}
+{"event_id": "EVT-20261116-0033", "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)"}
+{"event_id": "EVT-20261116-0040", "ground_truth_intent": "工具严重磨损故障 (Tool Wear Failure)"}

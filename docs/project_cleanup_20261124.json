@@ -1,0 +1,102 @@
+{
+  "moved": {
+    "scripts/step1_prepare_inputs.py": "scripts/industrial/step1_prepare_inputs.py",
+    "scripts/industrial_prepare_workflow.py": "scripts/industrial/industrial_prepare_workflow.py",
+    "scripts/industrial_generate_teacher.py": "scripts/industrial/industrial_generate_teacher.py",
+    "scripts/industrial_merge_teacher_retries.py": "scripts/industrial/industrial_merge_teacher_retries.py",
+    "scripts/industrial_predict.py": "scripts/industrial/industrial_predict.py",
+    "scripts/industrial_evaluate.py": "scripts/industrial/industrial_evaluate.py",
+    "scripts/step2_validate_and_pack.py": "scripts/common/step2_validate_and_pack.py",
+    "scripts/check_runtime.py": "scripts/common/check_runtime.py",
+    "scripts/generate_gnss_pilot.py": "scripts/gnss/generate_gnss_pilot.py",
+    "scripts/prepare_gnss_inputs.py": "scripts/gnss/prepare_gnss_inputs.py",
+    "scripts/start_teacher_server.sh": "scripts/server/start_teacher_server.sh",
+    "configs/qwen_industrial_v1_qlora_8gb.yaml": "configs/industrial/qwen_industrial_v1_qlora_8gb.yaml",
+    "configs/qwen_industrial_v1_chat.yaml": "configs/industrial/qwen_industrial_v1_chat.yaml",
+    "configs/qwen_gnss_qlora_8gb.yaml": "configs/gnss/qwen_gnss_qlora_8gb.yaml",
+    "data/raw_ai4i2020.csv": "data/industrial_source/raw_ai4i2020.csv",
+    "data/step1_meta_records.json": "data/industrial_source/step1_meta_records.json",
+    "GNSS干扰意图大模型推理-思路.docx": "docs/reference/GNSS干扰意图大模型推理-思路.docx",
+    "saves/qwen2.5-0.5b-smoke-lora": "outputs/legacy_smoke/qwen2.5-0.5b-smoke-lora",
+    "saves/qwen2.5-3b-smoke-lora": "outputs/legacy_smoke/qwen2.5-3b-smoke-lora"
+  },
+  "removed": [
+    {
+      "path": "scripts/make_smoke_teacher.py",
+      "bytes": 1690,
+      "sha256": "5dd9a499871c2af2b8d85f844a90453e8ef4cedc398a590c7040e9a9bf669850"
+    },
+    {
+      "path": "scripts/make_heldout_case.py",
+      "bytes": 1239,
+      "sha256": "e18f36faa518431a8671ced86790157926a3043b12eaefaa9de6c53be4d48b58"
+    },
+    {
+      "path": "data/heldout_inference_input.json",
+      "bytes": 337,
+      "sha256": "f2d4b884c5554008918a4648c3d712a2a2c706336df4b20b40fce493bd095660"
+    },
+    {
+      "path": "data/heldout_inference_label.txt",
+      "bytes": 41,
+      "sha256": "6ceb332e450899e7126e8f71fdfcb7c3d1b2e6df65fceeb7de76ea5145da6720"
+    },
+    {
+      "path": "data/pilot_sft_smoke.jsonl",
+      "bytes": 53814,
+      "sha256": "250dea71b8139122928b8fc938280f5d30a4b19b7801492447095853c8cdeaf6"
+    },
+    {
+      "path": "data/step2_smoke_rule_based.txt",
+      "bytes": 25526,
+      "sha256": "9c0dee72bfd4940dbc341ca83e11e1bb7d19e0d8f099783126891ece35f45da2"
+    },
+    {
+      "path": "data/step1_input_prompts.txt",
+      "bytes": 26835,
+      "sha256": "c322bb90c473ac0a4730d5fbd6d59ea103e3a65130c5fb1d1a58d84f6c285eea"
+    },
+    {
+      "path": "data/industrial_v1/test_predictions_template.jsonl",
+      "bytes": 710,
+      "sha256": "0042351a0436b23ed898265bfa9fe0c3d8683868659fd1eeb133997163ded8c5"
+    },
+    {
+      "path": "configs/qwen_smoke_8gb.yaml",
+      "bytes": 674,
+      "sha256": "489c6196951c0fc4173b8aacb94d75957fd74261b1f0e433653a29d7f7db74cc"
+    },
+    {
+      "path": "configs/qwen_smoke_chat.yaml",
+      "bytes": 200,
+      "sha256": "4cd4b7d446dccc16eba165859c74d5eece212e1b6a41d66131a78b039576c5df"
+    },
+    {
+      "path": "configs/qwen_3b_smoke_8gb.yaml",
+      "bytes": 671,
+      "sha256": "93a8586de59461eb935db90acb2959315a3cc3d70e14c71c6365a09ed5f18e98"
+    },
+    {
+      "path": "configs/qwen_3b_smoke_chat.yaml",
+      "bytes": 196,
+      "sha256": "4b284aee0dd6bad87ee0bb02b26d0355ea79995b962382c677e3c7163c9826e1"
+    },
+    {
+      "path": "configs/qwen_qlora_8gb.yaml",
+      "bytes": 668,
+      "sha256": "1bc55f6d695cb11a53dc22e2cc6638e092af5d5e328b156d7515f4c641585a46"
+    },
+    {
+      "path": "configs/qwen_qlora_chat.yaml",
+      "bytes": 196,
+      "sha256": "7c355bf2407b8587cbc72eb3c4489e84c08a15857033b78b1209c576151a32a4"
+    }
+  ],
+  "verification": [
+    "10 个 Python 脚本语法通过，可解析参数的入口 --help 通过",
+    "直接脚本和模块调用均通过",
+    "重新采样与原 50 条记录完全一致，35/5/10 划分不变",
+    "服务器新入口 dry-run 已保存 35、待生成 0",
+    "服务器新质检入口 35/35 通过，教师 API HTTP 200"
+  ]
+}

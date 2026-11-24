@@ -1,0 +1,622 @@
+[
+  {
+    "ground_truth_intent": "驱动电力异常故障 (Power Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0006",
+      "equipment_grade": "M"
+    },
+    "physical_features": {
+      "air_temp_k": 298.2,
+      "process_temp_k": 308.5,
+      "rotational_speed_rpm": 2678,
+      "torque_nm": 10.7,
+      "tool_wear_min": 86
+    },
+    "spatial_context": {
+      "operating_mode": "Continuous_Load",
+      "workshop_zone": "Line_B_CNC"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0008",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 298.0,
+      "process_temp_k": 308.2,
+      "rotational_speed_rpm": 1348,
+      "torque_nm": 58.8,
+      "tool_wear_min": 202
+    },
+    "spatial_context": {
+      "operating_mode": "Peak_Shift",
+      "workshop_zone": "Line_A_Stamping"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "驱动电力异常故障 (Power Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0019",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 296.4,
+      "process_temp_k": 307.4,
+      "rotational_speed_rpm": 2833,
+      "torque_nm": 5.6,
+      "tool_wear_min": 213
+    },
+    "spatial_context": {
+      "operating_mode": "Standard_Cycle",
+      "workshop_zone": "Line_A_Stamping"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "驱动电力异常故障 (Power Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0027",
+      "equipment_grade": "H"
+    },
+    "physical_features": {
+      "air_temp_k": 296.6,
+      "process_temp_k": 307.7,
+      "rotational_speed_rpm": 1386,
+      "torque_nm": 62.3,
+      "tool_wear_min": 100
+    },
+    "spatial_context": {
+      "operating_mode": "Peak_Shift",
+      "workshop_zone": "Line_C_Assembly"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "工具严重磨损故障 (Tool Wear Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0043",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 298.2,
+      "process_temp_k": 307.6,
+      "rotational_speed_rpm": 1511,
+      "torque_nm": 31.0,
+      "tool_wear_min": 209
+    },
+    "spatial_context": {
+      "operating_mode": "Peak_Shift",
+      "workshop_zone": "Line_B_CNC"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "驱动电力异常故障 (Power Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0046",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 298.1,
+      "process_temp_k": 307.7,
+      "rotational_speed_rpm": 2567,
+      "torque_nm": 12.8,
+      "tool_wear_min": 125
+    },
+    "spatial_context": {
+      "operating_mode": "Peak_Shift",
+      "workshop_zone": "Line_C_Assembly"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0050",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 299.5,
+      "process_temp_k": 309.4,
+      "rotational_speed_rpm": 1390,
+      "torque_nm": 58.8,
+      "tool_wear_min": 195
+    },
+    "spatial_context": {
+      "operating_mode": "Peak_Shift",
+      "workshop_zone": "Line_A_Stamping"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "工具严重磨损故障 (Tool Wear Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0064",
+      "equipment_grade": "M"
+    },
+    "physical_features": {
+      "air_temp_k": 299.7,
+      "process_temp_k": 309.3,
+      "rotational_speed_rpm": 1399,
+      "torque_nm": 41.9,
+      "tool_wear_min": 221
+    },
+    "spatial_context": {
+      "operating_mode": null,
+      "workshop_zone": null
+    },
+    "case_type": "MISSING_CONTEXT"
+  },
+  {
+    "ground_truth_intent": "驱动电力异常故障 (Power Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0077",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 301.5,
+      "process_temp_k": 310.9,
+      "rotational_speed_rpm": 2760,
+      "torque_nm": 8.0,
+      "tool_wear_min": 15
+    },
+    "spatial_context": {
+      "operating_mode": "Peak_Shift",
+      "workshop_zone": "Line_B_CNC"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0100",
+      "equipment_grade": "H"
+    },
+    "physical_features": {
+      "air_temp_k": 302.1,
+      "process_temp_k": 310.7,
+      "rotational_speed_rpm": 1294,
+      "torque_nm": 62.4,
+      "tool_wear_min": 101
+    },
+    "spatial_context": {
+      "operating_mode": "Standard_Cycle",
+      "workshop_zone": "Line_A_Stamping"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0104",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 301.9,
+      "process_temp_k": 310.4,
+      "rotational_speed_rpm": 1370,
+      "torque_nm": 51.7,
+      "tool_wear_min": 153
+    },
+    "spatial_context": {
+      "operating_mode": null,
+      "workshop_zone": null
+    },
+    "case_type": "MISSING_CONTEXT"
+  },
+  {
+    "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0120",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 302.4,
+      "process_temp_k": 310.7,
+      "rotational_speed_rpm": 1362,
+      "torque_nm": 54.8,
+      "tool_wear_min": 155
+    },
+    "spatial_context": {
+      "operating_mode": "Continuous_Load",
+      "workshop_zone": "Line_B_CNC"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0121",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 302.2,
+      "process_temp_k": 310.6,
+      "rotational_speed_rpm": 1334,
+      "torque_nm": 53.2,
+      "tool_wear_min": 159
+    },
+    "spatial_context": {
+      "operating_mode": "Standard_Cycle",
+      "workshop_zone": "Line_B_CNC"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0134",
+      "equipment_grade": "M"
+    },
+    "physical_features": {
+      "air_temp_k": 301.8,
+      "process_temp_k": 309.9,
+      "rotational_speed_rpm": 1334,
+      "torque_nm": 61.0,
+      "tool_wear_min": 182
+    },
+    "spatial_context": {
+      "operating_mode": "Continuous_Load",
+      "workshop_zone": "Line_B_CNC"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0149",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 302.4,
+      "process_temp_k": 310.2,
+      "rotational_speed_rpm": 1331,
+      "torque_nm": 45.5,
+      "tool_wear_min": 53
+    },
+    "spatial_context": {
+      "operating_mode": "Peak_Shift",
+      "workshop_zone": "Line_C_Assembly"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "驱动电力异常故障 (Power Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0152",
+      "equipment_grade": "M"
+    },
+    "physical_features": {
+      "air_temp_k": 302.6,
+      "process_temp_k": 310.2,
+      "rotational_speed_rpm": 2676,
+      "torque_nm": 10.8,
+      "tool_wear_min": 84
+    },
+    "spatial_context": {
+      "operating_mode": "Continuous_Load",
+      "workshop_zone": "Line_B_CNC"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0161",
+      "equipment_grade": "H"
+    },
+    "physical_features": {
+      "air_temp_k": 302.7,
+      "process_temp_k": 310.4,
+      "rotational_speed_rpm": 1305,
+      "torque_nm": 55.2,
+      "tool_wear_min": 20
+    },
+    "spatial_context": {
+      "operating_mode": "Peak_Shift",
+      "workshop_zone": "Line_A_Stamping"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0164",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 302.4,
+      "process_temp_k": 310.2,
+      "rotational_speed_rpm": 1346,
+      "torque_nm": 62.4,
+      "tool_wear_min": 106
+    },
+    "spatial_context": {
+      "operating_mode": "Peak_Shift",
+      "workshop_zone": "Line_B_CNC"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0195",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 303.2,
+      "process_temp_k": 311.2,
+      "rotational_speed_rpm": 1363,
+      "torque_nm": 46.7,
+      "tool_wear_min": 29
+    },
+    "spatial_context": {
+      "operating_mode": "Standard_Cycle",
+      "workshop_zone": "Line_C_Assembly"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0200",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 303.6,
+      "process_temp_k": 312.0,
+      "rotational_speed_rpm": 1309,
+      "torque_nm": 52.9,
+      "tool_wear_min": 86
+    },
+    "spatial_context": {
+      "operating_mode": null,
+      "workshop_zone": null
+    },
+    "case_type": "MISSING_CONTEXT"
+  },
+  {
+    "ground_truth_intent": "散热系统失效故障 (Heat Dissipation Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0207",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 303.3,
+      "process_temp_k": 311.8,
+      "rotational_speed_rpm": 1315,
+      "torque_nm": 62.0,
+      "tool_wear_min": 42
+    },
+    "spatial_context": {
+      "operating_mode": null,
+      "workshop_zone": null
+    },
+    "case_type": "MISSING_CONTEXT"
+  },
+  {
+    "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0214",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 303.8,
+      "process_temp_k": 313.1,
+      "rotational_speed_rpm": 1256,
+      "torque_nm": 58.7,
+      "tool_wear_min": 213
+    },
+    "spatial_context": {
+      "operating_mode": null,
+      "workshop_zone": null
+    },
+    "case_type": "MISSING_CONTEXT"
+  },
+  {
+    "ground_truth_intent": "驱动电力异常故障 (Power Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0217",
+      "equipment_grade": "H"
+    },
+    "physical_features": {
+      "air_temp_k": 304.0,
+      "process_temp_k": 313.2,
+      "rotational_speed_rpm": 1271,
+      "torque_nm": 68.6,
+      "tool_wear_min": 161
+    },
+    "spatial_context": {
+      "operating_mode": "Peak_Shift",
+      "workshop_zone": "Line_B_CNC"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "工具严重磨损故障 (Tool Wear Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0231",
+      "equipment_grade": "M"
+    },
+    "physical_features": {
+      "air_temp_k": 300.4,
+      "process_temp_k": 310.2,
+      "rotational_speed_rpm": 1671,
+      "torque_nm": 30.5,
+      "tool_wear_min": 234
+    },
+    "spatial_context": {
+      "operating_mode": "Peak_Shift",
+      "workshop_zone": "Idle_Standby_Bay"
+    },
+    "case_type": "CONFLICTING_EVIDENCE"
+  },
+  {
+    "ground_truth_intent": "工具严重磨损故障 (Tool Wear Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0240",
+      "equipment_grade": "H"
+    },
+    "physical_features": {
+      "air_temp_k": 300.5,
+      "process_temp_k": 309.9,
+      "rotational_speed_rpm": 1397,
+      "torque_nm": 45.9,
+      "tool_wear_min": 210
+    },
+    "spatial_context": {
+      "operating_mode": "Peak_Shift",
+      "workshop_zone": "Line_B_CNC"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "驱动电力异常故障 (Power Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0251",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 300.8,
+      "process_temp_k": 311.4,
+      "rotational_speed_rpm": 1322,
+      "torque_nm": 67.2,
+      "tool_wear_min": 18
+    },
+    "spatial_context": {
+      "operating_mode": "Continuous_Load",
+      "workshop_zone": "Idle_Standby_Bay"
+    },
+    "case_type": "CONFLICTING_EVIDENCE"
+  },
+  {
+    "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0258",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 300.6,
+      "process_temp_k": 311.9,
+      "rotational_speed_rpm": 1372,
+      "torque_nm": 60.1,
+      "tool_wear_min": 212
+    },
+    "spatial_context": {
+      "operating_mode": "Continuous_Load",
+      "workshop_zone": "Line_C_Assembly"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0265",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 300.7,
+      "process_temp_k": 311.8,
+      "rotational_speed_rpm": 1336,
+      "torque_nm": 58.4,
+      "tool_wear_min": 189
+    },
+    "spatial_context": {
+      "operating_mode": "Continuous_Load",
+      "workshop_zone": "Line_B_CNC"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0276",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 299.6,
+      "process_temp_k": 310.9,
+      "rotational_speed_rpm": 1229,
+      "torque_nm": 65.2,
+      "tool_wear_min": 209
+    },
+    "spatial_context": {
+      "operating_mode": "Peak_Shift",
+      "workshop_zone": "Line_C_Assembly"
+    },
+    "case_type": "STANDARD"
+  },
+  {
+    "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0277",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 299.4,
+      "process_temp_k": 310.8,
+      "rotational_speed_rpm": 1376,
+      "torque_nm": 53.9,
+      "tool_wear_min": 215
+    },
+    "spatial_context": {
+      "operating_mode": "Standard_Cycle",
+      "workshop_zone": "Idle_Standby_Bay"
+    },
+    "case_type": "CONFLICTING_EVIDENCE"
+  },
+  {
+    "ground_truth_intent": "机械负载过载故障 (Overstrain Failure)",
+    "data_source": "uci_ai4i2020",
+    "event_meta": {
+      "event_id": "EVT-20261124-0305",
+      "equipment_grade": "L"
+    },
+    "physical_features": {
+      "air_temp_k": 298.5,
+      "process_temp_k": 309.4,
+      "rotational_speed_rpm": 1360,
+      "torque_nm": 60.9,
+      "tool_wear_min": 187
+    },
+    "spatial_context": {
+      "operating_mode": null,
+      "workshop_zone": null
+    },
+    "case_type": "MISSING_CONTEXT"
+  }
+]

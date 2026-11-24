@@ -1,0 +1,501 @@
+{
+  "split": "validation",
+  "deterministic_only": false,
+  "full_split_count": 31,
+  "evaluated_count": 31,
+  "correct": 11,
+  "accuracy": 0.3548387096774194,
+  "macro_f1": 0.13095238095238096,
+  "invalid_label_count": 0,
+  "report_complete_count": 31,
+  "numeric_coverage_count": 31,
+  "derived_report_count": 31,
+  "derived_error_report_count": 31,
+  "derived_error_details": [
+    {
+      "event_id": "EVT-20261124-0006",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 2920.4,
+          "recomputed": 3000.7
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0008",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 8890.8,
+          "recomputed": 8300.3
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 12163.6,
+          "recomputed": 11877.6
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0019",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 15810.4,
+          "recomputed": 1661.4
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 1186.8,
+          "recomputed": 1192.8
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0027",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 9011.0,
+          "recomputed": 9042.3
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0043",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 4842.0,
+          "recomputed": 4905.2
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 6490.0,
+          "recomputed": 6479.0
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0046",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 3411.2,
+          "recomputed": 3440.8
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 1640.0,
+          "recomputed": 1600.0
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0050",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 8890.8,
+          "recomputed": 8559.0
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 11471.4,
+          "recomputed": 11466.0
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0064",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 6211.3,
+          "recomputed": 6138.5
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 9289.9,
+          "recomputed": 9259.9
+        },
+        {
+          "field": "overstrain_limit_min_nm",
+          "reported": 11000.0,
+          "recomputed": 12000
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0077",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 23010.8,
+          "recomputed": 2312.2
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0100",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 8820.8,
+          "recomputed": 8455.7
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0104",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 7220.8,
+          "recomputed": 7417.2
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 7629.1,
+          "recomputed": 7910.1
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0120",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 7451.6,
+          "recomputed": 7816.0
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 837.8,
+          "recomputed": 8494.0
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0121",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 7221.2,
+          "recomputed": 7431.8
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 8278.8,
+          "recomputed": 8458.8
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0134",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 8611.2,
+          "recomputed": 8521.5
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 11092.0,
+          "recomputed": 11102.0
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0149",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 6382.8,
+          "recomputed": 6341.9
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 2403.5,
+          "recomputed": 2411.5
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0152",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 2921.6,
+          "recomputed": 3026.5
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 93.12,
+          "recomputed": 907.2
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0161",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 7451.6,
+          "recomputed": 7543.6
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 1110.4,
+          "recomputed": 1104.0
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0164",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 8890.6,
+          "recomputed": 8795.5
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 6686.4,
+          "recomputed": 6614.4
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0195",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 6411.1,
+          "recomputed": 6665.6
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 1380.3,
+          "recomputed": 1354.3
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0200",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 7011.0,
+          "recomputed": 7251.4
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 4681.4,
+          "recomputed": 4549.4
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0207",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 8612.8,
+          "recomputed": 8537.8
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 2628.0,
+          "recomputed": 2604.0
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0214",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 7350.0,
+          "recomputed": 7720.7
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 12300.1,
+          "recomputed": 12503.1
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0217",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 9290.0,
+          "recomputed": 9130.6
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 11121.6,
+          "recomputed": 11044.6
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0231",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 5051.3,
+          "recomputed": 5337.1
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 7290.0,
+          "recomputed": 7137.0
+        },
+        {
+          "field": "overstrain_limit_min_nm",
+          "reported": 11000.0,
+          "recomputed": 12000
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0240",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 6890.3,
+          "recomputed": 6714.9
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 9554.4,
+          "recomputed": 9639.0
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0251",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 9202.5,
+          "recomputed": 9303.1
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 1171.2,
+          "recomputed": 1209.6
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0258",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 8882.3,
+          "recomputed": 8634.9
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 12832.2,
+          "recomputed": 12741.2
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0265",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 7811.2,
+          "recomputed": 8170.5
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 10881.6,
+          "recomputed": 11037.6
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0276",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 8411.2,
+          "recomputed": 8391.3
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 13208.8,
+          "recomputed": 13626.8
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0277",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 7451.2,
+          "recomputed": 7766.7
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 11423.5,
+          "recomputed": 11588.5
+        }
+      ]
+    },
+    {
+      "event_id": "EVT-20261124-0305",
+      "errors": [
+        {
+          "field": "shaft_power_w",
+          "reported": 8880.6,
+          "recomputed": 8673.3
+        },
+        {
+          "field": "wear_torque_min_nm",
+          "reported": 1167.3,
+          "recomputed": 11388.3
+        }
+      ]
+    }
+  ],
+  "per_class": {
+    "工具严重磨损故障 (Tool Wear Failure)": {
+      "support": 4,
+      "correct": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "散热系统失效故障 (Heat Dissipation Failure)": {
+      "support": 11,
+      "correct": 11,
+      "precision": 0.3548387096774194,
+      "recall": 1.0,
+      "f1": 0.5238095238095238
+    },
+    "机械负载过载故障 (Overstrain Failure)": {
+      "support": 8,
+      "correct": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "驱动电力异常故障 (Power Failure)": {
+      "support": 8,
+      "correct": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  }
+}

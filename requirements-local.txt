@@ -1,0 +1,8 @@
+# PyTorch CUDA 12.8 与 LLaMA-Factory 源码按 README 单独安装。
+transformers==5.8.0
+bitsandbytes==0.50.2
+peft==0.18.1
+datasets==4.0.0
+accelerate==1.11.0
+modelscope==1.40.3
+PyYAML==6.0.3

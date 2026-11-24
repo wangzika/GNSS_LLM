@@ -1,0 +1,37 @@
+{
+  "seed": 42,
+  "raw_sha256": "dc6630cd9b1f0f853922fad78a1b6436570d3f1ec863f1dd5c4340ac56bc8a8e",
+  "counts": {
+    "train": 214,
+    "validation": 31,
+    "test": 61
+  },
+  "label_counts": {
+    "train": {
+      "驱动电力异常故障 (Power Failure)": 56,
+      "工具严重磨损故障 (Tool Wear Failure)": 30,
+      "机械负载过载故障 (Overstrain Failure)": 54,
+      "散热系统失效故障 (Heat Dissipation Failure)": 74
+    },
+    "validation": {
+      "驱动电力异常故障 (Power Failure)": 8,
+      "机械负载过载故障 (Overstrain Failure)": 8,
+      "工具严重磨损故障 (Tool Wear Failure)": 4,
+      "散热系统失效故障 (Heat Dissipation Failure)": 11
+    },
+    "test": {
+      "驱动电力异常故障 (Power Failure)": 16,
+      "机械负载过载故障 (Overstrain Failure)": 16,
+      "工具严重磨损故障 (Tool Wear Failure)": 8,
+      "散热系统失效故障 (Heat Dissipation Failure)": 21
+    }
+  },
+  "v1_assignments_preserved": 50,
+  "duplicate_physical_inputs": 0,
+  "limitations": [
+    "只包含单一故障事件，不含正常样本和多故障样本",
+    "TWF 随机发生，风险窗口不能确定真实故障",
+    "仅按独立行划分，不是按时间或生产批次留出，不能声称时间泛化",
+    "运行模式和车间区域是随机背景"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "gnss_pilot_v1_provisional",
+  "seed": 20261117,
+  "count": 50,
+  "intent_counts": {
+    "malicious_hijacking": 10,
+    "tactical_denial": 10,
+    "unintentional_testing": 10,
+    "personal_privacy_evasion": 10,
+    "counter_uas_defensive": 10
+  },
+  "case_counts": {
+    "STANDARD": 35,
+    "MISSING_CONTEXT": 10,
+    "CONFLICTING_EVIDENCE": 5
+  },
+  "source_document": "GNSS干扰意图大模型推理-思路.docx",
+  "source_sha256": "eea8631a75d62d9635d8970aa9cb509259f6a94bf310992644d45bca3281c88c",
+  "limitations": [
+    "虚构本地坐标及POI，未查询地图",
+    "功率是合成接收端观测，不是发射配置或传播仿真",
+    "脚本检查只保证定义内的一致性，不代表物理或意图真实性",
+    "尚无专家审核、教师报告或独立评估集",
+    "不可把随机分割的同模板样本用于泛化能力结论"
+  ]
+}

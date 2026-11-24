@@ -1,0 +1,19 @@
+LlamaFactory/
+models/
+outputs/
+logs/
+.build/
+.publish/
+node_modules/
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+.env.*
+.aws/
+.agents/
+.codex/
+data/**/archive/
+data/**/report_audit.jsonl
+# 原始方案文档在本地与服务器保留，不属于本次代码和数据集发布。
+docs/reference/*.docx
