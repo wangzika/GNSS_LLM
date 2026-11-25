@@ -36,14 +36,14 @@ bash scripts/server/start_teacher_server.sh
 ```bash
 cd /data/zbwang/GNSS_LLM
 curl -s http://127.0.0.1:8000/v1/models
-python3 scripts/industrial/industrial_generate_teacher.py --dry-run
-python3 scripts/industrial/industrial_generate_teacher.py --limit 3
+python3 scripts/industrial/industrial_generate_teacher.py --data-dir data/industrial_v1 --dry-run
+python3 scripts/industrial/industrial_generate_teacher.py --data-dir data/industrial_v1 --limit 3
 ```
 
 检查 `data/industrial_v1/teacher_responses.jsonl`，确认报告完整、证据引用准确，再运行：
 
 ```bash
-python3 scripts/industrial/industrial_generate_teacher.py
+python3 scripts/industrial/industrial_generate_teacher.py --data-dir data/industrial_v1
 python3 scripts/common/step2_validate_and_pack.py \
   --meta data/industrial_v1/train_meta.json \
   --raw data/industrial_v1/teacher_raw.txt \
@@ -70,9 +70,9 @@ python3 scripts/common/step2_validate_and_pack.py \
 
 ```bash
 python3 scripts/industrial/industrial_generate_teacher.py \
-  --meta data/industrial_v2/train_meta.json \
-  --responses data/industrial_v2/teacher_responses.jsonl \
-  --raw data/industrial_v2/teacher_raw.txt \
+  --meta data/industrial_v2/02_split/output/train_meta.json \
+  --responses data/industrial_v2/03_teacher/output/teacher_responses.jsonl \
+  --raw data/industrial_v2/03_teacher/output/teacher_raw.txt \
   --workers 4
 ```
 

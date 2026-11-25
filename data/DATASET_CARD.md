@@ -11,11 +11,11 @@
 - `industrial_source/`：原始 CSV 与早期 50 条带标签内部元数据。
 - `industrial_v1/`：早期 35/5/10 划分，旧版报告重审后接受 20 条。
 - `industrial_v2/`：全部 306 条独立单故障事件，训练/验证/测试为 214/31/61。保留旧 50 条的划分归属，同一物理输入不跨集合。
-- `industrial_v2/train_sft_clean.jsonl`：214 条教师训练报告审阅后保留的 134 条 Alpaca 训练样本，三类数量为 PWF 36、HDF 56、OSF 42。
-- `industrial_v2/teacher_responses.jsonl` 与 `teacher_raw.txt`：完整 214 条模型回答及汇总，不应直接把全部回答视为可训练数据。
-- `industrial_v2/final_review_decisions.jsonl`、`REVIEW.md`：134 接受、50 拒绝、30 不确定的逐条记录。拒绝包含格式、比较或证据问题及保守筛选，并不等于每条最终类别都错误。
-- `source_provenance.jsonl`：事件 ID 与原始 UDI、Product ID、划分对应，用于来源追溯，不应作为诊断输入。
-- `validation_*`、`test_*`：纯输入和参考标签独立存放；预测脚本不读取标签。测试集截至本次发布尚未用于最终评估。
+- `industrial_v2/04_review/output/train_sft_clean.jsonl`：214 条教师训练报告审阅后保留的 134 条 Alpaca 训练样本，三类数量为 PWF 36、HDF 56、OSF 42。
+- `industrial_v2/03_teacher/output/teacher_responses.jsonl` 与 `teacher_raw.txt`：完整 214 条模型回答及汇总，不应直接把全部回答视为可训练数据。
+- `industrial_v2/04_review/output/final_review_decisions.jsonl`、`REVIEW.md`：134 接受、50 拒绝、30 不确定的逐条记录。拒绝包含格式、比较或证据问题及保守筛选，并不等于每条最终类别都错误。
+- `industrial_v2/02_split/output/source_provenance.jsonl`：事件 ID 与原始 UDI、Product ID、划分对应，用于来源追溯，不应作为诊断输入。
+- `industrial_v2/02_split/output/validation_*`、`test_*`：纯输入和参考标签独立存放，第六步 input 提供链接；预测脚本不读取标签。测试集截至本次发布尚未用于最终评估。
 - `gnss_pilot_v1/`：50 条临时合成场景，剧本意图不是已确认真实动机，未通过领域专家认证。
 
 ## 生成与审阅

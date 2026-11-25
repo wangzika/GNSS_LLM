@@ -16,7 +16,7 @@
     }
   },
   "industrial_v2_sft": {
-    "file_name": "industrial_v2/train_sft_clean.jsonl",
+    "file_name": "industrial_v2/05_finetune/input/train_sft_clean.jsonl",
     "columns": {
       "prompt": "instruction",
       "query": "input",

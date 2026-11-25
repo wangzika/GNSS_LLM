@@ -10,10 +10,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from scripts.common.step2_validate_and_pack import NUM_RE, numbers
 from scripts.industrial.step1_prepare_inputs import LABELS
+from scripts.industrial.workflow_paths import WorkflowPaths
 from scripts.industrial.industrial_generate_teacher import derived_measurements
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_DATA = ROOT / "data/industrial_v1"
+DEFAULT_DATA = ROOT / "data/industrial_v2"
 
 
 def read_jsonl(path):
@@ -41,8 +42,9 @@ def main():
                         help="仅统计真实标签为 HDF/PWF/OSF 的三类子集；仍要求提供完整留出集预测")
     parser.add_argument("--summary-json", type=Path, help="另存统计结果，便于比较基础模型和微调模型")
     args = parser.parse_args()
-    inputs_path = args.data_dir / f"{args.split}_inputs.jsonl"
-    labels_path = args.data_dir / f"{args.split}_labels.jsonl"
+    layout = WorkflowPaths(args.data_dir)
+    inputs_path = layout.input("06_evaluation", f"{args.split}_inputs.jsonl")
+    labels_path = layout.input("06_evaluation", f"{args.split}_labels.jsonl")
     inputs = keyed(read_jsonl(inputs_path), inputs_path)
     labels = keyed(read_jsonl(labels_path), labels_path)
     predictions = keyed(read_jsonl(args.predictions), args.predictions)
@@ -110,6 +112,8 @@ def main():
         print(f"{label}: {hit}/{len(ids)}；F1={f1:.3f}")
     macro_f1 = sum(row["f1"] for row in per_class.values()) / len(per_class)
     print(f"Macro-F1={macro_f1:.3f}")
+    args.summary_json = args.summary_json or layout.file(
+        f"{args.split}_metrics" + ("_three_classes" if args.deterministic_only else "") + ".json")
     if args.summary_json:
         args.summary_json.parent.mkdir(parents=True, exist_ok=True)
         args.summary_json.write_text(json.dumps({

@@ -19,10 +19,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from scripts.industrial.industrial_prepare_workflow import model_input  # 复用“去掉答案字段”的输入转换。
 from scripts.industrial.step1_prepare_inputs import LABELS
+from scripts.industrial.workflow_paths import WorkflowPaths
 
 # 项目根目录和默认数据目录；命令行参数可覆盖具体输入/输出文件。
 ROOT = Path(__file__).resolve().parents[2]
-DATA = ROOT / "data/industrial_v1"
+DATA = ROOT / "data/industrial_v2"
 
 # 所有事件共用的教师指令：列出可选类别，但不提供任何事件的真实答案。
 # <think> 在本项目中用于简短、可公开的排除依据；不要把它当成未公开的内部推理。
@@ -202,9 +203,10 @@ def main():
     """解析参数，确认待处理事件，逐条请求教师并保存进度。"""
     parser = argparse.ArgumentParser(description=__doc__)
     # 输入：含标签的内部元数据；输出：逐条回复 JSONL 和汇总后的 Markdown 文本。
-    parser.add_argument("--meta", type=Path, default=DATA / "train_meta.json")
-    parser.add_argument("--responses", type=Path, default=DATA / "teacher_responses.jsonl")
-    parser.add_argument("--raw", type=Path, default=DATA / "teacher_raw.txt")
+    parser.add_argument("--data-dir", type=Path, default=DATA)
+    parser.add_argument("--meta", type=Path)
+    parser.add_argument("--responses", type=Path)
+    parser.add_argument("--raw", type=Path)
     # 默认连接本机 vLLM；模型名必须与服务加载的模型一致。
     parser.add_argument("--url", default="http://127.0.0.1:8000/v1/chat/completions")
     parser.add_argument("--model", default="Qwen/Qwen2.5-32B-Instruct")
@@ -221,6 +223,10 @@ def main():
     if (args.max_tokens <= 0 or args.timeout <= 0 or args.workers <= 0
             or args.retries < 0 or (args.limit is not None and args.limit <= 0)):
         parser.error("max-tokens/timeout/limit/workers 必须为正数，retries 不能为负")
+    layout = WorkflowPaths(args.data_dir)
+    args.meta = args.meta or layout.input("03_teacher", "train_meta.json")
+    args.responses = args.responses or layout.file("teacher_responses.jsonl")
+    args.raw = args.raw or layout.file("teacher_raw.txt")
     records = read_records(args.meta)
     saved = read_existing(args.responses, args.model)
     # 防止把旧实验的回复混入当前训练元数据。

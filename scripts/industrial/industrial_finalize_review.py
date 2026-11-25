@@ -12,6 +12,7 @@ from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
 from scripts.common.step2_validate_and_pack import BLOCK_RE, SYSTEM_PROMPTS, normalize_conclusion
 from scripts.industrial.industrial_prepare_workflow import model_input
+from scripts.industrial.workflow_paths import WorkflowPaths
 
 
 def content_flags(rec,text):
@@ -43,16 +44,17 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--data-dir',type=Path,required=True)
     parser.add_argument('--audit-name',default='report_audit_recomputed.jsonl')
-    args=parser.parse_args(); data=args.data_dir
-    meta=json.loads((data/'train_meta.json').read_text())
-    audits={r['event_id']:r for r in [json.loads(x) for x in (data/args.audit_name).read_text().splitlines() if x.strip()]}
+    args=parser.parse_args(); data=WorkflowPaths(args.data_dir)
+    data.initialize()
+    meta=json.loads((data.input('04_review', 'train_meta.json')).read_text())
+    audits={r['event_id']:r for r in [json.loads(x) for x in (data.audit(args.audit_name)).read_text().splitlines() if x.strip()]}
     if len(audits)!=len(meta):raise ValueError('审阅尚未覆盖所有训练事件')
     overrides={}
-    p=data/'agent_review_decisions.jsonl'
+    p=data.file('agent_review_decisions.jsonl')
     if p.exists(): overrides={r['event_id']:r for r in [json.loads(x) for x in p.read_text().splitlines() if x.strip()]}
-    backup=data/'archive'/('before_final_review_'+str(time.time_ns()));backup.mkdir(parents=True)
+    backup=data.archive/('before_final_review_'+str(time.time_ns()));backup.mkdir(parents=True)
     for name in ['train_sft_clean.jsonl','train_sft_review.jsonl','audit_summary.json']:
-        src=data/name
+        src=data.file(name)
         if src.exists():
             with src.open('rb') as stream,(backup/name).open('xb') as dst:shutil.copyfileobj(stream,dst)
     rows=[]; decisions=[]; summary=[]
@@ -71,11 +73,11 @@ def main():
             rows.append({'instruction':SYSTEM_PROMPTS['industrial'],'input':json.dumps(model_input(rec),ensure_ascii=False,separators=(',',':')),'output':normalize_conclusion(BLOCK_RE.findall(response)[0],rec).strip()})
         summary.append(f"| {eid} | {state} | {'；'.join(issues).replace('|','／') or '当前检查未发现问题'} |")
     for name in ['train_sft_clean.jsonl','train_sft_review.jsonl']:
-        (data/name).write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in rows))
-    (data/'final_review_decisions.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in decisions))
+        (data.file(name)).write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in rows))
+    (data.file('final_review_decisions.jsonl')).write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in decisions))
     stats={'total_train':len(meta),'clean_count':len(rows),'status_counts':dict(Counter(x['status'] for x in decisions)),'review_method':'程序逐字段/规则核对、模型抽取文字断言后验算、保守内容过滤，代理复核争议','limitations':['文本提取可能漏检；不是外部专家认证','TWF样本不纳入确定故障训练','留出集未交给教师生成训练报告','不包含正常类与多故障类，不能宣称通用故障检测能力']}
-    (data/'audit_summary.json').write_text(json.dumps(stats,ensure_ascii=False,indent=2)+'\n')
-    (data/'REVIEW.md').write_text('# 教师报告审阅结果\n\n'+json.dumps(stats,ensure_ascii=False,indent=2)+'\n\n| 事件 | 判定 | 依据 |\n| --- | --- | --- |\n'+'\n'.join(summary)+'\n')
+    (data.file('audit_summary.json')).write_text(json.dumps(stats,ensure_ascii=False,indent=2)+'\n')
+    (data.file('REVIEW.md')).write_text('# 教师报告审阅结果\n\n'+json.dumps(stats,ensure_ascii=False,indent=2)+'\n\n| 事件 | 判定 | 依据 |\n| --- | --- | --- |\n'+'\n'.join(summary)+'\n')
     print(json.dumps(stats,ensure_ascii=False))
 
 if __name__=='__main__':main()

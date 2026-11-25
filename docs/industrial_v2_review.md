@@ -2,7 +2,7 @@
 
 本批使用原始 AI4I CSV 中全部 306 条“Machine failure=1 且只命中一种故障”的独立事件。原有 50 条未被覆盖，v2 保留它们的训练／验证／测试归属。新版划分为训练 214、验证 31、测试 61。
 
-214 条训练报告已全部生成并完成本轮审阅：接受 134、拒绝 50、不确定 30。最终训练文件的三类分布为电力异常 36、散热失效 56、机械过载 42。所有报告和结果已传回本地。已用 LLaMA-Factory 实际训练模板和处理器检查，134 条序列最长 632 token，当前 1024 上限内且没有截断；此前保存的 tokenizer 对话模板估算为 616 token。记录见 `sequence_length_check.json`，本地模型加载和单批前向／反向验证见 `logs/industrial_v2_preflight.json`。
+214 条训练报告已全部生成并完成本轮审阅：接受 134、拒绝 50、不确定 30。最终训练文件的三类分布为电力异常 36、散热失效 56、机械过载 42。所有报告和结果已传回本地。已用 LLaMA-Factory 实际训练模板和处理器检查，134 条序列最长 632 token，当前 1024 上限内且没有截断；此前保存的 tokenizer 对话模板估算为 616 token。记录见 `05_finetune/output/sequence_length_check.json`，本地模型加载和单批前向／反向验证见 `logs/industrial_v2_preflight.json`。
 
 | 类别 | 全部事件 | 训练 | 验证 | 测试 |
 | --- | ---: | ---: | ---: | ---: |
@@ -27,19 +27,17 @@
 
 所有文件位于 `data/industrial_v2/`，报告和审阅结果已从服务器同步到本地，关键文件 SHA-256 与源文件一致。
 
-| 文件 | 用途 |
+各文件已按六阶段整理，完整清单见 [v2 目录说明](../data/industrial_v2/README.md)。
+
+| 目录 | 内容 |
 | --- | --- |
-| `manifest.json` | 数量、类别、原 CSV 哈希、旧划分保留数量与数据限制 |
-| `source_provenance.jsonl` | 事件 ID 到原 CSV UDI、产品 ID、划分的对应，仅用于追溯 |
-| `train_meta.json` | 214 条内部训练记录，含标签 |
-| `validation_*`、`test_*` | 独立留出集，不交给教师生成训练报告 |
-| `teacher_responses.jsonl`、`teacher_raw.txt` | 模型原始回答及顺序汇总 |
-| `report_audit_recomputed.jsonl` | 数值、比较句和规则说法验算的逐事件记录 |
-| `agent_review_decisions.jsonl` | 代理追加的争议裁定 |
-| `final_review_decisions.jsonl`、`REVIEW.md` | 最终逐条接受／拒绝／不确定判定及原因 |
-| `audit_summary.json` | 最终训练子集数量和限制 |
-| `train_sft_clean.jsonl` | 通过审阅的训练子集；不要求强行凑齐 214 条 |
-| `archive/` | 旧审阅方法日志、输出替换前备份 |
+| `01_prepare/output/` | 306 条完整事件元数据快照 |
+| `02_split/output/` | 划分清单、来源对应、各集合元数据、输入、标签与手工提示词 |
+| `03_teacher/output/` | 214 条教师原始回答与汇总 |
+| `04_review/input/` | 上游报告链接与追加争议裁定 |
+| `04_review/output/` | 原句验算日志、最终裁定、审阅说明与 134 条 clean 数据 |
+| `05_finetune/input/`、`output/` | 训练文件入口、长度检查、训练统计链接 |
+| `06_evaluation/input/`、`output/` | 留出输入／标签入口、预测、指标与错误分析 |
 
 从项目根目录执行，扩充脚本要求输出目录不存在，以保护旧数据：
 
@@ -58,7 +56,7 @@ python -m scripts.industrial.industrial_finalize_review --data-dir data/industri
 
 生成脚本按审阅日志跳过已完成事件。每次原始回答与检查结果都写入日志；最终审阅脚本写出前备份旧输出。不要删除日志后直接重复生成同一批数据。
 
-训练注册名为 `industrial_v2_sft`，配置在 `configs/industrial/qwen_industrial_v2_qlora_8gb.yaml`。本次只扩充并审阅数据，未启动学生训练。
+训练注册名为 `industrial_v2_sft`，配置在 `configs/industrial/qwen_industrial_v2_qlora_8gb.yaml`。正式学生训练已完成，结果见下方验证结果；本次目录整理未重新生成报告或重新训练。
 
 注意：clean 排除 TWF，不应用包含 TWF 的全部留出集准确率冒充三类确定性故障的准确率。评估时应同时报告全类表现、可观测三类子集表现及不确定性，避免只选择容易事件而不披露覆盖率。
 
@@ -68,4 +66,4 @@ python -m scripts.industrial.industrial_finalize_review --data-dir data/industri
 
 原始评分为 9/31；仅重新提取中文标签后为 11/31。使用同一适配器与对齐的消息格式重跑31条验证事件后，模型全部预测为散热失效，准确率11/31（35.5%），三类子集11/27（40.7%），恰好等于一直预测多数类的基线。全类 Macro-F1为0.131，三类为0.193。31份报告均有至少一个已列出的派生量计算错误，不能据格式完整认为具备诊断能力。
 
-诊断与证据见 `data/industrial_v2/validation_error_analysis.json`；对齐后的预测为 `validation_predictions_aligned.jsonl`，对应统计为 `validation_metrics_aligned.json` 和 `validation_metrics_aligned_three_classes.json`。测试集尚未运行。下一轮应把短类别输出与长报告生成分开比较，并对是否提供程序派生量作明确实验设计；工具辅助的成绩不能冒充纯模型诊断能力。
+诊断与证据见 `data/industrial_v2/06_evaluation/output/validation_error_analysis.json`；对齐后的预测与统计均位于 `06_evaluation/output/`：`validation_predictions_aligned.jsonl`、`validation_metrics_aligned.json`、`validation_metrics_aligned_three_classes.json`。测试集尚未运行。下一轮应把短类别输出与长报告生成分开比较，并对是否提供程序派生量作明确实验设计；工具辅助的成绩不能冒充纯模型诊断能力。

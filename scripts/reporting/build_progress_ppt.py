@@ -5,6 +5,7 @@
 标准库即可生成文件。制作环境缺少演示文稿服务运行库，采用原生 PPTX 封装。
 """
 import json
+import sys
 import math
 import zipfile
 from pathlib import Path
@@ -12,7 +13,9 @@ from xml.sax.saxutils import escape
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT/'deliverables/工业故障大模型_流程与首轮实验_20261124.pptx'
-DATA = ROOT/'data/industrial_v2'
+sys.path.insert(0, str(ROOT))
+from scripts.industrial.workflow_paths import WorkflowPaths
+DATA = WorkflowPaths(ROOT/'data/industrial_v2')
 FONT = 'Noto Sans CJK SC'
 BLUE='1464B8'; DARK='17212C'; MUTED='61758F'; LIGHT='F4F7FB'; BORDER='B8CEE8'; RED='B3353D'
 P='http://schemas.openxmlformats.org/presentationml/2006/main'
@@ -68,7 +71,7 @@ class Slide:
 def relationships(rows):
     return '<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+''.join(f'<Relationship Id="{rid}" Type="{typ}" Target="{target}"/>' for rid,typ,target in rows)+'</Relationships>'
 
-def load(name):return json.loads((DATA/name).read_text())
+def load(name):return json.loads(DATA.file(name).read_text())
 
 def make_slides():
     slides=[]; notes=[]
@@ -79,7 +82,7 @@ def make_slides():
     s.line(1050,263,1050,348,arrow=True);s.line(875,412,815,412,arrow=True);s.line(465,412,405,412,arrow=True)
     s.text('SFT 样本结构',55,516,1100,36,24,BLUE,True)
     s.table([['instruction','input','output'],['故障分析任务说明','原始测量 JSON，去除真实标签','教师报告、类别结论与证据引用']],55,562,[285,420,465],40,19)
-    slides.append(s);notes.append('数据依据：data/industrial_v2/manifest.json、audit_summary.json；训练依据：results/industrial_v2/train_results.json。原图为用户提供版式参考，重建为可编辑对象。当前为公开规则辅助教师报告蒸馏，未证明纯模型诊断有效。')
+    slides.append(s);notes.append('数据依据：data/industrial_v2/02_split/output/manifest.json、04_review/output/audit_summary.json；训练依据：results/industrial_v2/train_results.json。原图为用户提供版式参考，重建为可编辑对象。当前为公开规则辅助教师报告蒸馏，未证明纯模型诊断有效。')
 
     s=Slide('数据准备：从 10,000 条记录到 134 条训练样本',2)
     s.text('原始故障记录筛选',55,100,580,36,25,BLUE,True)

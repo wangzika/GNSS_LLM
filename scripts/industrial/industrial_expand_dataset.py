@@ -9,6 +9,7 @@ import sys
 from collections import Counter
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from scripts.industrial.workflow_paths import WorkflowPaths
 from scripts.industrial.step1_prepare_inputs import make_record, LABELS
 from scripts.industrial.industrial_prepare_workflow import model_input, write_json, write_jsonl, write_prompts
 ROOT = Path(__file__).resolve().parents[2]
@@ -77,7 +78,8 @@ def main():
             if need < 0: raise ValueError('目标比例无法容纳旧划分')
             parts[part].extend(remaining[:need]); del remaining[:need]
         assert not remaining
-    out.mkdir(parents=True)
+    layout = WorkflowPaths(out)
+    layout.initialize(source_csv=csv_path, legacy_dir=old)
     for part, items in parts.items():
         items.sort(key=lambda r:r['event_meta']['event_id'])
         # 模拟上下文只在分集后设置，不能改变原始测量或影响物理诊断。
@@ -89,13 +91,14 @@ def main():
             elif index < round(len(items)*.3):
                 rec['case_type']='CONFLICTING_EVIDENCE'
                 rec['spatial_context']['workshop_zone']='Idle_Standby_Bay'
-        write_json(out/f'{part}_meta.json', items)
+        write_json(layout.file(f'{part}_meta.json'), items)
         if part != 'train':
-            write_jsonl(out/f'{part}_inputs.jsonl',[{'event_id':r['event_meta']['event_id'],'input':model_input(r)} for r in items])
-            write_jsonl(out/f'{part}_labels.jsonl',[{'event_id':r['event_meta']['event_id'],'ground_truth_intent':r['ground_truth_intent']} for r in items])
-    write_prompts(out/'teacher_prompts_blind.txt',parts['train'],5)
-    write_jsonl(out/'source_provenance.jsonl',[{'event_id':r['event_meta']['event_id'],'split':part,**origins[r['event_meta']['event_id']]} for part,items in parts.items() for r in items])
-    write_json(out/'manifest.json',{'seed':args.seed,'raw_sha256':hashlib.sha256(csv_path.read_bytes()).hexdigest(),'counts':{k:len(v) for k,v in parts.items()},'label_counts':{k:dict(Counter(x['ground_truth_intent'] for x in v)) for k,v in parts.items()},'v1_assignments_preserved':len(fixed),'duplicate_physical_inputs':0,'limitations':['只包含单一故障事件，不含正常样本和多故障样本','TWF 随机发生，风险窗口不能确定真实故障','仅按独立行划分，不是按时间或生产批次留出，不能声称时间泛化','运行模式和车间区域是随机背景']})
+            write_jsonl(layout.file(f'{part}_inputs.jsonl'),[{'event_id':r['event_meta']['event_id'],'input':model_input(r)} for r in items])
+            write_jsonl(layout.file(f'{part}_labels.jsonl'),[{'event_id':r['event_meta']['event_id'],'ground_truth_intent':r['ground_truth_intent']} for r in items])
+    write_json(layout.file('events_meta.json'), sorted(records, key=lambda r:r['event_meta']['event_id']))
+    write_prompts(layout.file('teacher_prompts_blind.txt'),parts['train'],5)
+    write_jsonl(layout.file('source_provenance.jsonl'),[{'event_id':r['event_meta']['event_id'],'split':part,**origins[r['event_meta']['event_id']]} for part,items in parts.items() for r in items])
+    write_json(layout.file('manifest.json'),{'seed':args.seed,'raw_sha256':hashlib.sha256(csv_path.read_bytes()).hexdigest(),'counts':{k:len(v) for k,v in parts.items()},'label_counts':{k:dict(Counter(x['ground_truth_intent'] for x in v)) for k,v in parts.items()},'v1_assignments_preserved':len(fixed),'duplicate_physical_inputs':0,'limitations':['只包含单一故障事件，不含正常样本和多故障样本','TWF 随机发生，风险窗口不能确定真实故障','仅按独立行划分，不是按时间或生产批次留出，不能声称时间泛化','运行模式和车间区域是随机背景']})
     print(json.dumps({'out':str(out),'counts':{k:len(v) for k,v in parts.items()}},ensure_ascii=False))
 
 if __name__=='__main__': main()

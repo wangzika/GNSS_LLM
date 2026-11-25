@@ -17,6 +17,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from scripts.industrial import industrial_generate_teacher as teacher
+from scripts.industrial.workflow_paths import WorkflowPaths
 from scripts.industrial.industrial_prepare_workflow import model_input
 from scripts.common.step2_validate_and_pack import BLOCK_RE, validate, normalize_conclusion, SYSTEM_PROMPTS
 
@@ -131,21 +132,22 @@ def main():
     parser.add_argument('--model',default='Qwen/Qwen2.5-32B-Instruct')
     args=parser.parse_args()
     if args.workers<1 or args.attempts<1:parser.error('workers/attempts 必须为正数')
-    data=args.data_dir; meta=teacher.read_records(data/'train_meta.json')
-    audits=data/args.audit_name
+    data=WorkflowPaths(args.data_dir); data.initialize()
+    meta=teacher.read_records(data.input('04_review', 'train_meta.json'))
+    audits=data.audit(args.audit_name)
     saved={}
     if audits.exists():
         for line in audits.read_text().splitlines():
             if line.strip():
                 row=json.loads(line); saved[row['event_id']]=row
     existing={}
-    args.existing=teacher.read_existing(data/'teacher_responses.jsonl',args.model) if (data/'teacher_responses.jsonl').exists() else {}
+    args.existing=teacher.read_existing(data.file('teacher_responses.jsonl'),args.model) if (data.file('teacher_responses.jsonl')).exists() else {}
     if args.seed_audit and args.seed_audit.exists():
         for line in args.seed_audit.read_text().splitlines():
             row=json.loads(line)
             if 'response' in row: args.existing.setdefault(row['event_id'],row['response'])
     if args.audit_only:
-        existing=teacher.read_existing(data/'teacher_responses.jsonl',args.model)
+        existing=teacher.read_existing(data.file('teacher_responses.jsonl'),args.model)
     def run(rec):
         if not args.audit_only:return one(rec,args)
         eid=rec['event_meta']['event_id']; response=existing[eid]
@@ -159,20 +161,20 @@ def main():
             row=future.result(); saved[row['event_id']]=row
             stream.write(json.dumps(row,ensure_ascii=False)+'\n'); stream.flush()
             print(len(saved),'/',len(meta),row['event_id'],row['status'],row['issues'],flush=True)
-    backup=data/'archive'/('before_review_'+str(time.time_ns()))
+    backup=data.archive/('before_review_'+str(time.time_ns()))
     for name in ['teacher_responses.jsonl','teacher_raw.txt','train_sft_review.jsonl','train_sft_clean.jsonl','audit_summary.json']:
-        previous=data/name
+        previous=data.file(name)
         if previous.exists():
             backup.mkdir(parents=True,exist_ok=True)
             with previous.open('rb') as src,(backup/name).open('xb') as dst:shutil.copyfileobj(src,dst)
     responses={eid:row['response'] for eid,row in saved.items() if 'response' in row}
     # audit-only 不改原始回答；新批次保留每个事件最终回答，所有尝试留在审阅日志。
     if not args.audit_only:
-        with (data/'teacher_responses.jsonl').open('w',encoding='utf-8') as stream:
+        with (data.file('teacher_responses.jsonl')).open('w',encoding='utf-8') as stream:
             for rec in meta:
                 eid=rec['event_meta']['event_id']
                 if eid in responses:stream.write(json.dumps({'event_id':eid,'model':args.model,'response':responses[eid]},ensure_ascii=False)+'\n')
-        teacher.write_raw(data/'teacher_raw.txt',meta,responses)
+        teacher.write_raw(data.file('teacher_raw.txt'),meta,responses)
     # clean 是审阅通过的子集；完整覆盖率记录在清单中，不能宣称全部报告通过。
     accepted=[]
     for rec in meta:
@@ -180,10 +182,10 @@ def main():
         if row['status']=='accept':
             accepted.append({'instruction':SYSTEM_PROMPTS['industrial'],'input':json.dumps(model_input(rec),ensure_ascii=False,separators=(',',':')),'output':normalize_conclusion(BLOCK_RE.findall(row['response'])[0],rec).strip()})
     for name in ['train_sft_review.jsonl','train_sft_clean.jsonl']:
-        with (data/name).open('w',encoding='utf-8') as stream:
+        with (data.file(name)).open('w',encoding='utf-8') as stream:
             for row in accepted:stream.write(json.dumps(row,ensure_ascii=False)+'\n')
-    summary={'total_train':len(meta),'status_counts':dict(Counter(x['status'] for x in saved.values())),'clean_count':len(accepted),'method':'结构、标签、逐字段数值、可重算规则检查 + 文本比较/规则说法提取后程序验算','review_model':args.model,'limitations':['同模型复核存在相关错误，不是独立专家评审','排除观测不能确认的 TWF/RNF，不将风险强行确认为故障','正常样本和多故障样本未纳入','clean 仅是通过当前审阅的子集，仍需独立留出集验证'],'meta_sha256':hashlib.sha256((data/'train_meta.json').read_bytes()).hexdigest()}
-    (data/'audit_summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+    summary={'total_train':len(meta),'status_counts':dict(Counter(x['status'] for x in saved.values())),'clean_count':len(accepted),'method':'结构、标签、逐字段数值、可重算规则检查 + 文本比较/规则说法提取后程序验算','review_model':args.model,'limitations':['同模型复核存在相关错误，不是独立专家评审','排除观测不能确认的 TWF/RNF，不将风险强行确认为故障','正常样本和多故障样本未纳入','clean 仅是通过当前审阅的子集，仍需独立留出集验证'],'meta_sha256':hashlib.sha256((data.input('04_review', 'train_meta.json')).read_bytes()).hexdigest()}
+    (data.file('audit_summary.json')).write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(summary,ensure_ascii=False),flush=True)
 
 if __name__=='__main__': main()

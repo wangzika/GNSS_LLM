@@ -1,0 +1,180 @@
+{
+  "layout_version": 1,
+  "migrated_on": "2026-11-25",
+  "stages": {
+    "01_prepare": "原始数据准备",
+    "02_split": "训练、验证、测试划分",
+    "03_teacher": "教师报告生成",
+    "04_review": "报告检查与审阅",
+    "05_finetune": "学生微调",
+    "06_evaluation": "留出集推断与评估"
+  },
+  "archive_files_verified": 3,
+  "files": [
+    {
+      "old": "REVIEW.md",
+      "new": "04_review/output/REVIEW.md",
+      "sha256": "71b7361154a77da1bd3c871f699bcc5296ad829aae45a00d9f720e7cc5423243"
+    },
+    {
+      "old": "agent_review_decisions.jsonl",
+      "new": "04_review/input/agent_review_decisions.jsonl",
+      "sha256": "12ed3c4f89bc9b0aed33a700f7ea5101428780374219b115a485d396b720f27f"
+    },
+    {
+      "old": "audit_summary.json",
+      "new": "04_review/output/audit_summary.json",
+      "sha256": "0a681adc66da5592c85037af67dddfe9e578acd6dc79b8c70dcad0bf3f503d8b"
+    },
+    {
+      "old": "final_review_decisions.jsonl",
+      "new": "04_review/output/final_review_decisions.jsonl",
+      "sha256": "e128d24d11ef4485d1efb8a340b09b9e741397f8d627e0e5ec0761c5eae1af3c"
+    },
+    {
+      "old": "local_verification.json",
+      "new": "04_review/output/local_verification.json",
+      "sha256": "1c730c0bbf3a3388af6e89d3c9528a074487327590a424ae3b61f6822a067d89"
+    },
+    {
+      "old": "manifest.json",
+      "new": "02_split/output/manifest.json",
+      "sha256": "5b66a8e22b385f538198f211b68f6b127049da4ff0b278e136eecaa8b674af95"
+    },
+    {
+      "old": "report_audit.jsonl",
+      "new": "04_review/output/report_audit.jsonl",
+      "sha256": "62851b0157a1ae1bd026778061fa34ba517114952631e26c88e694b8f48fae22"
+    },
+    {
+      "old": "report_audit_recomputed.jsonl",
+      "new": "04_review/output/report_audit_recomputed.jsonl",
+      "sha256": "d05c748d1da49e2b2a7aebdbbcadc3cc07202152a6bd8c23004df52b7de9f9d1"
+    },
+    {
+      "old": "sequence_length_check.json",
+      "new": "05_finetune/output/sequence_length_check.json",
+      "sha256": "cdd03345362061e30eb2ee60a2f7f505d19fda4b6ace71f0221a49a577bb5544"
+    },
+    {
+      "old": "source_provenance.jsonl",
+      "new": "02_split/output/source_provenance.jsonl",
+      "sha256": "07dcf5d4a7f60e6dcb62f9c56c1d0c6687eb7d7d43f89b7dd6f1aba2d854f5b9"
+    },
+    {
+      "old": "teacher_prompts_blind.txt",
+      "new": "02_split/output/teacher_prompts_blind.txt",
+      "sha256": "35bb970ce2488230437d638c6b279e00e91c70567af07b735d55055b9581f717"
+    },
+    {
+      "old": "teacher_raw.txt",
+      "new": "03_teacher/output/teacher_raw.txt",
+      "sha256": "6a2fda996b466fa794d61a4857cd90d37c9e14175adcaa53bc15cee29398d25a"
+    },
+    {
+      "old": "teacher_responses.jsonl",
+      "new": "03_teacher/output/teacher_responses.jsonl",
+      "sha256": "da36e8f4ba1c17c43324176e280ecec4a51399d5c24fc12fa92551839c582bc2"
+    },
+    {
+      "old": "test_inputs.jsonl",
+      "new": "02_split/output/test_inputs.jsonl",
+      "sha256": "09c7711bfea96eb79b31869c77cc8b0e11c3b990441e7911219532b66ecf07c5"
+    },
+    {
+      "old": "test_labels.jsonl",
+      "new": "02_split/output/test_labels.jsonl",
+      "sha256": "89e71adc3f75b564899c82ed5733552339f750240d1a216ad3bee12d2e7b4c8b"
+    },
+    {
+      "old": "test_meta.json",
+      "new": "02_split/output/test_meta.json",
+      "sha256": "5e2ea3073e9231c76b78c2376e5453aa6ff63c9c296ae0896f487e94d250c1c7"
+    },
+    {
+      "old": "train_meta.json",
+      "new": "02_split/output/train_meta.json",
+      "sha256": "6e7ff8d3cce882a37a94649a8dc94ad5d42d205bf72a691959909888b9725084"
+    },
+    {
+      "old": "train_sft_clean.jsonl",
+      "new": "04_review/output/train_sft_clean.jsonl",
+      "sha256": "015dc230eaf55f9abb592d7db4562103b17bb3ac55f30566c925758bc1f21f3a"
+    },
+    {
+      "old": "train_sft_review.jsonl",
+      "new": "04_review/output/train_sft_review.jsonl",
+      "sha256": "015dc230eaf55f9abb592d7db4562103b17bb3ac55f30566c925758bc1f21f3a"
+    },
+    {
+      "old": "validation_error_analysis.json",
+      "new": "06_evaluation/output/validation_error_analysis.json",
+      "sha256": "5a6e61319b8df51862bb8270c826c651ddc2d1fddc5ba89be55e4ccabde4c544"
+    },
+    {
+      "old": "validation_inputs.jsonl",
+      "new": "02_split/output/validation_inputs.jsonl",
+      "sha256": "fc6e62059888f7786bb284093092b5ecdbaf619809b30519d4f7fcaf7ec97a79"
+    },
+    {
+      "old": "validation_labels.jsonl",
+      "new": "02_split/output/validation_labels.jsonl",
+      "sha256": "aa48f1dac4fd89a058c39c8b117f65a8ed43f390109f45b52c438ad2cfa6305f"
+    },
+    {
+      "old": "validation_meta.json",
+      "new": "02_split/output/validation_meta.json",
+      "sha256": "6cd425cb5a8ee1cc7ab1bfde5d1590ae3f2b2c43acbe44a379290a63f892b08e"
+    },
+    {
+      "old": "validation_metrics.json",
+      "new": "06_evaluation/output/validation_metrics.json",
+      "sha256": "5de98583d0a3c7e2737d20ec37302af407b185d55e3a24bb33b2a072662074b4"
+    },
+    {
+      "old": "validation_metrics_aligned.json",
+      "new": "06_evaluation/output/validation_metrics_aligned.json",
+      "sha256": "8bbfe1bab7e5e07264989c6a3f88f3c3f031eadc7b0e6775166b0131f24e9767"
+    },
+    {
+      "old": "validation_metrics_aligned_three_classes.json",
+      "new": "06_evaluation/output/validation_metrics_aligned_three_classes.json",
+      "sha256": "115919f570be5dacaf2fecf6d410ecd0bc16a1aa5e6990f11794949a0bdb20cc"
+    },
+    {
+      "old": "validation_metrics_reparsed.json",
+      "new": "06_evaluation/output/validation_metrics_reparsed.json",
+      "sha256": "86cf441dfef4298c32b56a3f9ea4ee5e61774f6e729c907003cf3fe085ce04a6"
+    },
+    {
+      "old": "validation_metrics_reparsed_three_classes.json",
+      "new": "06_evaluation/output/validation_metrics_reparsed_three_classes.json",
+      "sha256": "bab3536dbadeea307e20217c915ba1f38ea548c139db93630c5867c9bb44a911"
+    },
+    {
+      "old": "validation_metrics_three_classes.json",
+      "new": "06_evaluation/output/validation_metrics_three_classes.json",
+      "sha256": "00a0dea46eba6cb0ca5867f679d647b3d2ad9fa82e61cd3c8312913f5a504328"
+    },
+    {
+      "old": "validation_predictions.jsonl",
+      "new": "06_evaluation/output/validation_predictions.jsonl",
+      "sha256": "d8fca64a34addf438258262ec1673496ede13e2177f4a6d220656aea92f4ade0"
+    },
+    {
+      "old": "validation_predictions_aligned.jsonl",
+      "new": "06_evaluation/output/validation_predictions_aligned.jsonl",
+      "sha256": "a6fd06243d7fcb9f2be64b8b3bea83ae3b69c452ba37942c64bdf43bc1311dbb"
+    },
+    {
+      "old": "validation_predictions_aligned.jsonl.meta.json",
+      "new": "06_evaluation/output/validation_predictions_aligned.jsonl.meta.json",
+      "sha256": "571eb47c2f2435e409cdf8ed6c2c16274bfe67b441ceb3234a4257cf6181f2b6"
+    },
+    {
+      "old": "validation_predictions_reparsed.jsonl",
+      "new": "06_evaluation/output/validation_predictions_reparsed.jsonl",
+      "sha256": "6821cc75568f86abb71d612da87f0f5d7a26fb2755409a6ec7cf90bb883c5e77"
+    }
+  ]
+}

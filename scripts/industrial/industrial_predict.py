@@ -9,11 +9,12 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from scripts.industrial.step1_prepare_inputs import LABELS
+from scripts.industrial.workflow_paths import WorkflowPaths
 from scripts.common.step2_validate_and_pack import SYSTEM_PROMPTS
 
 ROOT = Path(__file__).resolve().parents[2]
-DATA = ROOT / "data/industrial_v1"
-ADAPTER = ROOT / "outputs/industrial/qwen2.5-3b-industrial-v1-lora"
+DATA = ROOT / "data/industrial_v2"
+ADAPTER = ROOT / "outputs/industrial/qwen2.5-3b-industrial-v2-lora"
 
 
 def extract_label(report):
@@ -48,10 +49,11 @@ def main():
     parser.add_argument("--base-model", default="Qwen/Qwen2.5-3B-Instruct")
     parser.add_argument("--max-new-tokens", type=int, default=512)
     args = parser.parse_args()
+    layout = WorkflowPaths(args.data_dir)
     if not args.base_only and not (args.adapter / "adapter_config.json").exists():
         raise SystemExit(f"尚无正式训练适配器：{args.adapter}")
-    inputs = args.data_dir / f"{args.split}_inputs.jsonl"
-    output = args.out or args.data_dir / f"{args.split}_predictions.jsonl"
+    inputs = layout.input("06_evaluation", f"{args.split}_inputs.jsonl")
+    output = args.out or layout.file(f"{args.split}_predictions.jsonl")
     if output.exists():
         raise SystemExit(f"预测文件已存在，请另选 --out，避免覆盖：{output}")
     from llamafactory.chat import ChatModel

@@ -1,7 +1,7 @@
 # 工业故障学生模型的监督微调配置；教师模型负责生成报告，学生模型学习这些报告。
 # 从项目根目录执行：
 # llamafactory-cli train configs/industrial/qwen_industrial_v2_qlora_8gb.yaml
-# 数据须先经人工审阅，保存为 data/industrial_v2/train_sft_clean.jsonl。
+# 数据须先经人工审阅，保存为 data/industrial_v2/05_finetune/input/train_sft_clean.jsonl。
 # 文件名中的 8gb 表示面向小显存的试验配置，实际显存需求仍取决于环境和样本长度。
 
 # 基础模型与量化：加载约 30 亿参数的 Qwen2.5，并用 4 bit 保存基础模型权重。
@@ -20,7 +20,7 @@ lora_dropout: 0.05                        # LoRA 分支训练时使用 5% 的 dr
 
 # 数据：dataset 是注册名，实际文件由 data/dataset_info.json 中的对应条目决定。
 dataset_dir: data                         # 数据与数据集注册表所在目录，相对项目根目录。
-dataset: industrial_v2_sft                 # 映射到 industrial_v2/train_sft_clean.jsonl。
+dataset: industrial_v2_sft                 # 映射到 industrial_v2/05_finetune/input/train_sft_clean.jsonl。
 template: qwen                            # 使用框架提供的 Qwen 对话模板组织输入与输出。
 cutoff_len: 1024                           # 单条训练序列的 token 上限，包含模板、输入和目标报告。
 # 训练前应使用学生模型 tokenizer 检查长度；超过上限可能截掉报告或证据链。

@@ -8,6 +8,9 @@ node_modules/
 __pycache__/
 .pytest_cache/
 *.pyc
+# Office 打开文档时生成的临时锁文件。
+**/.~*
+**/~$*
 .env
 .env.*
 .aws/

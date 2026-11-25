@@ -9,6 +9,9 @@ import json
 import random
 from collections import Counter, defaultdict
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from scripts.industrial.workflow_paths import WorkflowPaths
 
 # 默认从项目 data 目录读取完整元数据，结果写到独立的 industrial_v1 目录。
 ROOT = Path(__file__).resolve().parents[2]
@@ -116,21 +119,24 @@ def main():
     if len(ids) != len(set(ids)):
         raise ValueError("输入含重复事件 ID")
     parts = split(records, args.seed)
-    args.out_dir.mkdir(parents=True, exist_ok=True)
+    layout = WorkflowPaths(args.out_dir)
+    layout.initialize()
+    if layout.structured:
+        write_json(layout.file("events_meta.json"), records)
     # 训练集内部元数据保留标签，供下一步质检教师报告。
-    write_json(args.out_dir / "train_meta.json", parts["train"])
+    write_json(layout.file("train_meta.json"), parts["train"])
     for part in ("validation", "test"):
         # 留出集的纯输入与参考标签分开存，推断时只读取 *_inputs.jsonl。
-        write_jsonl(args.out_dir / f"{part}_inputs.jsonl",
+        write_jsonl(layout.file(f"{part}_inputs.jsonl"),
                     [{"event_id": rec["event_meta"]["event_id"], "input": model_input(rec)}
                      for rec in parts[part]])
-        write_jsonl(args.out_dir / f"{part}_labels.jsonl",
+        write_jsonl(layout.file(f"{part}_labels.jsonl"),
                     [{"event_id": rec["event_meta"]["event_id"],
                       "ground_truth_intent": rec["ground_truth_intent"]}
                      for rec in parts[part]])
-    write_prompts(args.out_dir / "teacher_prompts_blind.txt", parts["train"], args.batch_size)
+    write_prompts(layout.file("teacher_prompts_blind.txt"), parts["train"], args.batch_size)
     # 清单记录划分参数、各集数量及数据限制，便于复核来源。
-    write_json(args.out_dir / "manifest.json", {
+    write_json(layout.file("manifest.json"), {
         "source_meta": str(args.meta), "seed": args.seed,
         "counts": {name: len(items) for name, items in parts.items()},
         "label_counts": {name: dict(Counter(rec["ground_truth_intent"] for rec in items))

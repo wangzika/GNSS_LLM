@@ -16,16 +16,18 @@
 | `configs/gnss/` | GNSS 训练配置 |
 | `data/industrial_source/` | 原始 AI4I CSV、抽取的 50 条内部元数据 |
 | `data/industrial_v1/` | 保留的旧先导实验；35 条报告复核后保留 20 条 |
-| `data/industrial_v2/` | 当前主实验：306 条事件、214 条教师报告和 134 条审阅通过训练数据 |
+| `data/industrial_v2/` | 当前主实验，按六阶段 `input/`、`output/` 组织，见[目录说明](data/industrial_v2/README.md) |
 | `data/gnss_pilot_v1/` | 尚未经过专家审核的 GNSS 合成先导样本 |
 | `outputs/` | 模型训练输出；`legacy_smoke/` 保留早期自检权重 |
 | `docs/reference/` | 原始方案文档 |
 | `LlamaFactory/` | 已安装的第三方训练框架源码，保留原位置以兼容现有环境 |
 
+今后新增实验数据沿用 `阶段/input/`、`阶段/output/` 规范，路径集中在 `scripts/industrial/workflow_paths.py`；跨阶段输入使用相对链接，避免重复副本。v1 历史目录保持兼容。
+
 ## 从这里开始
 
 - [全量扩充与审阅说明](docs/industrial_v2_review.md)
-- [新版逐事件审阅结果](data/industrial_v2/REVIEW.md)
+- [新版逐事件审阅结果](data/industrial_v2/04_review/output/REVIEW.md)
 - [工业故障流程与文件用途](docs/industrial_fault_workflow.md)
 - [教师服务器环境、启动与生成命令](docs/teacher_server_setup.md)
 - [GNSS 先导样本说明](data/gnss_pilot_v1/README.md)
@@ -49,7 +51,7 @@ conda activate gnss-intent
 python -m scripts.common.check_runtime
 ```
 
-本轮审阅已完成，当前训练文件为 `data/industrial_v2/train_sft_clean.jsonl`（134 条），对应配置 `configs/industrial/qwen_industrial_v2_qlora_8gb.yaml`。配置使用相对路径，可在本机或服务器项目根目录执行；服务器教师推断环境与学生微调环境分开维护。
+本轮审阅已完成，当前训练入口为 `data/industrial_v2/05_finetune/input/train_sft_clean.jsonl`（链接到第四步输出，134 条），对应配置 `configs/industrial/qwen_industrial_v2_qlora_8gb.yaml`。配置使用相对路径，可在本机或服务器项目根目录执行；服务器教师推断环境与学生微调环境分开维护。
 
 ## 代码、数据与演示文稿发布
 
