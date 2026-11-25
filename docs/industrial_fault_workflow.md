@@ -2,7 +2,7 @@
 
 当前只维护一套工业流程，数据位于 `data/industrial/`。流程为：**数据预处理 → 教师生成 → 报告审阅 → 学生微调 → 推断评估**。前两项“原始数据准备”和“集合划分”已经合并为数据预处理。
 
-当前实验：306 条单故障事件，训练／验证／测试为 214／31／61；214 条教师报告审阅后保留 134 条；学生已完成 4 轮训练。验证准确率 35.5%，全部预测多数类 HDF，尚未超过多数类基线。测试集尚未运行。
+当前实验：306 条单故障事件，训练／验证／测试为 214／31／61；214 条教师报告自动审阅后保留 119 条；已有学生使用历史 134 条数据完成 4 轮训练，新筛选结果尚未重训。验证准确率 35.5%，全部预测多数类 HDF，尚未超过多数类基线。测试集尚未运行。
 
 所有命令在项目根目录执行。本机 `/home/wzb/GNSS_LLM`，教师服务器 `/data/zbwang/GNSS_LLM`。
 
@@ -12,7 +12,7 @@
 | --- | --- |
 | `scripts/industrial/preprocess_data.py` | 数据预处理：读取原 CSV、筛选单故障、构造字段、划分训练／验证／测试，分离模型输入与标签 |
 | `scripts/industrial/generate_teacher_reports.py` | 调用教师 API 生成报告，逐条保存，支持断点续跑和请求失败重试 |
-| `scripts/industrial/review_teacher_reports.py` | 一次完成格式／数值／规则检查、文字断言验算、争议裁定和正式训练数据导出 |
+| `scripts/industrial/review_teacher_reports.py` | 一次完成格式／数值／规则检查、文字断言验算、自动隔离和正式训练数据导出 |
 | `configs/industrial/student_qlora_8gb.yaml` | 学生 QLoRA 训练配置，交给 LLaMA-Factory 执行 |
 | `scripts/industrial/evaluate_student.py` | 同一个入口完成学生推断及评分，合并保存全类别与三类指标 |
 | `scripts/industrial/common.py` | 共用路径、标签、任务指令、公开派生量和报告结构检查函数，无独立业务流程 |
@@ -85,11 +85,10 @@ python -m scripts.industrial.generate_teacher_reports --workers 4
 | 位置 | 文件 | 用途 |
 | --- | --- | --- |
 | `input/` | `train_meta.json`、`teacher_responses.jsonl` | 上游元数据与教师原文链接 |
-| `input/` | `review_overrides.jsonl` | 阅读争议报告后追加的逐事件裁定 |
 | `output/` | `report_audit.jsonl` | 初步检查、提取的比较原句和验算结果；用原文 SHA-256 关联报告，不复制全文 |
-| `output/` | `final_review_decisions.jsonl` | 综合保守文本检查与争议裁定后的最终接受／拒绝／不确定及原因 |
+| `output/` | `final_review_decisions.jsonl` | 程序自动判定的接受／拒绝／不确定／待审及原因，附审阅策略版本 |
 | `output/` | `review_summary.json` | 最终数量、方法和限制 |
-| `output/` | `train_sft.jsonl` | 唯一正式训练文件，134 条 Alpaca 样本，字段为 instruction／input／output |
+| `output/` | `train_sft.jsonl` | 唯一正式训练文件，119 条 Alpaca 样本，字段为 instruction／input／output |
 
 ```bash
 python -m scripts.industrial.review_teacher_reports --workers 4
@@ -97,16 +96,27 @@ python -m scripts.industrial.review_teacher_reports --workers 4
 python -m scripts.industrial.review_teacher_reports --offline
 ```
 
-脚本先核对 ID、结构、标签、测量字段和公开规则，再让同一教师服务的另一次请求提取原文断言，由 Python 验算大小比较与规则说法。最后应用保守内容过滤和争议裁定，一次导出最终数据。提取器可能误读或漏检，不是外部独立专家评审。
+脚本先核对 ID、结构、标签、测量字段和公开规则，再让同一教师服务的另一次请求提取原文断言，由 Python 验算大小比较与规则说法。最终由程序从报告原文与提取内容重新验算，不信任缓存的通过／拒绝结论。已移除外部裁定覆盖文件，代码对所有事件使用同一套通用规则，没有按事件 ID 写的特殊处理。提取器可能误读或漏检，自动通过不等于外部专家认证。
 
-最终接受 134、拒绝 50、不确定 30。50 条拒绝包含格式、数值、比较、证据问题与保守筛选，并非每条类别结论都错误。30 条 TWF 含随机机制，当前观测不能确认实际故障，保留原报告但不进入确定标签训练。接受的三类为 PWF 36、HDF 56、OSF 42。
+当前自动重审：接受 119、拒绝 47、不确定 30、待审 18。接受的三类为 PWF 38、HDF 40、OSF 41。拒绝包含结构、数值与可明确验算的矛盾，并非每条类别结论都错误。30 条 TWF 无法从现有观测确认随机故障。18 条待审是原句比较无法可靠解析、提取结构或规则说法无法验证等情况；程序自动排除它们后完成批处理，不需要 Codex 追加裁定。
+
+最终状态及处理方式：
+
+| 状态 | 程序行为 |
+| --- | --- |
+| `accept` | 进入 `train_sft.jsonl` |
+| `reject` | 记录明确可检验的问题，自动排除 |
+| `uncertain` | 随机机制不可观测，自动排除 |
+| `needs_review` | 无法可靠解析或提取失败，自动隔离，批处理继续 |
+
+文字提取失败的事件会在下次联网运行时自动重试。其他待审项保留在逐事件最终判定中，可直接跳过；后续改进报告格式或提取方法后，在新实验中重新处理。程序能自动完成筛选，仍不能保证覆盖自由文本中的全部语义错误。
 
 ## 4. 学生微调：04_finetune
 
 | 位置 | 文件 | 用途 |
 | --- | --- | --- |
 | `input/` | `train_sft.jsonl` | 第三步的唯一训练文件链接 |
-| `output/` | `sequence_length_check.json` | token 长度核查，实际训练框架最长 632，cutoff 1024，无截断 |
+| `output/` | `sequence_length_check.json` | 历史 134 条的长度核查，实际框架最长 632，无截断；当前训练文件已变化，重训前需重新核查 |
 | `output/` | `train_results.json` | 已完成训练的平均 loss、耗时等统计 |
 | `output/` | `trainer_log.jsonl` | 训练步数与 loss 记录 |
 | `output/` | `adapter_config.json` | 已训练 LoRA 的小型配置记录 |
@@ -119,7 +129,7 @@ python -m scripts.common.check_runtime
 llamafactory-cli train configs/industrial/student_qlora_8gb.yaml
 ```
 
-当前 4 轮训练已完成，68 次更新，耗时 258.08 秒，无需因清理重新训练。基础模型 Qwen2.5-3B、4 bit QLoRA、rank 8、学习率 1.5e-4、batch 1、梯度累积 8。当前实际适配器在 `outputs/industrial/qwen2.5-3b-industrial-v2-lora/`；这是已完成训练的路径标识，配置与推断继续指向同一份权重。权重不提交 Git。
+历史 134 条数据的 4 轮训练已完成，68 次更新，耗时 258.08 秒，这些统计对应历史首轮。基础模型 Qwen2.5-3B、4 bit QLoRA、rank 8、学习率 1.5e-4、batch 1、梯度累积 8。当前实际适配器在 `outputs/industrial/qwen2.5-3b-industrial-v2-lora/`；这是已完成训练的路径标识，配置与推断继续指向同一份权重。权重不提交 Git。`train_results.json` 已记录历史训练数据的样本量与 SHA-256；当前 119 条自动筛选文件与它不同，本次没有重训。
 
 ## 5. 学生推断与评估：05_evaluation
 

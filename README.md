@@ -2,7 +2,7 @@
 
 当前工业主流程：**数据预处理 → 教师生成 → 报告审阅 → 学生微调 → 推断评估**。只维护一套代码与数据；历史版本在 Git 中查看。
 
-AI4I 中 306 条单故障事件划分为训练 214／验证 31／测试 61。教师报告审阅后保留 134 条训练样本，学生已完成 4 轮微调。当前对齐输入后的验证准确率 35.5%，全部预测 HDF，未超过多数类基线；测试集尚未运行。
+AI4I 中 306 条单故障事件划分为训练 214／验证 31／测试 61。当前自动审阅保留 119 条训练样本（47 拒绝、30 不确定、18 待审自动隔离）。已有学生使用历史 134 条数据完成 4 轮微调，尚未用新筛选数据重训。当前对齐输入后的验证准确率 35.5%，全部预测 HDF，未超过多数类基线；测试集尚未运行。
 
 ## 从这里开始
 
@@ -15,7 +15,7 @@ AI4I 中 306 条单故障事件划分为训练 214／验证 31／测试 61。教
 | --- | --- |
 | `scripts/industrial/preprocess_data.py` | CSV 筛选、字段构造与集合划分，合为一次数据预处理 |
 | `scripts/industrial/generate_teacher_reports.py` | 教师 API 批量生成与续跑 |
-| `scripts/industrial/review_teacher_reports.py` | 统一检查、审阅与 SFT 导出 |
+| `scripts/industrial/review_teacher_reports.py` | 自动检查、无法验证项隔离与 SFT 导出 |
 | `scripts/industrial/evaluate_student.py` | 学生推断、全类别／三类评分与合并指标 |
 | `scripts/industrial/common.py` | 共用路径、字段与检查函数 |
 | `scripts/industrial/check_workflow.py` | 唯一一致性检查入口，不保存测试产物 |
@@ -24,7 +24,7 @@ AI4I 中 306 条单故障事件划分为训练 214／验证 31／测试 61。教
 | `outputs/industrial/` | 实际 LoRA 权重与完整运行日志，不提交 Git |
 | `scripts/server/`、`scripts/common/` | 教师服务启动、GPU 环境检查 |
 | `scripts/gnss/`、`configs/gnss/` | 独立 GNSS 研究代码与配置 |
-| `deliverables/` | 已交付的七页首轮实验汇报，保留当时的流程图 |
+| `deliverables/` | 当前五页流程说明，以及保留的七页首轮实验汇报 |
 | `LlamaFactory/` | 训练框架源码，现有环境通过 editable 安装使用 |
 
 ## 常用命令
@@ -42,6 +42,8 @@ python -m scripts.industrial.evaluate_student --mode score
 conda activate gnss-intent
 llamafactory-cli train configs/industrial/student_qlora_8gb.yaml
 ```
+
+审阅不依赖 Codex 或外部裁定覆盖文件，运行 `review_teacher_reports` 即可自动完成筛选。
 
 当前正式训练文件是 `data/industrial/03_review/output/train_sft.jsonl`，训练注册名 `industrial_sft` 指向第四步 input 链接。服务器根目录为 `/data/zbwang/GNSS_LLM`，模型和教师环境均位于 `/data/zbwang`。
 

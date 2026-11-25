@@ -31,7 +31,6 @@ OUTPUTS = {
                     "trainer_log.jsonl", "adapter_config.json"],
 }
 OWNERS = {name: (stage, "output") for stage, names in OUTPUTS.items() for name in names}
-OWNERS["review_overrides.jsonl"] = ("03_review", "input")
 INPUTS = {
     "02_teacher": ["train_meta.json"],
     "03_review": ["train_meta.json", "teacher_responses.jsonl"],

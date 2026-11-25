@@ -8,5 +8,7 @@
   "actual_training_framework": "LLaMA-Factory",
   "actual_training_template_max_tokens": 632,
   "actual_training_processed_rows": 134,
-  "actual_training_truncated_samples": 0
+  "actual_training_truncated_samples": 0,
+  "checked_training_data_sha256": "015dc230eaf55f9abb592d7db4562103b17bb3ac55f30566c925758bc1f21f3a",
+  "scope": "历史134条训练样本；当前自动筛选文件已变化，重训前重新检查"
 }

@@ -1,8 +1,15 @@
 {
-    "epoch": 4.0,
-    "total_flos": 5063312133586944.0,
-    "train_loss": 0.5777931388686685,
-    "train_runtime": 258.0767,
-    "train_samples_per_second": 2.077,
-    "train_steps_per_second": 0.263
+  "epoch": 4.0,
+  "total_flos": 5063312133586944.0,
+  "train_loss": 0.5777931388686685,
+  "train_runtime": 258.0767,
+  "train_samples_per_second": 2.077,
+  "train_steps_per_second": 0.263,
+  "training_data": {
+    "samples": 134,
+    "sha256": "015dc230eaf55f9abb592d7db4562103b17bb3ac55f30566c925758bc1f21f3a",
+    "review_policy": "historical_assisted_review",
+    "source_git_commit": "1d924c6",
+    "note": "既有训练统计和权重对应原134条数据；本次自动审阅未重新训练"
+  }
 }

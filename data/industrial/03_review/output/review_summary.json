@@ -1,14 +1,22 @@
 {
   "total_train": 214,
-  "clean_count": 134,
+  "clean_count": 119,
   "status_counts": {
-    "accept": 134,
+    "accept": 119,
     "uncertain": 30,
-    "reject": 50
+    "reject": 47,
+    "needs_review": 18
   },
-  "review_method": "程序逐字段/规则核对、模型抽取文字断言后验算、保守内容过滤，代理复核争议",
+  "accepted_label_counts": {
+    "驱动电力异常故障 (Power Failure)": 38,
+    "机械负载过载故障 (Overstrain Failure)": 41,
+    "散热系统失效故障 (Heat Dissipation Failure)": 40
+  },
+  "policy_version": "automatic-v1",
+  "review_method": "通用程序检查、模型提取原句后验算，无法可靠验证的内容自动隔离；无外部裁定覆盖",
   "limitations": [
-    "文本提取可能漏检；不是外部专家认证",
+    "文本提取和规则仍可能漏检；自动通过不等于专家认证",
+    "needs_review/uncertain/reject 均不进入训练，无需人工操作即可完成批处理",
     "TWF样本不纳入确定故障训练",
     "留出集未交给教师生成训练报告",
     "不包含正常类与多故障类，不能宣称通用故障检测能力"

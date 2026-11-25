@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""统一报告审阅：程序核对、模型提取断言、保守过滤、争议裁定及 SFT 导出。
+"""自动报告审阅：程序核对、模型提取断言、保守过滤及 SFT 导出。
 
 只读取教师原始回答，不重新生成诊断报告。默认使用已保存的验算结果；
 缺少记录时请求教师提取原句，再由 Python 计算比较真假，可断点续跑。
@@ -7,6 +7,8 @@
 import argparse
 import hashlib
 import json
+import math
+import operator
 import re
 import sys
 import urllib.request
@@ -63,110 +65,185 @@ def numeric_issues(rec, block):
     return issues
 
 
+POLICY_VERSION = 'automatic-v1'
+OPERATORS = {'>': operator.gt, '<': operator.lt, '>=': operator.ge,
+             '<=': operator.le, '=': operator.eq}
+
+
+def verify_extraction(rec, response, extraction):
+    """原句必须存在、结构可核查；不能验证的提取自动隔离，不默认为通过。"""
+    issues, unresolved = [], []
+    if extraction.get('extraction_error'):
+        return [], ['文字提取失败，暂不纳入训练；下次联网审阅自动重试']
+    comparisons = extraction.get('comparisons', extraction.get('extracted_comparisons', []))
+    claims = extraction.get('rule_claims', extraction.get('extracted_rule_claims', []))
+    if not isinstance(comparisons, list) or not isinstance(claims, list):
+        return [], ['文字提取结构错误']
+    if not comparisons or not claims:
+        unresolved.append('未提取到完整的比较句或规则说法')
+    for item in comparisons:
+        if not isinstance(item, dict):
+            unresolved.append('比较提取项不是对象'); continue
+        quote, op = item.get('quote'), item.get('op')
+        left, right = item.get('left'), item.get('right')
+        if (not isinstance(quote, str) or not quote or quote not in response
+                or op not in OPERATORS
+                or any(isinstance(v, bool) or not isinstance(v, (int, float))
+                       or not math.isfinite(v) for v in (left, right))):
+            unresolved.append('比较提取缺少有效原句、数字或运算符'); continue
+        nums = [float(x) for x in re.findall(r'(?<![A-Za-z_])(?<![\d.])-?\d+(?:\.\d+)?', quote)]
+        if left not in nums or right not in nums:
+            unresolved.append('提取数字不在原句中：' + quote); continue
+        # 比较方向从原句解析，不沿用提取器猜测的运算符。
+        phrases = {'不超过': '<=', '未超过': '<=', '不大于': '<=', '不高于': '<=',
+                   '不低于': '>=', '未低于': '>=', '不小于': '>=',
+                   '大于等于': '>=', '小于等于': '<=',
+                   '大于': '>', '高于': '>', '超过': '>', '小于': '<', '低于': '<', '等于': '='}
+        pattern = '|'.join(map(re.escape, sorted(phrases, key=len, reverse=True)))
+        directions = {phrases[m.group()] for m in re.finditer(pattern, quote)}
+        if not directions:
+            directions = set(re.findall(r'>=|<=|>|<|=', quote))
+        ordered = any(a < b for a, value in enumerate(nums) if value == left
+                      for b, other in enumerate(nums) if other == right)
+        if len(directions) != 1 or not ordered:
+            unresolved.append('原句比较关系或数字顺序无法可靠解析：' + quote); continue
+        actual_op = next(iter(directions))
+        denied = bool(re.search(r'(?:条件|要求)\s*(?:未满足|不满足|未成立|不成立)[。\s]*$', quote))
+        if OPERATORS[actual_op](left, right) == denied:
+            issues.append('原句比较不成立：' + quote)
+    checks = derived_measurements(rec)['rule_checks']
+    for item in claims:
+        if not isinstance(item, dict):
+            unresolved.append('规则提取项不是对象'); continue
+        quote, rule, state = item.get('quote'), item.get('rule'), item.get('triggered')
+        if not isinstance(quote, str) or not quote or quote not in response or rule not in ('HDF','PWF','OSF') or not isinstance(state, bool):
+            unresolved.append('规则提取没有有效引文或触发状态'); continue
+        if state != checks[rule + '_triggered']:
+            unresolved.append('规则说法提取与程序重算不一致，无法确定是报告还是提取器错误：' + quote)
+    return issues, unresolved
+
+
+def automatic_decision(rec, response, extraction):
+    """所有事件共用同一套规则；没有事件 ID 白名单或外部覆盖裁定。"""
+    if any(name in rec['ground_truth_intent'] for name in ('Tool Wear Failure', 'Random Failure')):
+        return {'status': 'uncertain', 'issues': ['随机故障无法从当前观测确认，不纳入确定标签训练']}
+    blocks = BLOCK_RE.findall(response)
+    if len(blocks) != 1:
+        return {'status': 'reject', 'issues': ['代码块数量异常']}
+    reason = validate(blocks[0], rec)
+    issues = ([reason] if reason else []) + numeric_issues(rec, blocks[0]) + content_flags(rec, response)
+    if issues:
+        return {'status': 'reject', 'issues': list(dict.fromkeys(issues))}
+    errors, unresolved = verify_extraction(rec, response, extraction)
+    if errors:
+        return {'status': 'reject', 'issues': errors}
+    if unresolved:
+        return {'status': 'needs_review', 'issues': list(dict.fromkeys(unresolved))}
+    return {'status': 'accept', 'issues': []}
+
+
 def inspect(rec, response, args):
-    blocks=BLOCK_RE.findall(response)
-    issues=[]
-    if len(blocks)!=1:return {'status':'reject','issues':['代码块数量异常']}
-    block=blocks[0]
-    reason=validate(block,rec)
-    if reason:issues.append(reason)
-    issues.extend(numeric_issues(rec,block))
-    if issues:return {'status':'reject','issues':issues}
-    # 不为随机故障采纳确定标签，即使文字提到风险且与原标注一致。
-    if any(x in rec['ground_truth_intent'] for x in ('Tool Wear Failure','Random Failure')):
-        return {'status':'uncertain','issues':['仅有风险窗口，不能由观测确认随机故障；不纳入确定标签训练']}
-    result=judge(rec,response,args)
-    operators={'>':lambda a,b:a>b, '<':lambda a,b:a<b, '>=':lambda a,b:a>=b, '<=':lambda a,b:a<=b, '=':lambda a,b:a==b}
-    comparisons=[]; flags=[]
-    for item in result['comparisons']:
-        quote=item.get('quote','')
-        # 模型必须提供确实存在于原文的引文与其中出现的两个数字，不能凭空指控。
-        if not quote or quote not in response: continue
-        left=item.get('left'); right=item.get('right'); op=item.get('op')
-        if not isinstance(left,(int,float)) or not isinstance(right,(int,float)) or op not in operators:continue
-        nums=[float(x) for x in re.findall(r'(?<![A-Za-z_])(?<![\d.])-?\d+(?:\.\d+)?',quote)]
-        if left not in nums or right not in nums:continue
-        ok=operators[op](left,right)
-        comparisons.append({**item,'recomputed_true':ok})
-        if not ok:flags.append('比较矛盾:'+quote)
-    checks=derived_measurements(rec)['rule_checks']
-    claims=[]
-    for item in result['rule_claims']:
-        quote=item.get('quote',''); rule=item.get('rule'); state=item.get('triggered')
-        if quote and quote in response and rule in ('HDF','PWF','OSF') and isinstance(state,bool):
-            ok=state==checks[rule+'_triggered']
-            claims.append({**item,'recomputed_consistent':ok})
-            if not ok:flags.append('规则触发说法矛盾:'+quote)
-    # 提取器仍可能误读语气；保留结构化引文供人工/代理复核，不以模型口头评价作结论。
-    return {'status':'accept' if not flags else 'reject','issues':flags,
-            'extracted_comparisons':comparisons,'extracted_rule_claims':claims,
-            'review_limit':'提取模型可能漏掉未列出的矛盾，需查看审阅摘要'}
+    preliminary = automatic_decision(rec, response, {})
+    if preliminary['status'] in ('reject', 'uncertain'):
+        return preliminary
+    try:
+        extraction = judge(rec, response, args)
+    except Exception as exc:
+        return {'status': 'needs_review', 'issues': ['文字提取失败，暂不纳入训练：' + str(exc)],
+                'extraction_error': True}
+    return {**automatic_decision(rec, response, extraction),
+            'extracted_comparisons': extraction['comparisons'],
+            'extracted_rule_claims': extraction['rule_claims']}
 
 
 def content_flags(rec,text):
     flags=[]
     # 直接从原文匹配局部数值比较，补充模型提取可能漏掉的“未低于”等否定比较。
     comparison=re.compile(r'(-?\d+(?:\.\d+)?)\s*(?:min·Nm|rpm|分钟|K|W|min)?[，,\s]*(接近但未低于|未低于|不低于|未超过|不超过|远大于|远小于|远高于|远低于|大于|小于|高于|低于|超过)[^。；\n\d]{0,25}(-?\d+(?:\.\d+)?)')
+    def negated_tail(tail):
+        return re.match(r'\s*(?:rpm|分钟|K|W|min)?\s*的?\s*(?:条件|要求)\s*(?:未满足|不满足|未成立|不成立)', tail)
     for match in comparison.finditer(text):
         a=float(match.group(1));b=float(match.group(3));op=match.group(2)
         if op in ('接近但未低于','未低于','不低于'):ok=a>=b
         elif op in ('未超过','不超过'):ok=a<=b
         elif op in ('大于','高于','超过','远大于','远高于'):ok=a>b
         else:ok=a<b
-        if not ok:flags.append('原文直接数值比较不成立:'+match.group())
+        denied = bool(negated_tail(text[match.end():]))
+        if ok == denied:flags.append('原文直接数值比较不成立:'+match.group())
     # 现有测量不能排除独立随机故障；对这类无依据的排除句采取保守剔除。
     for sentence in re.split('[。；\n]',text):
         if any(x in sentence for x in ['RNF','Random Failure','随机系统故障','随机性故障']):
             cleaned=re.sub('不能排除|无法排除|不应排除|不排除','',sentence)
             if '排除' in cleaned:flags.append('不能从当前观测排除随机故障:'+sentence)
     wear=rec['physical_features']['tool_wear_min']
-    if not 200<=wear<=240:
-        for sentence in re.split('[。；\n]',text):
-            if any(x in sentence for x in ['磨损','tool_wear']):
-                if re.search('(?<!不)处于风险窗口内|处于200[至到～~—-]+240分钟的风险窗口内',sentence.replace(' ','')):
-                    flags.append('磨损风险窗口表述与实际磨损时间不一致:'+sentence)
+    # 比较链共享同一左值，例如“功率3301.8，小于9000但小于3500的条件未满足”。
+    chain = re.compile(r'(?:但|且|并且|也)\s*(小于|低于|大于|高于|超过)\s*(-?\d+(?:\.\d+)?)')
+    for match in comparison.finditer(text):
+        a, b = float(match.group(1)), float(match.group(3))
+        following = text[match.end():].split('。', 1)[0].split('；', 1)[0].split('\n', 1)[0]
+        following = re.sub(r'^\s*(?:rpm|分钟|K|W|min)\s*', '', following)
+        more = chain.match(following)
+        if more:
+            rhs = float(more.group(2)); less = more.group(1) in ('小于','低于')
+            actual = a < rhs if less else a > rhs
+            denied = bool(negated_tail(following[more.end():]))
+            if actual == denied:
+                flags.append('连续数值比较不成立：' + match.group() + following[:more.end()+12])
+    checks = derived_measurements(rec)['rule_checks']
+    for match in re.finditer(r'\b(HDF_triggered|PWF_triggered|OSF_triggered|TWF_risk_window_only)\s*(?:为|是|[:=])\s*(true|false)\b', text, re.I):
+        if (match.group(2).lower() == 'true') != {k.lower(): v for k, v in checks.items()}[match.group(1).lower()]:
+            flags.append('报告规则布尔值与程序重算不一致：' + match.group())
+    for sentence in re.split('[。；\n]', text):
+        if not any(term in sentence for term in ('磨损','TWF','tool_wear')):
+            continue
+        # “不在/未处于”与肯定的“在/处于”分别匹配，避免把否定句当肯定句。
+        within = re.search(r'(?:处于|处在|位于|在)\s*(?:200\s*(?:至|到|～|~|-|—)\s*240\s*(?:分钟|min)?\s*的?\s*)?风险窗口内', sentence)
+        if within:
+            prefix = sentence[max(0, within.start()-3):within.start()]
+            negated = prefix.endswith(('不','未','没有','并非','非'))
+            expected = 200 <= wear <= 240
+            if (not negated) != expected:
+                flags.append('风险窗口文字与实际磨损时间不一致：' + sentence)
+        if checks['TWF_risk_window_only']:
+            # 风险窗口内只能说无法确认，不能据此排除随机 TWF；不强行猜测其实际发生。
+            cleaned = re.sub(r'不能排除|无法排除|不应排除|不排除', '', sentence)
+            if re.search(r'排除\s*(?:了)?\s*(?:TWF|工具(?:严重)?磨损故障|Tool Wear Failure)', cleaned):
+                flags.append('风险窗口内缺乏排除 TWF 的确定证据：' + sentence)
     return flags
 
 
 def finalize(data, meta, audits, responses):
-    """在同一次审阅中应用全部最终规则，仅输出一份正式训练文件。"""
+    """从原文与缓存提取内容重新验算，不信任缓存的 accept/reject 结论。"""
     if set(audits) != {r['event_meta']['event_id'] for r in meta}:
         raise ValueError('审阅日志尚未精确覆盖全部训练事件')
-    path = data.file('review_overrides.jsonl')
-    overrides = {r['event_id']: r for r in read_jsonl(path)} if path.exists() else {}
-    if set(overrides) - set(audits):
-        raise ValueError('追加裁定含当前训练事件之外的 ID')
-    rows, decisions = [], []
+    rows, decisions, checked_audits = [], [], []
     for rec in meta:
         eid = rec['event_meta']['event_id']
         audit, response = audits[eid], responses[eid]
         expected = hashlib.sha256(response.encode()).hexdigest()
         if audit.get('response_sha256') != expected:
             raise ValueError(f'报告与审阅记录不匹配：{eid}')
-        state, issues = audit['status'], list(audit.get('issues', []))
-        if state == 'accept':
-            flags = content_flags(rec, response)
-            if flags:
-                state = 'reject'; issues.extend(flags)
-        if any(name in rec['ground_truth_intent'] for name in ['Tool Wear Failure', 'Random Failure']):
-            state = 'uncertain'
-            issues = ['随机故障无法从当前观测确认，不纳入确定标签训练'] + issues
-        if eid in overrides:
-            state, issues = overrides[eid]['status'], overrides[eid]['issues']
-        if state not in ('accept', 'reject', 'uncertain', 'error'):
-            raise ValueError(f'非法裁定状态：{state}')
+        result = automatic_decision(rec, response, audit)
+        state, issues = result['status'], result['issues']
+        checked_audits.append({**audit, **result, 'policy_version': POLICY_VERSION})
         decisions.append({'event_id': eid, 'status': state, 'issues': issues,
-                          'response_sha256': expected})
+                          'response_sha256': expected, 'policy_version': POLICY_VERSION})
         if state == 'accept':
             rows.append({'instruction': STUDENT_INSTRUCTION,
                          'input': json.dumps(model_input(rec), ensure_ascii=False, separators=(',', ':')),
                          'output': normalize_conclusion(BLOCK_RE.findall(response)[0], rec).strip()})
     stats = {'total_train': len(meta), 'clean_count': len(rows),
              'status_counts': dict(Counter(r['status'] for r in decisions)),
-             'review_method': '程序逐字段/规则核对、模型抽取文字断言后验算、保守内容过滤，代理复核争议',
-             'limitations': ['文本提取可能漏检；不是外部专家认证', 'TWF样本不纳入确定故障训练',
+             'accepted_label_counts': dict(Counter(
+                 rec['ground_truth_intent'] for rec, decision in zip(meta, decisions)
+                 if decision['status'] == 'accept')),
+             'policy_version': POLICY_VERSION,
+             'review_method': '通用程序检查、模型提取原句后验算，无法可靠验证的内容自动隔离；无外部裁定覆盖',
+             'limitations': ['文本提取和规则仍可能漏检；自动通过不等于专家认证',
+                             'needs_review/uncertain/reject 均不进入训练，无需人工操作即可完成批处理', 'TWF样本不纳入确定故障训练',
                              '留出集未交给教师生成训练报告', '不包含正常类与多故障类，不能宣称通用故障检测能力']}
     write_jsonl(data.file('train_sft.jsonl'), rows)
+    write_jsonl(data.file('report_audit.jsonl'), checked_audits)
     write_jsonl(data.file('final_review_decisions.jsonl'), decisions)
     write_json(data.file('review_summary.json'), stats)
     return stats
@@ -201,7 +278,8 @@ def main():
     for eid, row in saved.items():
         if row.get('response_sha256') != hashlib.sha256(responses[eid].encode()).hexdigest():
             raise ValueError(f'已保存审阅与报告不匹配：{eid}，请使用新的实验目录')
-    pending = [r for r in meta if r['event_meta']['event_id'] not in saved]
+    pending = [r for r in meta if r['event_meta']['event_id'] not in saved
+               or (not args.offline and saved[r['event_meta']['event_id']].get('extraction_error'))]
     if args.offline and pending:
         raise ValueError(f'离线审阅缺少 {len(pending)} 条记录')
     def review(rec):
@@ -209,11 +287,13 @@ def main():
         audit = inspect(rec, response, args)
         return {'event_id': eid, 'model': args.model,
                 'response_sha256': hashlib.sha256(response.encode()).hexdigest(), **audit}
-    with audit_path.open('a', encoding='utf-8') as stream, ThreadPoolExecutor(max_workers=args.workers) as pool:
+    with ThreadPoolExecutor(max_workers=args.workers) as pool:
         futures = [pool.submit(review, rec) for rec in pending]
         for future in as_completed(futures):
             row = future.result(); saved[row['event_id']] = row
-            stream.write(json.dumps(row, ensure_ascii=False) + '\n'); stream.flush()
+            temporary = audit_path.with_suffix('.jsonl.tmp')
+            write_jsonl(temporary, [saved[eid] for eid in sorted(saved)])
+            temporary.replace(audit_path)
             print(row['event_id'], row['status'], flush=True)
     print(json.dumps(finalize(data, meta, saved, responses), ensure_ascii=False))
 

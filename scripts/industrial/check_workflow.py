@@ -79,9 +79,6 @@ def check(root):
             reproduced = json.loads(generated.file('manifest.json').read_text())
             if original[key] != reproduced[key]:
                 raise ValueError(f'预处理清单重现不一致：{key}')
-        override = data.file('review_overrides.jsonl')
-        if override.exists():
-            generated.file('review_overrides.jsonl').write_bytes(override.read_bytes())
         finalize(generated, meta, audits, raw)
         for name in ('train_sft.jsonl', 'final_review_decisions.jsonl', 'review_summary.json'):
             if generated.file(name).read_bytes() != data.file(name).read_bytes():
@@ -99,8 +96,16 @@ def check(root):
         if (ROOT / 'data' / registry['industrial_sft']['file_name']).resolve() != data.file('train_sft.jsonl').resolve():
             raise ValueError('训练注册路径不一致')
     summary = json.loads(data.file('review_summary.json').read_text())
+    decisions = read_jsonl(data.file('final_review_decisions.jsonl'))
+    if sum(row['status'] == 'accept' for row in decisions) != len(clean):
+        raise ValueError('正式训练数据混入了未通过的报告')
     print('一致性检查通过：链接有效，无跨集合重复或输入标签泄漏；预处理、审阅和指标可重现。')
     print(f"事件 {dict((key, len(rows)) for key, rows in inputs.items())}；SFT {len(clean)} 条；裁定 {summary['status_counts']}")
+    training = data.file('train_results.json')
+    if training.exists():
+        source = json.loads(training.read_text()).get('training_data')
+        if source and source['sha256'] != hashlib.sha256(data.file('train_sft.jsonl').read_bytes()).hexdigest():
+            print(f"既有模型使用历史 {source['samples']} 条训练数据；当前自动筛选结果尚未用于重训。")
 
 
 if __name__ == '__main__':
