@@ -17,6 +17,5 @@ __pycache__/
 .agents/
 .codex/
 data/**/archive/
-data/**/report_audit.jsonl
 # 原始方案文档在本地与服务器保留，不属于本次代码和数据集发布。
 docs/reference/*.docx

@@ -1,12 +1,4 @@
 {
-  "industrial_v1_sft": {
-    "file_name": "industrial_v1/train_sft_clean.jsonl",
-    "columns": {
-      "prompt": "instruction",
-      "query": "input",
-      "response": "output"
-    }
-  },
   "gnss_intent_sft": {
     "file_name": "gnss/pilot_sft_clean.jsonl",
     "columns": {
@@ -15,8 +7,8 @@
       "response": "output"
     }
   },
-  "industrial_v2_sft": {
-    "file_name": "industrial_v2/05_finetune/input/train_sft_clean.jsonl",
+  "industrial_sft": {
+    "file_name": "industrial/04_finetune/input/train_sft.jsonl",
     "columns": {
       "prompt": "instruction",
       "query": "input",

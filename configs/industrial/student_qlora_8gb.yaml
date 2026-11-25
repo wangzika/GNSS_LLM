@@ -1,0 +1,48 @@
+# 工业故障学生模型的监督微调配置；教师模型负责生成报告，学生模型学习这些报告。
+# 从项目根目录执行：
+# llamafactory-cli train configs/industrial/student_qlora_8gb.yaml
+# 数据须先经人工审阅，保存为 data/industrial/04_finetune/input/train_sft.jsonl。
+# 文件名中的 8gb 表示面向小显存的试验配置，实际显存需求仍取决于环境和样本长度。
+
+# 基础模型与量化：加载约 30 亿参数的 Qwen2.5，并用 4 bit 保存基础模型权重。
+model_name_or_path: Qwen/Qwen2.5-3B-Instruct  # 基础模型仓库名，也可填写本地模型目录。
+quantization_bit: 4                        # 4 bit 量化可减少基础模型权重占用的显存。
+quantization_method: bnb                   # 使用 bitsandbytes 实现量化；环境需安装该依赖。
+
+# 训练方式：SFT 学习输入与目标报告的对应关系，QLoRA 只更新新增的 LoRA 参数。
+stage: sft                                # 监督微调阶段，使用已审核的教师报告作为目标输出。
+do_train: true                            # 启用训练任务。
+finetuning_type: lora                      # 冻结基础权重，训练低秩适配器。
+lora_target: all                          # 将 LoRA 应用于框架识别的可适配线性层，不等于更新全部模型参数。
+lora_rank: 8                              # 低秩矩阵的秩；越大通常可训练参数越多、显存开销越高。
+lora_alpha: 16                            # LoRA 缩放系数；默认标准 LoRA 的缩放为 alpha/rank，此处为 2。
+lora_dropout: 0.05                        # LoRA 分支训练时使用 5% 的 dropout，帮助抑制过拟合。
+
+# 数据：dataset 是注册名，实际文件由 data/dataset_info.json 中的对应条目决定。
+dataset_dir: data                         # 数据与数据集注册表所在目录，相对项目根目录。
+dataset: industrial_sft                 # 映射到 industrial/04_finetune/input/train_sft.jsonl。
+template: qwen                            # 使用框架提供的 Qwen 对话模板组织输入与输出。
+cutoff_len: 1024                           # 单条训练序列的 token 上限，包含模板、输入和目标报告。
+# 训练前应使用学生模型 tokenizer 检查长度；超过上限可能截掉报告或证据链。
+overwrite_cache: true                     # 重建预处理缓存，避免继续使用修改前的数据编码结果。
+preprocessing_num_workers: 2               # 数据预处理的并行进程数，与使用几张 GPU 无关。
+
+# 批量与训练进度：单 GPU 下，每累计 8 条样本执行一次参数更新。
+per_device_train_batch_size: 1            # 每张 GPU 每次前向/反向处理 1 条样本。
+gradient_accumulation_steps: 8             # 累计 8 次梯度后更新；完整批次有效批量=1×8×训练 GPU 数。
+# 每个 epoch 末尾可能不足一个完整累积批次；教师服务使用的两张卡不决定学生训练卡数。
+learning_rate: 1.5e-4                      # 初始学习率，即 0.00015；配合预热和调度器变化。
+num_train_epochs: 4                        # 训练集遍历 4 轮；小数据集需关注过拟合。
+lr_scheduler_type: cosine                 # 预热后按余弦曲线逐渐降低学习率。
+warmup_ratio: 0.05                        # 总参数更新步数的约 5% 用于学习率预热。
+
+# 显存与计算：4 bit 权重量化和 BF16 混合精度用于不同部分，可同时启用。
+bf16: true                                # 启用 BF16 混合精度计算，需要 GPU 和软件栈支持。
+gradient_checkpointing: true               # 反向传播时重新计算部分中间结果，以计算时间换取显存。
+optim: paged_adamw_8bit                     # 使用 bitsandbytes 的分页 8 bit AdamW，减少优化器状态开销。
+
+# 输出：保存 LoRA 适配器、训练日志和检查点；不是完整基础模型权重。
+output_dir: outputs/industrial/qwen2.5-3b-industrial-v2-lora
+logging_steps: 5                           # 每 5 次参数更新记录一次训练日志，不是每 5 条样本。
+save_steps: 50                             # 默认按更新步数保存时，每 50 步保存检查点；短训练可能达不到。
+plot_loss: true                            # 由训练日志生成损失曲线；记录点少时曲线较稀疏。

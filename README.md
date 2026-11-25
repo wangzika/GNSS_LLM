@@ -1,73 +1,53 @@
 # 工业故障教师数据与 GNSS 推断实验
 
-当前主线是 AI4I 工业故障实验：准备样本 → 划分数据 → 教师生成报告 → 质检与审阅 → 学生模型微调 → 留出集评估。
+当前工业主流程：**数据预处理 → 教师生成 → 报告审阅 → 学生微调 → 推断评估**。只维护一套代码与数据；历史版本在 Git 中查看。
 
-截至 2026-11-24，已扩充到 AI4I 全部 306 条单故障事件，划分为训练 214／验证 31／测试 61。214 条教师报告已生成并完成本轮审阅，保留 134 条训练数据；50 条拒绝，30 条工具磨损样本列为不确定。结果已同步本地，正式学生微调已完成（4 分 18 秒）。当前模型在对齐输入后的验证集上全部预测多数类，35.5% 准确率未超过多数类基线，尚未证明有效故障判断能力。报告采用公开规则辅助生成。
-
-## 目录导航
-
-| 目录 | 内容 |
-| --- | --- |
-| `scripts/industrial/` | 工业样本准备、划分、教师生成／重试、学生推断和评估 |
-| `scripts/common/` | 共用报告质检、训练环境检查 |
-| `scripts/server/` | GPU 服务器上的教师 API 启动脚本 |
-| `scripts/gnss/` | GNSS 合成先导数据及旧格式适配工具 |
-| `configs/industrial/` | 工业学生训练和推断配置 |
-| `configs/gnss/` | GNSS 训练配置 |
-| `data/industrial_source/` | 原始 AI4I CSV、抽取的 50 条内部元数据 |
-| `data/industrial_v1/` | 保留的旧先导实验；35 条报告复核后保留 20 条 |
-| `data/industrial_v2/` | 当前主实验，按六阶段 `input/`、`output/` 组织，见[目录说明](data/industrial_v2/README.md) |
-| `data/gnss_pilot_v1/` | 尚未经过专家审核的 GNSS 合成先导样本 |
-| `outputs/` | 模型训练输出；`legacy_smoke/` 保留早期自检权重 |
-| `docs/reference/` | 原始方案文档 |
-| `LlamaFactory/` | 已安装的第三方训练框架源码，保留原位置以兼容现有环境 |
-
-今后新增实验数据沿用 `阶段/input/`、`阶段/output/` 规范，路径集中在 `scripts/industrial/workflow_paths.py`；跨阶段输入使用相对链接，避免重复副本。v1 历史目录保持兼容。
+AI4I 中 306 条单故障事件划分为训练 214／验证 31／测试 61。教师报告审阅后保留 134 条训练样本，学生已完成 4 轮微调。当前对齐输入后的验证准确率 35.5%，全部预测 HDF，未超过多数类基线；测试集尚未运行。
 
 ## 从这里开始
 
-- [全量扩充与审阅说明](docs/industrial_v2_review.md)
-- [新版逐事件审阅结果](data/industrial_v2/04_review/output/REVIEW.md)
-- [工业故障流程与文件用途](docs/industrial_fault_workflow.md)
-- [教师服务器环境、启动与生成命令](docs/teacher_server_setup.md)
+- [工业故障流程、全部文件用途与运行命令](docs/industrial_fault_workflow.md)
+- [教师服务器配置](docs/teacher_server_setup.md)
+- [数据来源、许可与实验限制](data/DATASET_CARD.md)
 - [GNSS 先导样本说明](data/gnss_pilot_v1/README.md)
-- [本次整理的移动与删除清单](docs/project_cleanup_20261124.json)
 
-所有命令从项目根目录执行。Python 脚本支持模块形式，例如：
+| 路径 | 用途 |
+| --- | --- |
+| `scripts/industrial/preprocess_data.py` | CSV 筛选、字段构造与集合划分，合为一次数据预处理 |
+| `scripts/industrial/generate_teacher_reports.py` | 教师 API 批量生成与续跑 |
+| `scripts/industrial/review_teacher_reports.py` | 统一检查、审阅与 SFT 导出 |
+| `scripts/industrial/evaluate_student.py` | 学生推断、全类别／三类评分与合并指标 |
+| `scripts/industrial/common.py` | 共用路径、字段与检查函数 |
+| `scripts/industrial/check_workflow.py` | 唯一一致性检查入口，不保存测试产物 |
+| `configs/industrial/student_qlora_8gb.yaml` | 唯一工业训练配置 |
+| `data/industrial/` | 五步流程，每步 `input/`、`output/` |
+| `outputs/industrial/` | 实际 LoRA 权重与完整运行日志，不提交 Git |
+| `scripts/server/`、`scripts/common/` | 教师服务启动、GPU 环境检查 |
+| `scripts/gnss/`、`configs/gnss/` | 独立 GNSS 研究代码与配置 |
+| `deliverables/` | 已交付的七页首轮实验汇报，保留当时的流程图 |
+| `LlamaFactory/` | 训练框架源码，现有环境通过 editable 安装使用 |
+
+## 常用命令
+
+从项目根目录执行：
 
 ```bash
-python -m scripts.industrial.industrial_generate_teacher --help
-python -m scripts.common.step2_validate_and_pack --help
-```
-
-服务器项目根目录为 `/data/zbwang/GNSS_LLM`，模型、缓存和推断环境均位于 `/data/zbwang`。教师原始报告、报告汇总和待审阅训练文件已同步至本地 `data/industrial_v1/`，与服务器源文件哈希一致，可在本地审阅。
-
-## 训练环境
-
-本机 Conda 环境名为 `gnss-intent`，基础定义见 `environment.yml`。现有环境通过可编辑安装使用 `LlamaFactory/`；不要直接移动该目录。
-
-```bash
+# 不加载模型的一致性检查
+python -m scripts.industrial.check_workflow
+# 仅检查教师生成进度
+python -m scripts.industrial.generate_teacher_reports --dry-run
+# 根据现有预测重算两组指标
+python -m scripts.industrial.evaluate_student --mode score
+# 学生训练（当前首轮已完成，无需重复执行）
 conda activate gnss-intent
-python -m scripts.common.check_runtime
+llamafactory-cli train configs/industrial/student_qlora_8gb.yaml
 ```
 
-本轮审阅已完成，当前训练入口为 `data/industrial_v2/05_finetune/input/train_sft_clean.jsonl`（链接到第四步输出，134 条），对应配置 `configs/industrial/qwen_industrial_v2_qlora_8gb.yaml`。配置使用相对路径，可在本机或服务器项目根目录执行；服务器教师推断环境与学生微调环境分开维护。
+当前正式训练文件是 `data/industrial/03_review/output/train_sft.jsonl`，训练注册名 `industrial_sft` 指向第四步 input 链接。服务器根目录为 `/data/zbwang/GNSS_LLM`，模型和教师环境均位于 `/data/zbwang`。
 
-## 代码、数据与演示文稿发布
+## 环境与发布
 
-GitHub 仓库：https://github.com/wangzika/GNSS_LLM ，分支 `master`。
-
-本次发布包含脚本、配置、原始 AI4I CSV、v1/v2 数据划分、教师报告、审阅记录、134条 SFT 数据、验证预测、实验统计与七页 PPT。数据来源、CC BY 4.0 归属及适用限制见 [数据说明](data/DATASET_CARD.md)。基础模型、LoRA 权重、环境和缓存不提交。
-
-七页汇报保存在 `deliverables/`，每页分别说明整体流程、数据准备、教师证据链、微调、评估、当前结果和首轮问题。可从实验记录重新生成：
-
-```bash
-python scripts/reporting/build_progress_ppt.py
-```
-
-教师“推理链”在本文档中指公开分析依据和可核对的证据，不代表模型内部思考。当前模型尚未超过多数类基线。
-
-重建本机学生训练环境（现有环境无需重复安装）：
+现有训练环境是 `gnss-intent`。重建时：
 
 ```bash
 conda env create -f environment.yml
@@ -79,4 +59,6 @@ python -m pip install -e ./LlamaFactory
 python -m pip install -r requirements-local.txt
 ```
 
-`docs/reference/` 中原始研究方案文档在本机与服务器保留，未纳入公开发布。Git 忽略的旧审阅归档不会影响当前 clean 文件及逐事件最终裁定的使用。
+GitHub：https://github.com/wangzika/GNSS_LLM ，分支 `master`。代码、公开数据、当前报告、审阅、验证结果和 PPT 提交 Git；模型权重、环境、缓存和原始研究方案 DOCX 不提交。
+
+旧工业版本、重复导出、一次性迁移／自检代码和旧模板自检权重已清理。当前训练适配器保留原位置。清理前文件可从 Git 提交 `6f76e47` 查看；旧模板自检权重属于未纳入 Git 的可重建试验产物，不再保留。

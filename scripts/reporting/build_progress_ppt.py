@@ -14,8 +14,7 @@ from xml.sax.saxutils import escape
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT/'deliverables/工业故障大模型_流程与首轮实验_20261124.pptx'
 sys.path.insert(0, str(ROOT))
-from scripts.industrial.workflow_paths import WorkflowPaths
-DATA = WorkflowPaths(ROOT/'data/industrial_v2')
+
 FONT = 'Noto Sans CJK SC'
 BLUE='1464B8'; DARK='17212C'; MUTED='61758F'; LIGHT='F4F7FB'; BORDER='B8CEE8'; RED='B3353D'
 P='http://schemas.openxmlformats.org/presentationml/2006/main'
@@ -71,7 +70,6 @@ class Slide:
 def relationships(rows):
     return '<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+''.join(f'<Relationship Id="{rid}" Type="{typ}" Target="{target}"/>' for rid,typ,target in rows)+'</Relationships>'
 
-def load(name):return json.loads(DATA.file(name).read_text())
 
 def make_slides():
     slides=[]; notes=[]
@@ -82,14 +80,14 @@ def make_slides():
     s.line(1050,263,1050,348,arrow=True);s.line(875,412,815,412,arrow=True);s.line(465,412,405,412,arrow=True)
     s.text('SFT 样本结构',55,516,1100,36,24,BLUE,True)
     s.table([['instruction','input','output'],['故障分析任务说明','原始测量 JSON，去除真实标签','教师报告、类别结论与证据引用']],55,562,[285,420,465],40,19)
-    slides.append(s);notes.append('数据依据：data/industrial_v2/02_split/output/manifest.json、04_review/output/audit_summary.json；训练依据：results/industrial_v2/train_results.json。原图为用户提供版式参考，重建为可编辑对象。当前为公开规则辅助教师报告蒸馏，未证明纯模型诊断有效。')
+    slides.append(s);notes.append('数据依据：data/industrial/01_preprocess/output/manifest.json、03_review/output/review_summary.json；训练依据：data/industrial/04_finetune/output/train_results.json。原图为用户提供版式参考，重建为可编辑对象。当前为公开规则辅助教师报告蒸馏，未证明纯模型诊断有效。')
 
     s=Slide('数据准备：从 10,000 条记录到 134 条训练样本',2)
     s.text('原始故障记录筛选',55,100,580,36,25,BLUE,True)
     s.table([['原始 CSV','条数','处理方式'],['非故障记录','9,661','当前任务不纳入'],['单一故障','306','保留并独立划分'],['多种故障同时标记','24','不用于唯一类别任务'],['总故障为 1，子类全为 0','9','标记不明，单列排除']],55,151,[285,85,250],43,19)
     s.text('306 条单故障的类别组成',55,403,600,36,24,BLUE,True)
     s.table([['PWF 电力异常','HDF 散热失效','OSF 机械过载','TWF 工具磨损'],['80','106','78','42']],55,450,[155,155,155,155],43,18)
-    s.card('独立划分','训练 214，验证 31，测试 61\n保留旧版 50 条的集合归属\n物理输入无重复、无集合交叉',720,126,505,178,22)
+    s.card('独立划分','训练 214，验证 31，测试 61\n按固定划分表重现集合归属\n物理输入无重复、无集合交叉',720,126,505,178,22)
     s.card('训练报告审阅','214 份报告完成生成\n接受 134，拒绝 50，不确定 30\nTWF 随机发生，30 条训练事件不入 clean',720,323,505,182,21)
     s.text('输入字段：空气温度、过程温度、转速、扭矩、刀具磨损及产品类别 L/M/H',55,568,1170,33,21)
     s.text('AI4I 本身为合成数据。运行模式与车间区域为额外随机背景，不是现场实测。',55,615,1170,34,19,MUTED)
@@ -104,7 +102,7 @@ def make_slides():
     s.text('真实报告示例：EVT-20261124-0141',712,353,496,35,22,BLUE,True)
     s.text('原值：301.6 K / 310.1 K / 1326 rpm\n扭矩 48.2 Nm，磨损 77 min\n温差 8.5 K < 8.6 K，转速 < 1380 rpm\n结论：散热系统失效故障\n证据链原样列出五项测量值',712,400,496,160,20)
     s.text('报告包含事件 ID、公开的简短排除依据、结论和证据链。真实标签仅用于事后核对。',55,607,1170,58,20,MUTED)
-    slides.append(s);notes.append('生成代码：scripts/industrial/industrial_generate_teacher.py 的 SYSTEM、derived_measurements、request_report。审阅：industrial_build_reports.py 和 industrial_finalize_review.py。示例来自 teacher_responses.jsonl 的 EVT-20261124-0141。<think>在本项目指可公开的简短分析依据，不代表获取或验证模型内部思考。教师收到规则检查布尔值，因此其报告不是独立盲诊断能力证据。阈值来自 UCI 数据集公开规则。')
+    slides.append(s);notes.append('生成代码：scripts/industrial/generate_teacher_reports.py 的 SYSTEM、derived_measurements、request_report。审阅：review_teacher_reports.py。示例来自 teacher_responses.jsonl 的 EVT-20261124-0141。<think>在本项目指可公开的简短分析依据，不代表获取或验证模型内部思考。教师收到规则检查布尔值，因此其报告不是独立盲诊断能力证据。阈值来自 UCI 数据集公开规则。')
 
     s=Slide('学生模型微调：3B QLoRA 首轮试验',4)
     s.table([['项目','本轮设置'],['基础模型','Qwen2.5-3B-Instruct'],['量化与适配器','bitsandbytes 4 bit，LoRA r=8 / α=16'],['训练样本','134 条：PWF 36 / HDF 56 / OSF 42'],['批量与更新','每卡 batch=1，梯度累积 8'],['学习率与轮数','1.5×10⁻⁴，cosine，4 个 epoch'],['精度与长度','BF16，checkpointing，cutoff 1024']],55,125,[165,465],52,20)
@@ -113,7 +111,7 @@ def make_slides():
     s.text('训练损失曲线',735,258,470,33,23,BLUE,True)
     s.chart(714,300,510,278,1)
     s.text('平均训练 loss = 0.5778。损失下降需要结合留出集判断效果。',55,617,1170,38,20,MUTED)
-    slides.append(s);notes.append('配置：configs/industrial/qwen_industrial_v2_qlora_8gb.yaml。数据：train_sft_clean.jsonl。训练结果：train_results.json，trainer_log.jsonl。训练耗时258.0767秒，不含模型加载。图表绘制记录到的每5步训练loss（5到65步），不是验证loss。首轮试验包含4个epoch，不是仅第1个epoch。约1497万参数参与训练。632token来自LLaMA-Factory实际处理器。')
+    slides.append(s);notes.append('配置：configs/industrial/student_qlora_8gb.yaml。数据：train_sft.jsonl。训练结果：train_results.json，trainer_log.jsonl。训练耗时258.0767秒，不含模型加载。图表绘制记录到的每5步训练loss（5到65步），不是验证loss。首轮试验包含4个epoch，不是仅第1个epoch。约1497万参数参与训练。632token来自LLaMA-Factory实际处理器。')
 
     s=Slide('微调后评估：独立输入、标签与报告检查',5)
     s.card('训练集','134 条报告用于更新参数\nloss 衡量对训练目标的拟合',55,125,350,132,21)
@@ -170,7 +168,7 @@ def xlsx_bytes(steps,losses):
 
 def main():
     slides,notes=make_slides()
-    metrics=ROOT/'results/industrial_v2/trainer_log.jsonl'
+    metrics=ROOT/'data/industrial/04_finetune/output/trainer_log.jsonl'
     if not metrics.exists():metrics=ROOT/'outputs/industrial/qwen2.5-3b-industrial-v2-lora/trainer_log.jsonl'
     records=[json.loads(s) for s in metrics.read_text().splitlines() if s.strip()]
     records=[r for r in records if 'loss' in r]
