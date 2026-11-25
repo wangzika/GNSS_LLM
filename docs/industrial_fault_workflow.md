@@ -149,6 +149,8 @@ python -m scripts.industrial.evaluate_student --mode run --split validation \
   --predictions data/industrial/05_evaluation/output/validation_predictions_rerun.jsonl
 ```
 
+基础模型默认优先读取 LoRA 配置里记录的本地目录，然后查找已有 Qwen2.5-3B 缓存；显式 `--base-model` 参数优先。已有本地权重时不必通过仓库名联网查询，可用 `--base-model /home/wzb/.cache/modelscope/hub/models/Qwen/Qwen2.5-3B-Instruct` 明确指定本机缓存。
+
 `run` 会生成预测并评分，`predict` 只生成预测，`score` 只评分。全类别和 HDF/PWF/OSF 三类子集同时报告；未识别标签按错误计。原始数值引用完整不代表派生量计算正确，两者分别统计。
 
 当前全类别 11/31（35.5%），Macro-F1 0.131；三类 11/27（40.7%），Macro-F1 0.193。全部预测 HDF，等于多数类基线；31 份报告均有已列出的派生量计算错误。训练 loss 下降未转化为有效分类和计算能力。首轮还发现训练／推断消息位置不一致与中文标签解析遗漏，现已统一；错误协议的历史文件从主目录移除，可通过 Git 查询。

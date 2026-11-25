@@ -18,6 +18,35 @@ from scripts.industrial.common import (
     NUM_RE, numbers, derived_measurements, read_jsonl, write_json,
 )
 ADAPTER = ROOT / 'outputs/industrial/qwen2.5-3b-industrial-v2-lora'
+DEFAULT_BASE_MODEL = 'Qwen/Qwen2.5-3B-Instruct'
+
+
+def resolve_base_model(requested, adapter=None):
+    """显式参数优先；否则复用训练记录和本机缓存，避免已有模型再次联网下载。"""
+    if requested:
+        path = Path(requested).expanduser()
+        return str(path.resolve()) if path.is_dir() else requested
+    if adapter is not None:
+        config = adapter / 'adapter_config.json'
+        if config.is_file():
+            recorded = json.loads(config.read_text()).get('base_model_name_or_path')
+            if recorded:
+                path = Path(recorded).expanduser()
+                if path.is_dir():
+                    return str(path.resolve())
+                if path.is_absolute():
+                    raise SystemExit(f'训练记录的基础模型目录不存在：{path}；请用 --base-model 指定本机模型目录。')
+                if recorded != DEFAULT_BASE_MODEL:
+                    return recorded
+    candidates = (
+        ROOT / 'models/Qwen2.5-3B-Instruct',
+        Path.home() / '.cache/modelscope/hub/models/Qwen/Qwen2.5-3B-Instruct',
+        Path.home() / '.cache/modelscope/models/Qwen--Qwen2.5-3B-Instruct/snapshots/master',
+    )
+    for path in candidates:
+        if (path / 'config.json').is_file():
+            return str(path.resolve())
+    return DEFAULT_BASE_MODEL
 
 
 def extract_label(report):
@@ -43,6 +72,8 @@ def predict(args, layout):
     output = args.predictions
     if output.exists():
         raise SystemExit(f"预测文件已存在，请另选 --predictions，避免覆盖：{output}")
+    args.base_model = resolve_base_model(args.base_model, None if args.base_only else args.adapter)
+    print(f'基础模型：{args.base_model}')
     from llamafactory.chat import ChatModel
 
     model_config = {
@@ -172,14 +203,21 @@ def score(layout, predictions_path, split, deterministic=False):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--mode', choices=('run', 'predict', 'score'), default='score')
+    # run：完整流程。加载学生模型生成报告，再读取独立标签评分，保存预测和评估指标。
+    # predict：只推断。加载学生模型生成报告并保存预测、推断参数，不读取标签或计算指标。
+    # score：只评分。读取已有预测和独立标签，重新计算指标，不加载模型、不需要 GPU。
+    # 默认 score，便于检查现有结果；run/predict 要求预测输出文件尚不存在，避免覆盖旧实验。
+    parser.add_argument(
+        '--mode', choices=('run', 'predict', 'score'), default='score',
+        help='run：生成预测并评分；predict：只生成预测；score：只对已有预测评分（默认，无需 GPU）',
+    )
     parser.add_argument('--data-dir', type=Path, default=DATA)
     parser.add_argument('--split', choices=('validation', 'test'), default='validation')
     parser.add_argument('--predictions', type=Path, help='预测文件；run/predict 为输出，score 为输入')
     parser.add_argument('--summary-json', type=Path, help='合并保存推断配置、全类别与三类指标')
     parser.add_argument('--adapter', type=Path, default=ADAPTER)
     parser.add_argument('--base-only', action='store_true', help='只运行基础模型，供与微调比较')
-    parser.add_argument('--base-model', default='Qwen/Qwen2.5-3B-Instruct')
+    parser.add_argument('--base-model', help='基础模型目录或仓库名；默认优先复用训练记录的本地模型和已有缓存')
     parser.add_argument('--max-new-tokens', type=int, default=512)
     args = parser.parse_args()
     if args.max_new_tokens < 1:
